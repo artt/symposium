@@ -5,6 +5,7 @@ $color-4: rgb(165, 185, 196);
 $green-color: rgb(53, 147, 159);
 $text-color: #eee;
 $grid-color: scale-color($text-color, $alpha: -80%);
+$base-size: 24px;
 
 :export {
 	primaryColor: $primary-color;
@@ -14,4 +15,5 @@ $grid-color: scale-color($text-color, $alpha: -80%);
 	greenColor: $green-color;
 	textColor: $text-color;
 	gridColor: $grid-color;
+	baseSize: $base-size;
 }

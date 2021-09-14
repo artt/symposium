@@ -10,6 +10,8 @@ import styles from './css/theme/source/_variables.module.scss'
 import "../node_modules/reveal.js/dist/reveal.css"
 import "./css/theme/source/pier-dark.scss"
 
+console.log(styles.baseSize)
+const baseSize = parseInt(styles.baseSize.replace("px", ""))
 
 merge(defaults, {
   color: styles.textColor,
@@ -17,10 +19,10 @@ merge(defaults, {
   borderColor: styles.secondaryColor,
   font: {
     family: "Dindan",
-    size: 16,
+    size: 1.5*baseSize,
   },
   layout: {
-    padding: 40,
+    padding: 3*baseSize,
   },
   scale: {
     grid: {
@@ -31,7 +33,7 @@ merge(defaults, {
   plugins: {
     title: {
       font: {
-        size: 20,
+        size: 2*baseSize,
       }
     },
     legend: {
@@ -69,7 +71,11 @@ function App() {
     deck.current = new Reveal({
       // plugins: [ Markdown ],
     })
-    deck.current.initialize()
+    deck.current.initialize({
+      width: 1920,
+      height: 1080,
+      margin: 0.2,
+    })
     deck.current.addEventListener('slidechanged', animateCurrentChart)
     deck.current.addEventListener('fragmentshown', updateFragment)
     deck.current.addEventListener('fragmenthidden', updateFragment)
@@ -88,18 +94,18 @@ function App() {
       <div className="slides">
 
         <section>
-          <h2>
+          <h1>
             โครงสร้างเศรษฐกิจสังคมไทย<br />
 						<span className="orange">ความเปราะบางท่ามกลางความเปลี่ยนแปลง</span>
-          </h2>
+          </h1>
         </section>
 
         <section>
-					<div class="title">
+					<h2>
 						แต่ประเด็นทางเศรษฐกิจ<br />
 						ไม่ได้เป็นความเปราะบางเพียงอย่างเดียว<br />
 						<span class="orange">ต้องพิจารณาประเด็นทางสังคมควบคู่ไปด้วย</span>
-					</div>
+          </h2>
 				</section>
         
         <section>
@@ -157,6 +163,10 @@ function App() {
                 }
               },
               plugins: {
+                title: {
+                  display: true,
+                  text: "ความคิดทางการเมืองจาก World Values Survey",
+                },
                 legend: {
                   labels: {
                     pointStyle: 'line',
