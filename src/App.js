@@ -1,31 +1,80 @@
 import React from 'react'
 
-// import './App.css';
-
 import Reveal from 'reveal.js'
+// import Markdown from 'reveal.js/plugin/markdown/markdown.esm.js';
+
+import { Bar } from 'react-chartjs-2';
+
+import Chart from './components/Chart'
 
 import "../node_modules/reveal.js/dist/reveal.css"
-import "../node_modules/reveal.js/dist/theme/simple.css"
+import "./css/theme/source/pier-dark.scss"
 
 function App() {
 
-  let deck
+  const deck = React.useRef(null)
+  const [animatedCharts, setAnimatedCharts] = React.useState([])
+
+  const trust = React.useRef(null)
 
   React.useEffect(() => {
-    deck = new Reveal()
-    deck.initialize()
+    deck.current = new Reveal({
+      // plugins: [ Markdown ],
+    })
+    deck.current.initialize()
+    deck.current.addEventListener('slidechanged', () => {
+      const curCharts = document.querySelectorAll('.present .chart canvas')
+      if (curCharts.length > 0) {
+        console.log(curCharts)
+        console.log(curCharts[0].chart)
+      }
+      // curCharts[0].reset()
+      // curCharts[0].update()
+      // console.log('xxx')
+      // if (ref.current.canvas.closest('.present')) {
+      //   ref.current.reset()
+      //   ref.current.update()
+      // }
+    })
   }, [])
 
+  
+
   return (
-    <div className="reveal">
       <div className="slides">
+
         <section>
-          <h1>Heading</h1>
-          Slide 1
+          <h2>
+            โครงสร้างเศรษฐกิจสังคมไทย<br />
+						<span className="orange">ความเปราะบางท่ามกลางความเปลี่ยนแปลง</span>
+          </h2>
         </section>
-        <section>Slide 2</section>
+
+        <section>
+					<div class="title">
+						แต่ประเด็นทางเศรษฐกิจ<br />
+						ไม่ได้เป็นความเปราะบางเพียงอย่างเดียว<br />
+						<span class="orange">ต้องพิจารณาประเด็นทางสังคมควบคู่ไปด้วย</span>
+					</div>
+				</section>
+
+        <section>
+          <div className="chart">
+            <Bar
+              data={{
+                labels: ["2007", "2013", "2018"],
+                datasets: [
+                  {
+                    data: [41, 32, 29],
+                    label: "คะแนนความเชื่อใจจาก World Values Survey"
+                  }
+                ]
+              }}
+            />
+          </div>
+        </section>
+
       </div>
-    </div>
   );
 }
 

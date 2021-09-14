@@ -1,0 +1,13 @@
+@font-face {
+	font-family: "Dindan";
+	font-weight: normal;
+	src: url("./dindanmai-regular-webfont.woff2") format("woff2"),
+	     url("./dindanmai-regular-webfont.woff") format("woff");
+}
+
+@font-face {
+	font-family: "Dindan";
+	font-weight: bold;
+	src: url("./dindanmai-bold-webfont.woff2") format("woff2"),
+	     url("./dindanmai-bold-webfont.woff") format("woff");
+}

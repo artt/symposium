@@ -1,0 +1,63 @@
+/**
+ * Black theme for reveal.js.
+ *
+ * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+// @import url(https://fonts.googleapis.com/css?family=Montserrat:700);
+// @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic);
+@import url(../../fonts/dindan/dindan.css);
+@import url(../../fonts/muttayat/muttayat.css);
+
+$primary-color: #4f6e82;
+$secondary-color: #dd8357;
+$green-color: rgb(53, 147, 159);
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: $primary-color;
+
+$mainFont: 'Dindan', 'Open Sans', sans-serif;
+$linkColor: $secondary-color;
+$linkColorHover: lighten( $linkColor, 20% );
+$headingFont: 'Dindan', 'Montserrat', Impact, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$selectionBackgroundColor: $secondary-color;
+
+// Change text colors against light slide backgrounds
+@include light-bg-text-color(#222);
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+.reveal {
+  
+  .title {
+    font-size: 3rem;
+  }
+
+  .orange {
+    color: $secondary-color;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  .chart-note {
+    font-size: 1rem;
+    color: lightgray;
+  }
+  
+}
