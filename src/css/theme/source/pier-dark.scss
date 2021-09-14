@@ -5,6 +5,8 @@
  */
 
 
+@import "variables.module";
+
 // Default mixins and settings -----------------
 @import "../template/mixins";
 @import "../template/settings";
@@ -16,10 +18,6 @@
 // @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic);
 @import url(../../fonts/dindan/dindan.css);
 @import url(../../fonts/muttayat/muttayat.css);
-
-$primary-color: #4f6e82;
-$secondary-color: #dd8357;
-$green-color: rgb(53, 147, 159);
 
 // Override theme settings (see ../template/settings.scss)
 $backgroundColor: $primary-color;
@@ -60,4 +58,9 @@ $selectionBackgroundColor: $secondary-color;
     color: lightgray;
   }
   
+}
+
+:export {
+  primaryColor: $primary-color;
+  secondaryColor: $secondary-color;
 }
