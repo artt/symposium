@@ -3,9 +3,7 @@ import React from 'react'
 import Reveal from 'reveal.js'
 // import Markdown from 'reveal.js/plugin/markdown/markdown.esm.js';
 
-import { Bar } from 'react-chartjs-2';
-
-import Chart from './components/Chart'
+import { Bar } from 'test-react-chartjs-2';
 
 import "../node_modules/reveal.js/dist/reveal.css"
 import "./css/theme/source/pier-dark.scss"
@@ -14,6 +12,8 @@ function App() {
 
   const deck = React.useRef(null)
   const [animatedCharts, setAnimatedCharts] = React.useState([])
+
+  const [data, setData] = React.useState([10, 20, 30])
 
   const trust = React.useRef(null)
 
@@ -29,9 +29,7 @@ function App() {
         trust.current.update()
       }
     })
-  }, [])
-
-  
+  }, [])  
 
   return (
       <div className="slides">
@@ -59,13 +57,14 @@ function App() {
                 labels: ["2007", "2013", "2018"],
                 datasets: [
                   {
-                    data: [41, 32, 29],
+                    data: data,
                     label: "คะแนนความเชื่อใจจาก World Values Survey"
                   }
                 ]
               }}
             />
           </div>
+          <button onClick={() => setData([30, 20, 10])}>Change Data</button>
         </section>
 
       </div>
