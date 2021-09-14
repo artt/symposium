@@ -23,18 +23,11 @@ function App() {
     })
     deck.current.initialize()
     deck.current.addEventListener('slidechanged', () => {
-      const curCharts = document.querySelectorAll('.present .chart canvas')
-      if (curCharts.length > 0) {
-        console.log(curCharts)
-        console.log(curCharts[0].chart)
+      // const curCharts = document.querySelectorAll('.present .chart canvas')
+      if (trust.current.canvas.closest('.present')) {
+        trust.current.reset()
+        trust.current.update()
       }
-      // curCharts[0].reset()
-      // curCharts[0].update()
-      // console.log('xxx')
-      // if (ref.current.canvas.closest('.present')) {
-      //   ref.current.reset()
-      //   ref.current.update()
-      // }
     })
   }, [])
 
@@ -61,6 +54,7 @@ function App() {
         <section>
           <div className="chart">
             <Bar
+              ref={trust}
               data={{
                 labels: ["2007", "2013", "2018"],
                 datasets: [
