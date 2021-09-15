@@ -1,27 +1,30 @@
 {
   "files": {
-    "main.css": "/symposium/static/css/main.607697bd.chunk.css",
-    "main.js": "/symposium/static/js/main.01eed8ea.chunk.js",
-    "main.js.map": "/symposium/static/js/main.01eed8ea.chunk.js.map",
-    "runtime-main.js": "/symposium/static/js/runtime-main.6fa259eb.js",
-    "runtime-main.js.map": "/symposium/static/js/runtime-main.6fa259eb.js.map",
+    "main.css": "/symposium/static/css/main.e7fc5146.chunk.css",
+    "main.js": "/symposium/static/js/main.938af912.chunk.js",
+    "main.js.map": "/symposium/static/js/main.938af912.chunk.js.map",
+    "runtime-main.js": "/symposium/static/js/runtime-main.c319ec22.js",
+    "runtime-main.js.map": "/symposium/static/js/runtime-main.c319ec22.js.map",
     "static/css/2.fa4a5ac2.chunk.css": "/symposium/static/css/2.fa4a5ac2.chunk.css",
-    "static/js/2.d154cf2b.chunk.js": "/symposium/static/js/2.d154cf2b.chunk.js",
-    "static/js/2.d154cf2b.chunk.js.map": "/symposium/static/js/2.d154cf2b.chunk.js.map",
-    "static/js/3.0b0c212f.chunk.js": "/symposium/static/js/3.0b0c212f.chunk.js",
-    "static/js/3.0b0c212f.chunk.js.map": "/symposium/static/js/3.0b0c212f.chunk.js.map",
+    "static/js/2.2b900aaf.chunk.js": "/symposium/static/js/2.2b900aaf.chunk.js",
+    "static/js/2.2b900aaf.chunk.js.map": "/symposium/static/js/2.2b900aaf.chunk.js.map",
+    "static/js/3.1fcb3f1d.chunk.js": "/symposium/static/js/3.1fcb3f1d.chunk.js",
+    "static/js/3.1fcb3f1d.chunk.js.map": "/symposium/static/js/3.1fcb3f1d.chunk.js.map",
     "index.html": "/symposium/index.html",
     "static/css/2.fa4a5ac2.chunk.css.map": "/symposium/static/css/2.fa4a5ac2.chunk.css.map",
-    "static/css/main.607697bd.chunk.css.map": "/symposium/static/css/main.607697bd.chunk.css.map",
-    "static/js/2.d154cf2b.chunk.js.LICENSE.txt": "/symposium/static/js/2.d154cf2b.chunk.js.LICENSE.txt",
+    "static/css/main.e7fc5146.chunk.css.map": "/symposium/static/css/main.e7fc5146.chunk.css.map",
+    "static/js/2.2b900aaf.chunk.js.LICENSE.txt": "/symposium/static/js/2.2b900aaf.chunk.js.LICENSE.txt",
     "static/media/pier-dark.scss": "/symposium/static/media/muttayat-regular-webfont.ce2e2227.woff2",
-    "static/media/nursing-home.85c319dd.svg": "/symposium/static/media/nursing-home.85c319dd.svg"
+    "static/media/nursing-home.85c319dd.svg": "/symposium/static/media/nursing-home.85c319dd.svg",
+    "static/media/people.b6444c2c.png": "/symposium/static/media/people.b6444c2c.png",
+    "static/media/thailand.a4bfdcf2.png": "/symposium/static/media/thailand.a4bfdcf2.png",
+    "static/media/world.c659ced3.png": "/symposium/static/media/world.c659ced3.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.6fa259eb.js",
+    "static/js/runtime-main.c319ec22.js",
     "static/css/2.fa4a5ac2.chunk.css",
-    "static/js/2.d154cf2b.chunk.js",
-    "static/css/main.607697bd.chunk.css",
-    "static/js/main.01eed8ea.chunk.js"
+    "static/js/2.2b900aaf.chunk.js",
+    "static/css/main.e7fc5146.chunk.css",
+    "static/js/main.938af912.chunk.js"
   ]
 }
