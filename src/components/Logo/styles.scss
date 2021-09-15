@@ -1,0 +1,14 @@
+@import "../../css/theme/source/variables.module.scss";
+
+.logo {
+  .p {
+    fill: white;
+  }
+  .text {
+    fill: white;
+  }
+  .plus {
+    stroke: $secondary-color;
+  }
+  height: 8rem;
+}

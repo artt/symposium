@@ -16,8 +16,8 @@
 // Include theme-specific fonts
 // @import url(https://fonts.googleapis.com/css?family=Montserrat:700);
 // @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic);
-@import url(../../fonts/dindan/dindan.css);
-@import url(../../fonts/muttayat/muttayat.css);
+@import "../../fonts/dindan/dindan.css";
+@import "../../fonts/muttayat/muttayat.css";
 
 // Override theme settings (see ../template/settings.scss)
 $backgroundColor: $primary-color;
@@ -50,10 +50,14 @@ html {
   }
 
   h1 {
-    font-size: 4rem;
+    font-size: 4.5rem;
   }
 
   h2 {
+    font-size: 4rem;
+  }
+
+  h3 {
     font-size: 3rem;
   }
 
@@ -62,9 +66,4 @@ html {
     color: lightgray;
   }
   
-}
-
-:export {
-  primaryColor: $primary-color;
-  secondaryColor: $secondary-color;
 }

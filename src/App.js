@@ -5,6 +5,7 @@ import Reveal from 'reveal.js'
 
 import { Bar, Line, defaults } from 'test-react-chartjs-2'
 import merge from 'lodash.merge'
+import Logo from './components/Logo'
 
 import styles from './css/theme/source/_variables.module.scss'
 import "../node_modules/reveal.js/dist/reveal.css"
@@ -98,7 +99,21 @@ function App() {
             โครงสร้างเศรษฐกิจสังคมไทย<br />
 						<span className="orange">ความเปราะบางท่ามกลางความเปลี่ยนแปลง</span>
           </h1>
+          <div style={{height: "4rem"}} />
+          <h3>
+            สถาบันวิจัยเศรษฐกิจป๋วย อึ๊งภากรณ์<br />
+            BOT Symposium 2021
+          </h3>
+          <div style={{height: "2rem"}} />
+          <Logo />
         </section>
+
+        <section>
+					<h2>
+						ความเปลี่ยนแปลงที่กำลังเกิด<br />
+						<span class="orange">ส่งผลกระทบต่อความเปราะบางที่มีอยู่แล้ว</span>
+          </h2>
+				</section>
 
         <section>
 					<h2>
