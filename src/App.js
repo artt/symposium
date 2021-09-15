@@ -7,6 +7,8 @@ import { Bar, Line, defaults } from 'test-react-chartjs-2'
 import merge from 'lodash.merge'
 import Logo from './components/Logo'
 
+import {ReactComponent as PicNursingHome} from './images/nursing-home.svg'
+
 import styles from './css/theme/source/_variables.module.scss'
 import "../node_modules/reveal.js/dist/reveal.css"
 import "./css/theme/source/pier-dark.scss"
@@ -94,6 +96,9 @@ function App() {
   return (
       <div className="slides">
 
+
+        {// Cover
+        }
         <section>
           <h1>
             โครงสร้างเศรษฐกิจสังคมไทย<br />
@@ -107,6 +112,17 @@ function App() {
           <div style={{height: "2rem"}} />
           <Logo />
         </section>
+
+        {// ตรงนี้เดี๋ยวทำเป็นรูปเดียว ที่มี megatrends ห้าอย่าง ค่อย ๆ โชว์ทีละอย่าง
+        }
+        <section>
+					<h2>
+						Megatrends สำคัญ
+          </h2>
+          <div style={{width: '70%', marginLeft: "auto", marginRight: "auto"}}>
+            <PicNursingHome />
+          </div>
+				</section>
 
         <section>
 					<h2>
