@@ -48,7 +48,7 @@ $heading4Size: 1.2em;
 
 .reveal {
 
-  .orange {
+  orange {
     color: $secondary-color;
   }
 
@@ -59,6 +59,10 @@ $heading4Size: 1.2em;
 
   h2 {
     margin-bottom: 1em;
+  }
+
+  canvas {
+    margin: 1em;
   }
   
 }

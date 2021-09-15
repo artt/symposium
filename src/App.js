@@ -3,7 +3,7 @@ import React from 'react'
 import Reveal from 'reveal.js'
 // import Markdown from 'reveal.js/plugin/markdown/markdown.esm.js';
 
-import { Bar, Line, defaults } from 'test-react-chartjs-2'
+import ChartComponent, { defaults } from 'test-react-chartjs-2'
 import merge from 'lodash.merge'
 
 import Logo from './components/Logo'
@@ -31,7 +31,7 @@ merge(defaults, {
     size: 1.5*baseSize,
   },
   layout: {
-    padding: 3*baseSize,
+    padding: 1*baseSize,
   },
   scale: {
     grid: {
@@ -108,7 +108,7 @@ function App() {
         <section>
           <h1>
             โครงสร้างเศรษฐกิจสังคมไทย<br />
-						<span className="orange">ความเปราะบางท่ามกลางความเปลี่ยนแปลง</span>
+						<orange>ความเปราะบางท่ามกลางความเปลี่ยนแปลง</orange>
           </h1>
           <div style={{height: "4rem"}} />
           <h4>
@@ -127,25 +127,25 @@ function App() {
             <img src={picInternet} style={{filter: 'invert(80%)'}} />
             <div>
               ความเปลี่ยนแปลงสำคัญที่กำลังเกิด<br />
-              <span class="orange">มีอะไรบ้าง?</span>
+              <orange>มีอะไรบ้าง?</orange>
             </div>
             
             <img src={picTrend} style={{filter: 'invert(80%)'}} />
             <div>
               ความเปราะบางของ "โครงสร้างเศรษฐกิจไทย" ที่มีอยู่แล้ว<br />
-              <span class="orange">จะถูกกระทบอย่างไร?</span>
+              <orange>จะถูกกระทบอย่างไร?</orange>
             </div>
             
             <img src={picFamily} style={{filter: 'invert(80%)'}} />
             <div>
               ความเปราะบางของ "โครงสร้างสังคมไทย"<br />
-              <span class="orange">เป็นอย่างไร?</span>
+              <orange>เป็นอย่างไร?</orange>
             </div>
             
             <img src={picThailand} />
             <div>
               แล้วประเทศไทย<br />
-              <span class="orange">จะทำอย่างไรต่อไป?</span>
+              <orange>จะทำอย่างไรต่อไป?</orange>
             </div>
           </div>
         </section>
@@ -153,7 +153,7 @@ function App() {
         <section>
 					<h2>
 						ความเปลี่ยนแปลงที่กำลังเกิด<br />
-						<span class="orange">ส่งผลกระทบต่อความเปราะบางที่มีอยู่แล้ว</span>
+						<orange>ส่งผลกระทบต่อความเปราะบางที่มีอยู่แล้ว</orange>
           </h2>
 				</section>
 
@@ -177,26 +177,91 @@ function App() {
 
         <section>
           <h2>
-            เศรษฐกิจไทยเปราะบางต่อความขัดแย้งทางภูมิรัฐศาสตร์ ตามการพึ่งพาจีนในระดับสูง
+            <orange>#1</orange> เศรษฐกิจไทยเปราะบางต่อความขัดแย้งทางภูมิรัฐศาสตร์ ตามการพึ่งพาจีนในระดับสูง
           </h2>
 
+          ตัวอย่างความเปราะบางของภาคการท่องเที่ยวไทย
           <ul>
-            <li>รายได้จากนักท่องเที่ยวต่างชาติคิดเป็น 11% ของ GDP ไทย<br />เกี่ยวข้องกับแรงงานกว่า 7.5 ล้านคน</li>
+            <li>
+              รายได้จากนักท่องเที่ยวต่างชาติคิดเป็น <orange>11% ของ GDP ไทย</orange><br />
+              เกี่ยวข้องกับ<orange>แรงงานกว่า 7.5 ล้านคน</orange>
+            </li>
             <li>ภาคการท่องเที่ยวไทยพึ่งพานักท่องเที่ยวจีนถึง 28% ของนักท่องเที่ยวท้ังหมด</li>
           </ul>
+
+        </section>
+
+        <section>
+          <section>
+            <h2>
+              <orange>#2</orange> ความก้าวหน้าทางเทคโนโลยี อาจทำให้ไทยตกขบวนรถไฟได้ หากปรับตัวไม่ทัน
+            </h2>
+            <div>
+              ตัวอย่างความเปราะบางของโครงสร้างการส่งออกไทย
+            </div>
+          </section>
+
+          <section>
+            <h2>
+              <orange>#2</orange> ความก้าวหน้าทางเทคโนโลยี อาจทำให้ไทยตกขบวนรถไฟได้ หากปรับตัวไม่ทัน
+            </h2>
+            <div>
+              ตัวอย่างความเปราะบางของการพึ่งพา platform ต่างประเทศ:<br />
+              คนไทยพึ่งพา platform ต่างประเทศในการซื้อสินค้าและบริการสูงมาก
+            </div>
+            <ChartComponent
+              type="bar"
+              height="120"
+              ref={el => charts.current['foreign-platforms'] = el}
+              data={{
+                labels: ["Shopee", "Lazada", "Facebook", "Instagram", "LINE", "Kaidee", "lnwShop", "WeLoveShopping", "Shopping", "ThailandPostmart"],
+                datasets: [
+                  {
+                    data: [91.0, 72.9, 55.1, 42.1, 41.6, 6.6, 6.3, 3.3, 2.4, 1.1],
+                    backgroundColor: Array(5).fill(styles.greenColor).concat(Array(5).fill(styles.secondaryColor)),
+                  }
+                ]
+              }}
+              options={{
+                indexAxis: 'y',
+                plugins: {
+                  title: {
+                    display: true,
+                    text: "ช่องทางออนไลน์ที่คนไทยซื้อสินค้าและบริการ",
+                  },
+                  legend: {
+                    display: false,
+                  }
+                }
+              }}
+            />
+
+          </section>
+
+        </section>
+
+        <section>
+          <h2>
+            <orange>#3</orange> ภาวะโลกร้อน เป็นภัยเงียบ และจะส่งผลใหญ่หลวงต่อไทยหากไม่เร่งปรับตัว
+          </h2>
+          <div>
+            ตัวอย่างความเปราะบางของภาคอุตสาหกรรมไทย:<br />
+            กรุงเทพฯ และปริมณฑล มีความเสี่ยงต่อน้ำท่วมจากระดับน้ำทะเลที่เพิ่มขึ้น
+          </div>
         </section>
 
         <section>
 					<h2>
 						แต่ประเด็นทางเศรษฐกิจ<br />
 						ไม่ได้เป็นความเปราะบางเพียงอย่างเดียว<br />
-						<span class="orange">ต้องพิจารณาประเด็นทางสังคมควบคู่ไปด้วย</span>
+						<orange>ต้องพิจารณาประเด็นทางสังคมควบคู่ไปด้วย</orange>
           </h2>
 				</section>
         
         <section>
           <h2>สังคมไทยมีความเชื่อใจต่อกันลดลงอย่างต่อเนื่อง…</h2>
-          <Bar
+          <ChartComponent
+            type="bar"
             ref={el => charts.current['trust'] = el}
             data={{
               labels: ["2007", "2013", "2018"],
@@ -223,7 +288,9 @@ function App() {
 
         <section>
           <h2>…ขณะที่มีกลุ่มความคิดทางการเมือง<br />ไปทางซ้ายมากขึ้น</h2>
-          <Line
+          <ChartComponent
+            type="line"
+            height="120"
             ref={el => charts.current['political_shift'] = el}
             data={{
               labels: [...Array(10).keys()],
