@@ -31,6 +31,13 @@ $headingLetterSpacing: normal;
 $headingTextTransform: none;
 $selectionBackgroundColor: $secondary-color;
 
+$mainFontSize: 56px;
+
+$heading1Size: 2em;
+$heading2Size: 1.6em;
+$heading3Size: 1.4em;
+$heading4Size: 1.2em;
+
 // Change text colors against light slide backgrounds
 @include light-bg-text-color(#222);
 
@@ -39,31 +46,19 @@ $selectionBackgroundColor: $secondary-color;
 @import "../template/theme";
 // ---------------------------------------------
 
-html {
-  font-size: 24px;
-}
-
 .reveal {
 
   .orange {
     color: $secondary-color;
   }
 
-  h1 {
-    font-size: 4.5rem;
-  }
-
-  h2 {
-    font-size: 4rem;
-  }
-
-  h3 {
-    font-size: 3rem;
-  }
-
   .chart-note {
     font-size: 1rem;
     color: lightgray;
+  }
+
+  h2 {
+    margin-bottom: 1em;
   }
   
 }

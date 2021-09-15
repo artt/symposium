@@ -5,13 +5,19 @@ import Reveal from 'reveal.js'
 
 import { Bar, Line, defaults } from 'test-react-chartjs-2'
 import merge from 'lodash.merge'
+
 import Logo from './components/Logo'
 
 import {ReactComponent as PicNursingHome} from './images/nursing-home.svg'
+import picInternet from './images/world.png'
+import picThailand from './images/thailand.png'
+import picFamily from './images/people.png'
+import picTrend from './images/trend.png'
 
 import styles from './css/theme/source/_variables.module.scss'
 import "../node_modules/reveal.js/dist/reveal.css"
 import "./css/theme/source/pier-dark.scss"
+import "./css/main.scss"
 
 console.log(styles.baseSize)
 const baseSize = parseInt(styles.baseSize.replace("px", ""))
@@ -105,15 +111,59 @@ function App() {
 						<span className="orange">ความเปราะบางท่ามกลางความเปลี่ยนแปลง</span>
           </h1>
           <div style={{height: "4rem"}} />
-          <h3>
+          <h4>
             สถาบันวิจัยเศรษฐกิจป๋วย อึ๊งภากรณ์<br />
             BOT Symposium 2021
-          </h3>
+          </h4>
           <div style={{height: "2rem"}} />
           <Logo />
         </section>
 
+
+        <section id="outline">
+          <h2>Outline</h2>
+          <div className="grid">
+            
+            <img src={picInternet} style={{filter: 'invert(80%)'}} />
+            <div>
+              ความเปลี่ยนแปลงสำคัญที่กำลังเกิด<br />
+              <span class="orange">มีอะไรบ้าง?</span>
+            </div>
+            
+            <img src={picTrend} style={{filter: 'invert(80%)'}} />
+            <div>
+              ความเปราะบางของ "โครงสร้างเศรษฐกิจไทย" ที่มีอยู่แล้ว<br />
+              <span class="orange">จะถูกกระทบอย่างไร?</span>
+            </div>
+            
+            <img src={picFamily} style={{filter: 'invert(80%)'}} />
+            <div>
+              ความเปราะบางของ "โครงสร้างสังคมไทย"<br />
+              <span class="orange">เป็นอย่างไร?</span>
+            </div>
+            
+            <img src={picThailand} />
+            <div>
+              แล้วประเทศไทย<br />
+              <span class="orange">จะทำอย่างไรต่อไป?</span>
+            </div>
+          </div>
+        </section>
+
+        <section>
+					<h2>
+						ความเปลี่ยนแปลงที่กำลังเกิด<br />
+						<span class="orange">ส่งผลกระทบต่อความเปราะบางที่มีอยู่แล้ว</span>
+          </h2>
+				</section>
+
+
         {// ตรงนี้เดี๋ยวทำเป็นรูปเดียว ที่มี megatrends ห้าอย่าง ค่อย ๆ โชว์ทีละอย่าง
+         // geopolitics
+         // technology
+         // global warming
+         // aging society
+         // covid-19 scar
         }
         <section>
 					<h2>
@@ -124,12 +174,17 @@ function App() {
           </div>
 				</section>
 
+
         <section>
-					<h2>
-						ความเปลี่ยนแปลงที่กำลังเกิด<br />
-						<span class="orange">ส่งผลกระทบต่อความเปราะบางที่มีอยู่แล้ว</span>
+          <h2>
+            เศรษฐกิจไทยเปราะบางต่อความขัดแย้งทางภูมิรัฐศาสตร์ ตามการพึ่งพาจีนในระดับสูง
           </h2>
-				</section>
+
+          <ul>
+            <li>รายได้จากนักท่องเที่ยวต่างชาติคิดเป็น 11% ของ GDP ไทย<br />เกี่ยวข้องกับแรงงานกว่า 7.5 ล้านคน</li>
+            <li>ภาคการท่องเที่ยวไทยพึ่งพานักท่องเที่ยวจีนถึง 28% ของนักท่องเที่ยวท้ังหมด</li>
+          </ul>
+        </section>
 
         <section>
 					<h2>

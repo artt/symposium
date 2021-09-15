@@ -1,0 +1,13 @@
+#outline {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    align-items: center;
+    > div {
+      text-align: left;
+      padding-left: 1em;
+    }
+    width: 80%;
+    margin: 0 auto;
+  }
+}
