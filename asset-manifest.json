@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/symposium/static/css/main.c703fd99.chunk.css",
-    "main.js": "/symposium/static/js/main.7a72df96.chunk.js",
-    "main.js.map": "/symposium/static/js/main.7a72df96.chunk.js.map",
+    "main.js": "/symposium/static/js/main.db30134b.chunk.js",
+    "main.js.map": "/symposium/static/js/main.db30134b.chunk.js.map",
     "runtime-main.js": "/symposium/static/js/runtime-main.c319ec22.js",
     "runtime-main.js.map": "/symposium/static/js/runtime-main.c319ec22.js.map",
     "static/css/2.fa4a5ac2.chunk.css": "/symposium/static/css/2.fa4a5ac2.chunk.css",
@@ -25,6 +25,6 @@
     "static/css/2.fa4a5ac2.chunk.css",
     "static/js/2.4956fb2d.chunk.js",
     "static/css/main.c703fd99.chunk.css",
-    "static/js/main.7a72df96.chunk.js"
+    "static/js/main.db30134b.chunk.js"
   ]
 }
