@@ -358,6 +358,7 @@ function App() {
                 }
               }}
             />
+            <div className="note">ที่มา: ข้อมูลจาก World Value Survey รอบที่ 5–7</div>
           </section>
 				</section>
 
@@ -394,7 +395,7 @@ function App() {
               }
             }}
           />
-          <div className="note">xxx</div>
+          <div className="note">ที่มา: ข้อมูลจาก World Value Survey รอบที่ 5–7</div>
         </section>
 
         <section>
@@ -414,7 +415,7 @@ function App() {
                   data: [[0.02, 0.02, 0.015, 0.04, 0.25, 0.2, 0.24, 0.16, 0.03, 0.03], [0.02, 0.018, 0.021, 0.06, 0.36, 0.2, 0.115, 0.11, 0.03, 0.05]][curFragment],
                   label: "2018",
                   tension: 0.4,
-                  borderColor: styles.thirdColor,
+                  borderColor: styles.textColor,
                 },
               ]
             }}
