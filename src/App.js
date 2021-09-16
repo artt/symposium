@@ -20,7 +20,8 @@ import "../node_modules/reveal.js/dist/reveal.css"
 import "./css/theme/source/pier-dark.scss"
 import "./css/main.scss"
 
-console.log(styles.baseSize)
+
+
 const baseSize = parseInt(styles.baseSize.replace("px", ""))
 
 merge(defaults, {
@@ -82,23 +83,34 @@ function App() {
     }, 0)
   }
 
+  const _W = 1920
+  const _H = 1080
+
+  function setScale() {
+    const scale = Math.min(window.innerWidth / _W, window.innerHeight / _H)
+    document.documentElement.style.setProperty('--scale', scale);
+  }
+
   React.useEffect(() => {
+    setScale()
     deck.current = new Reveal({
       // plugins: [ Markdown ],
     })
     deck.current.initialize({
-      width: 1920,
-      height: 1080,
+      width: _W,
+      height: _H,
       margin: 0.2,
       disableLayout: true,
     })
     deck.current.addEventListener('slidechanged', animateCurrentChart)
     deck.current.addEventListener('fragmentshown', updateFragment)
     deck.current.addEventListener('fragmenthidden', updateFragment)
+    window.addEventListener('resize', setScale);
     return () => {
       deck.current.removeEventListener('slidechanged', animateCurrentChart)
       deck.current.removeEventListener('fragmentshown', updateFragment)
       deck.current.removeEventListener('fragmenthidden', updateFragment)
+      window.removeEventListener('resize', setScale);
     }
   }, [])
 
