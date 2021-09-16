@@ -107,8 +107,7 @@ function App() {
   return (
       <div className="slides">
 
-
-        {// Cover
+        {/* {// Cover
         }
         <section>
           <h1>
@@ -123,7 +122,6 @@ function App() {
           <div style={{height: "2rem"}} />
           <Logo />
         </section>
-
 
         <section id="outline">
           <h2>Outline</h2>
@@ -260,7 +258,19 @@ function App() {
             ตัวอย่างความเปราะบางของภาคอุตสาหกรรมไทย:<br />
             กรุงเทพฯ และปริมณฑล มีความเสี่ยงต่อน้ำท่วมจากระดับน้ำทะเลที่เพิ่มขึ้น
           </div>
-        </section>
+        </section> */}
+
+
+
+
+
+
+
+
+        {/*
+          Social Divide
+        */}
+
 
         <section>
 					<h2>
@@ -269,6 +279,14 @@ function App() {
 						<orange>ต้องพิจารณาประเด็นทางสังคมควบคู่ไปด้วย</orange>
           </h2>
 				</section>
+
+        <section>
+					<h2>
+						มีความสัมพันธ์ระหว่างความเหลื่อมล้ำทางเศรษฐกิจกับความสมานฉันท์ในสังคม (social cohesion)
+          </h2>
+				</section>
+
+        
         
         <section>
           <h2>สังคมไทยมีความเชื่อใจต่อกันลดลงอย่างต่อเนื่อง…</h2>
@@ -285,10 +303,15 @@ function App() {
               ]
             }}
             options={{
+              scales: {
+                y: {
+                  // max: 100,
+                },
+              },
               plugins: {
                 title: {
                   display: true,
-                  text: "คะแนนความเชื่อใจจาก World Values Survey",
+                  text: "คะแนนความเชื่อใจจาก World Values Survey (0–100)",
                 },
                 legend: {
                   display: false,
