@@ -31,7 +31,7 @@ $headingLetterSpacing: normal;
 $headingTextTransform: none;
 $selectionBackgroundColor: $secondary-color;
 
-$mainFontSize: 56px;
+$mainFontSize: 40px;
 
 $heading1Size: 2em;
 $heading2Size: 1.6em;
@@ -46,15 +46,32 @@ $heading4Size: 1.2em;
 @import "../template/theme";
 // ---------------------------------------------
 
-.reveal {
+.reveal > .slides {
 
-  section {
+  > section {
     padding: 2em;
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
     &.stack {
       padding: 2em;
+    }
+    // vertical section
+    > section {
+      padding: 0 2em;
+      margin-left: -2em;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+  .vertical-center {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    > * {
+      flex-basis: 100%;
     }
   }
   
@@ -84,6 +101,11 @@ $heading4Size: 1.2em;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1em;
+  }
+
+  .center {
+    margin-left: auto;
+    margin-right: auto;
   }
   
 }

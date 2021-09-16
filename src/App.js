@@ -3,6 +3,7 @@ import React from 'react'
 import Reveal from 'reveal.js'
 // import Markdown from 'reveal.js/plugin/markdown/markdown.esm.js';
 
+import Chart from './components/Chart'
 import ChartComponent, { defaults } from 'test-react-chartjs-2'
 import merge from 'lodash.merge'
 
@@ -28,7 +29,7 @@ merge(defaults, {
   borderColor: styles.secondaryColor,
   font: {
     family: "Dindan",
-    size: 1.5*baseSize,
+    size: 1*baseSize,
   },
   layout: {
     padding: 1*baseSize,
@@ -42,7 +43,7 @@ merge(defaults, {
   plugins: {
     title: {
       font: {
-        size: 2*baseSize,
+        size: 1.5*baseSize,
       }
     },
     legend: {
@@ -108,20 +109,24 @@ function App() {
   return (
       <div className="slides">
 
-        {/* {// Cover
+        {// Cover
         }
         <section>
-          <h1>
-            โครงสร้างเศรษฐกิจสังคมไทย<br />
-						<orange>ความเปราะบางท่ามกลางความเปลี่ยนแปลง</orange>
-          </h1>
-          <div style={{height: "4rem"}} />
-          <h4>
-            สถาบันวิจัยเศรษฐกิจป๋วย อึ๊งภากรณ์<br />
-            BOT Symposium 2021
-          </h4>
-          <div style={{height: "2rem"}} />
-          <Logo />
+          <div className="vertical-center">
+            <div>
+              <h1>
+                โครงสร้างเศรษฐกิจสังคมไทย<br />
+                <orange>ความเปราะบางท่ามกลางความเปลี่ยนแปลง</orange>
+              </h1>
+              <div style={{height: "4rem"}} />
+              <h4>
+                สถาบันวิจัยเศรษฐกิจป๋วย อึ๊งภากรณ์<br />
+                BOT Symposium 2021
+              </h4>
+              <div style={{height: "2rem"}} />
+              <Logo />
+            </div>
+          </div>
         </section>
 
         <section id="outline">
@@ -155,10 +160,12 @@ function App() {
         </section>
 
         <section>
-					<h2>
-						ความเปลี่ยนแปลงที่กำลังเกิด<br />
-						<orange>ส่งผลกระทบต่อความเปราะบางที่มีอยู่แล้ว</orange>
-          </h2>
+          <div className="vertical-center">
+            <h2>
+              ความเปลี่ยนแปลงที่กำลังเกิด<br />
+              <orange>ส่งผลกระทบต่อความเปราะบางที่มีอยู่แล้ว</orange>
+            </h2>
+          </div>
 				</section>
 
 
@@ -170,18 +177,23 @@ function App() {
          // covid-19 scar
         }
         <section>
-					<h2>
-						Megatrends สำคัญ
-          </h2>
-          <div style={{width: '70%', marginLeft: "auto", marginRight: "auto"}}>
-            <PicNursingHome />
+          <div className="vertical-center">
+            <div>
+              <h2>
+                Megatrends สำคัญ
+              </h2>
+              <div style={{width: '50%', marginLeft: "auto", marginRight: "auto"}}>
+                <PicNursingHome />
+              </div>
+            </div>
           </div>
 				</section>
 
 
         <section>
           <h2>
-            <orange>#1</orange> เศรษฐกิจไทยเปราะบางต่อความขัดแย้งทางภูมิรัฐศาสตร์ ตามการพึ่งพาจีนในระดับสูง
+            <orange>#1</orange> เศรษฐกิจไทยเปราะบางต่อความขัดแย้งทางภูมิรัฐศาสตร์<br />
+            ตามการพึ่งพาจีนในระดับสูง
           </h2>
 
           ตัวอย่างความเปราะบางของภาคการท่องเที่ยวไทย
@@ -196,26 +208,23 @@ function App() {
         </section>
 
         <section>
+          <h2>
+            <orange>#2</orange> ความก้าวหน้าทางเทคโนโลยี<br />
+            อาจทำให้ไทยตกขบวนรถไฟได้ หากปรับตัวไม่ทัน
+          </h2>
           <section>
-            <h2>
-              <orange>#2</orange> ความก้าวหน้าทางเทคโนโลยี อาจทำให้ไทยตกขบวนรถไฟได้ หากปรับตัวไม่ทัน
-            </h2>
             <div>
               ตัวอย่างความเปราะบางของโครงสร้างการส่งออกไทย
             </div>
           </section>
-
           <section>
-            <h2>
-              <orange>#2</orange> ความก้าวหน้าทางเทคโนโลยี อาจทำให้ไทยตกขบวนรถไฟได้ หากปรับตัวไม่ทัน
-            </h2>
             <div>
               ตัวอย่างความเปราะบางของการพึ่งพา platform ต่างประเทศ:<br />
               คนไทยพึ่งพา platform ต่างประเทศในการซื้อสินค้าและบริการสูงมาก
             </div>
-            <ChartComponent
+            <Chart
               type="bar"
-              height="120"
+              height={110}
               ref={el => charts.current['foreign-platforms'] = el}
               data={{
                 labels: ["Shopee", "Lazada", "Facebook", "Instagram", "LINE", "Kaidee", "lnwShop", "WeLoveShopping", "Shopping", "ThailandPostmart"],
@@ -253,13 +262,14 @@ function App() {
 
         <section>
           <h2>
-            <orange>#3</orange> ภาวะโลกร้อน เป็นภัยเงียบ และจะส่งผลใหญ่หลวงต่อไทยหากไม่เร่งปรับตัว
+            <orange>#3</orange> ภาวะโลกร้อน เป็นภัยเงียบ<br />
+            และจะส่งผลใหญ่หลวงต่อไทยหากไม่เร่งปรับตัว
           </h2>
           <div>
             ตัวอย่างความเปราะบางของภาคอุตสาหกรรมไทย:<br />
             กรุงเทพฯ และปริมณฑล มีความเสี่ยงต่อน้ำท่วมจากระดับน้ำทะเลที่เพิ่มขึ้น
           </div>
-        </section> */}
+        </section>
 
 
 
@@ -274,59 +284,76 @@ function App() {
 
 
         <section>
-					<h2>
-						แต่ประเด็นทางเศรษฐกิจ<br />
-						ไม่ได้เป็นความเปราะบางเพียงอย่างเดียว<br />
-						<orange>ต้องพิจารณาประเด็นทางสังคมควบคู่ไปด้วย</orange>
-          </h2>
+          <div className="vertical-center">
+            <h2>
+              แต่ประเด็นทางเศรษฐกิจ<br />
+              ไม่ได้เป็นความเปราะบางเพียงอย่างเดียว<br />
+              <orange>ต้องพิจารณาประเด็นทางสังคมควบคู่ไปด้วย</orange>
+            </h2>
+          </div>
 				</section>
 
         <section>
 					<h2>
 						มีความสัมพันธ์ระหว่างความเหลื่อมล้ำทางเศรษฐกิจกับความสมานฉันท์ในสังคม (social cohesion)
           </h2>
-            <section>
-              <div style={{height: '300px'}} />
-              <ChartComponent
-                type="scatter"
-                height={120}
-                ref={el => charts.current['trust-gini'] = el}
-                data={{
-                  datasets: [
-                    {
-                      type: "scatter",
-                      data: [{x: 25.84000015, y: 0.300940037}, {x: 27.32500076, y: 0.228056431}, {x: 28.10000038, y: 0.128013209}, {x: 31.39999962, y: 0.329317272}, {x: 31.64999962, y: 0.07333333}, {x: 31.79999924, y: 0.445680618}, {x: 32.09999847, y: 0.233082712}, {x: 32.40000153, y: 0.129166663}, {x: 32.75, y: 0.065964758}, {x: 32.79999924, y: 0.138245031}, {x: 33.23333359, y: 0.466930151}, {x: 34, y: 0.205833331}, {x: 34.40000153, y: 0.150833338}, {x: 34.5, y: 0.169134736}, {x: 34.57500076, y: 0.084471963}, {x: 35, y: 0.118699186}, {x: 35.09999847, y: 0.130063519}, {x: 35.5, y: 0.276666671}, {x: 35.52500153, y: 0.114002943}, {x: 36.13999939, y: 0.288886756}, {x: 37.29999924, y: 0.229347616}, {x: 38.47999954, y: 0.046373185}, {x: 38.5, y: 0.163479924}, {x: 38.54999924, y: 0.634894729}, {x: 40.57500076, y: 0.148098737}, {x: 41.09999847, y: 0.195734963}, {x: 41.22499847, y: 0.370217174}, {x: 41.82500076, y: 0.191813305}, {x: 42, y: 0.13995859}, {x: 42.84000015, y: 0.041612707}, {x: 43.45000076, y: 0.053309843}, {x: 44.15999985, y: 0.08514756}, {x: 44.40000153, y: 0.129027218}, {x: 45.36000061, y: 0.057500001}, {x: 45.84999847, y: 0.104989827}, {x: 47.29999924, y: 0.021399178}, {x: 50.59999847, y: 0.045394737}, {x: 53.15999985, y: 0.06524758}],
-                      backgroundColor: styles.textColor,
-                      borderWidth: 0,
-                      pointRadius: 8,
-                    },
-                    {
-                      type: "line",
-                      data: [{x: 25, y: -0.0078*25+0.4741}, {x: 55, y: -0.0078*55+0.4741}],
-                      backgroundColor: styles.textColor,
-                      pointRadius: 0,
-                    }
-                  ]
-                }}
-                options={{
-                  plugins: {
-                    legend: {
-                      display: false,
-                    },
+          <section>
+            PIC
+          </section>
+          <section>
+            <Chart
+              width="700px"
+              style={{marginTop: '-0.5em'}}
+              type="scatter"
+              ref={el => charts.current['trust-gini'] = el}
+              data={{
+                datasets: [
+                  {
+                    type: "scatter",
+                    data: [{x: 25.84000015, y: 0.300940037}, {x: 27.32500076, y: 0.228056431}, {x: 28.10000038, y: 0.128013209}, {x: 31.39999962, y: 0.329317272}, {x: 31.64999962, y: 0.07333333}, {x: 31.79999924, y: 0.445680618}, {x: 32.09999847, y: 0.233082712}, {x: 32.40000153, y: 0.129166663}, {x: 32.75, y: 0.065964758}, {x: 32.79999924, y: 0.138245031}, {x: 33.23333359, y: 0.466930151}, {x: 34, y: 0.205833331}, {x: 34.40000153, y: 0.150833338}, {x: 34.5, y: 0.169134736}, {x: 34.57500076, y: 0.084471963}, {x: 35, y: 0.118699186}, {x: 35.09999847, y: 0.130063519}, {x: 35.5, y: 0.276666671}, {x: 35.52500153, y: 0.114002943}, {x: 36.13999939, y: 0.288886756}, {x: 37.29999924, y: 0.229347616}, {x: 38.47999954, y: 0.046373185}, {x: 38.5, y: 0.163479924}, {x: 38.54999924, y: 0.634894729}, {x: 40.57500076, y: 0.148098737}, {x: 41.09999847, y: 0.195734963}, {x: 41.22499847, y: 0.370217174}, {x: 41.82500076, y: 0.191813305}, {x: 42, y: 0.13995859}, {x: 42.84000015, y: 0.041612707}, {x: 43.45000076, y: 0.053309843}, {x: 44.15999985, y: 0.08514756}, {x: 44.40000153, y: 0.129027218}, {x: 45.36000061, y: 0.057500001}, {x: 45.84999847, y: 0.104989827}, {x: 47.29999924, y: 0.021399178}, {x: 50.59999847, y: 0.045394737}, {x: 53.15999985, y: 0.06524758}],
+                    backgroundColor: styles.textColor,
+                    borderWidth: 0,
+                    pointRadius: 8,
+                  },
+                  {
+                    type: "line",
+                    data: [{x: 25, y: -0.0078*25+0.4741}, {x: 55, y: -0.0078*55+0.4741}],
+                    backgroundColor: styles.textColor,
+                    pointRadius: 0,
                   }
-                }}
-              />
-            </section>
-            <section>
-              PIC
-            </section>
+                ]
+              }}
+              options={{
+                aspectRatio: 1,
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+                },
+                scales: {
+                  x: {
+                    title: {
+                      display: true,
+                      text: "ความเหลื่อมล้ำ (Gini Coefficient)",
+                    }
+                  },
+                  y: {
+                    title: {
+                      display: true,
+                      text: "ความสมานฉันท์ในสังคม (Trust)",
+                    }
+                  },
+                }
+              }}
+            />
+          </section>
 				</section>
 
         
         
         <section>
           <h2>สังคมไทยมีความเชื่อใจต่อกันลดลงอย่างต่อเนื่อง…</h2>
-          <ChartComponent
+          <Chart
             type="bar"
             ref={el => charts.current['trust'] = el}
             data={{
@@ -360,9 +387,8 @@ function App() {
 
         <section>
           <h2>…ขณะที่มีกลุ่มความคิดทางการเมือง<br />ไปทางซ้ายมากขึ้น</h2>
-          <ChartComponent
+          <Chart
             type="line"
-            height="120"
             ref={el => charts.current['political_shift'] = el}
             data={{
               labels: [...Array(10).keys()],
