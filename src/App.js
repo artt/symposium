@@ -59,7 +59,12 @@ function App() {
   const [curFragment, setCurFragment] = React.useState(0)
 
   function updateFragment() {
-    setCurFragment(parseInt(deck.current.getCurrentSlide().getAttribute('data-fragment')) + 1)
+    if (!deck.current.getCurrentSlide().getAttribute('data-fragment')) {
+      setCurFragment(0)
+    }
+    else {
+      setCurFragment(parseInt(deck.current.getCurrentSlide().getAttribute('data-fragment')) + 1)
+    }
   }
 
   function animateCurrentChart() {
@@ -224,6 +229,12 @@ function App() {
               }}
               options={{
                 indexAxis: 'y',
+                scales: {
+                  y: {
+                    min: [5, 0][curFragment],
+                    max: 9,
+                  },
+                },
                 plugins: {
                   title: {
                     display: true,
@@ -235,6 +246,7 @@ function App() {
                 }
               }}
             />
+            <div class="fragment" />
 
           </section>
 
