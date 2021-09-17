@@ -557,7 +557,89 @@ function App() {
 
         </section>
 
+        <section>
+          <SocialOutline n={3} />
+        </section>
 
+        <section>
+          <h2>
+            ความคิดต่าง นำไปสู่ความรู้สึกไม่ดีต่อคนต่างความคิด และความแตกแยก
+          </h2>
+          <div>
+            คนที่มีความเห็นสุดขั้ว มีความรู้สึกไม่ดีต่อคน "คิดต่าง" มากกว่ากลุ่มที่มีความคิดเห็นกลาง ๆ
+          </div>
+          
+          <section>
+            <Chart
+              type="bar"
+              height={110}
+              ref={el => charts.current['social-divide-1'] = el}
+              data={{
+                labels: ["ความเห็นอกเห็นใจ (ช่วยว่าความให้หากเป็นทนาย)", "ความชอบ/ไม่ชอบ", "ยอมแลกเปลี่ยนความคิดเห็น", "ความไว้วางใจ", "ความเห็นอกเห็นใจ (ช่วยเหลือหากประสบอุบัติเหตุ)"],
+                datasets: [
+                  {
+                    data: [36.6, 57.2, 61.6, 65.2, 86.1],
+                    backgroundColor: styles.fourthColor,
+                  }
+                ]
+              }}
+              options={{
+                indexAxis: 'y',
+                plugins: {
+                  title: {
+                    // display: true,
+                    // text: "ช่องทางออนไลน์ที่คนไทยซื้อสินค้าและบริการ",
+                  },
+                  legend: {
+                    display: false,
+                  }
+                }
+              }}
+            />
+          </section>
+
+          <section>
+            <Chart
+              type="bar"
+              height={110}
+              ref={el => charts.current['social-divide-2'] = el}
+              data={{
+                labels: ["ความเห็นอกเห็นใจ (ช่วยว่าความให้หากเป็นทนาย)", "ความชอบ/ไม่ชอบ", "ยอมแลกเปลี่ยนความคิดเห็น", "ความไว้วางใจ", "ความเห็นอกเห็นใจ (ช่วยเหลือหากประสบอุบัติเหตุ)"],
+                datasets: [
+                  {
+                    label: "กลุ่มไม่สุดขั้ว",
+                    data: [42.1, 61.3, 62.2, 66.0, 85.7],
+                    backgroundColor: styles.greenColor,
+                  },
+                  {
+                    label: "กลุ่มสุดขั้ว",
+                    data: [25.6, 48.8, 60.3, 63.6, 87.0],
+                    backgroundColor: styles.secondaryColor,
+                  }
+                ]
+              }}
+              options={{
+                indexAxis: 'y',
+                scales: {
+                  x: {
+                    max: 100,
+                  },
+                },
+                plugins: {
+                  title: {
+                    // display: true,
+                    // text: "ช่องทางออนไลน์ที่คนไทยซื้อสินค้าและบริการ",
+                  },
+                  legend: {
+                    // display: false,
+                  }
+                }
+              }}
+            />
+          </section>
+
+        </section>
+        
 
       </div>
   );
