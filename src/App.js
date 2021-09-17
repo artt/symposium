@@ -74,7 +74,7 @@ function App() {
       updateFragment()
       Object.keys(charts.current).forEach(c => {
         const curChart = charts.current[c]
-        if (curChart.canvas.closest('.present')) {
+        if (curChart.canvas.closest('.present:not(.stack)')) {
           console.log(curChart)
           curChart.reset()
           curChart.update()
@@ -309,9 +309,7 @@ function App() {
 					<h2>
 						มีความสัมพันธ์ระหว่างความเหลื่อมล้ำทางเศรษฐกิจกับความสมานฉันท์ในสังคม (social cohesion)
           </h2>
-          <section>
-            PIC
-          </section>
+          
           <section>
             <Chart
               width="700px"
@@ -359,6 +357,9 @@ function App() {
               }}
             />
             <div className="note">ที่มา: ข้อมูลจาก World Value Survey รอบที่ 5–7</div>
+          </section>
+          <section>
+            PIC
           </section>
 				</section>
 

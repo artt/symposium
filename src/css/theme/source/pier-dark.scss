@@ -78,6 +78,21 @@ $heading4Size: 1.2em;
     }
   }
 
+  > section > section:not([data-transition]) {
+    &.past {
+      transform: translate(0, -var(--slide-height));
+      .note {
+        transform: translate(0, var(--slide-height));
+      }
+    }
+    &.future {
+      transform: translate(0, var(--slide-height));
+      .note {
+        transform: translate(0, -var(--slide-height));
+      }
+    }
+  }
+
   .vertical-center {
     height: 100%;
     display: flex;
@@ -101,8 +116,11 @@ $heading4Size: 1.2em;
     bottom: 0;
     padding: 0.4em 1em;
     border-radius: 0.5em 0.5em 0 0;
-    transition: none;
-    transition-delay: 1sec;
+    opacity: 0;
+    // transition-delay: 2s;
+  }
+  section.present > .note {
+    opacity: 1;
   }
 
   h2 {
