@@ -6,7 +6,7 @@ ChartReact.register(annotationPlugin)
 
 const Chart = React.forwardRef(({ width="80%", style={}, ...rest }, ref) => {
   return(
-    <div className="chart-container center" style={{width: width, ...style}}>
+    <div className="center" style={{width: width, ...style}}>
       <ChartComponent ref={ref} {...rest} />
     </div>
   )

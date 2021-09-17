@@ -76,17 +76,23 @@ function App() {
     }
   }
 
-  function getCurrentData(data, n) {
-    return data[n > data.length ? 0 : n]
+  // if el is in the "present" section, return the fragment number
+  // otherwise return 0
+  function getFragment(el) {
+    if (el && el.closest('.present'))
+      return curFragment
+    return 0
   }
 
   function animateCurrentChart() {
     setTimeout(() => {
       updateFragment()
+      // if (charts.current['foreign-platforms'].canvas.closest('.present'))
+      //   console.log('xxxxxxx')
       Object.keys(charts.current).forEach(c => {
         const curChart = charts.current[c]
         if (curChart.canvas.closest('.present:not(.stack)')) {
-          console.log(curChart)
+          // console.log(curChart)
           curChart.reset()
           curChart.update()
         }
@@ -133,7 +139,7 @@ function App() {
   return (
       <div className="slides">
 
-        {// Cover
+        {/* {// Cover
         }
         <section>
           <div className="vertical-center">
@@ -515,7 +521,7 @@ function App() {
                 indexAxis: 'y',
                 scales: {
                   y: {
-                    min: [5, 0][curFragment],
+                    min: [5, 0][getFragment(charts.current['foreign-platforms']?.canvas)],
                     max: 9,
                   },
                 },
@@ -700,7 +706,7 @@ function App() {
                   tension: 0.4,
                 },
                 {
-                  data: [[0.023483366, 0.021526419, 0.014350946, 0.041748206, 0.259621657, 0.200260926, 0.240704501, 0.127853881, 0.033920417, 0.03652968], [0.019212296, 0.014409222, 0.030739673, 0.055715658, 0.361191162, 0.194044188, 0.11431316, 0.106628242, 0.037463977, 0.066282421]][curFragment],
+                  data: [[0.023483366, 0.021526419, 0.014350946, 0.041748206, 0.259621657, 0.200260926, 0.240704501, 0.127853881, 0.033920417, 0.03652968], [0.019212296, 0.014409222, 0.030739673, 0.055715658, 0.361191162, 0.194044188, 0.11431316, 0.106628242, 0.037463977, 0.066282421]][getFragment(charts.current['political-shift']?.canvas)],
                   label: "2018",
                   tension: 0.4,
                   borderColor: styles.textColor,
@@ -839,7 +845,7 @@ function App() {
             เทียบกับคุณภาพสังคมด้านอื่น ๆ
           </h2>
 
-        </section>
+        </section> */}
 
         <section>
           <SocialOutline n={2} />
@@ -849,7 +855,7 @@ function App() {
           <h2>
             การวัดความคิดต่าง
           </h2>
-          <div id="political-scale" className={`frag${curFragment}`}>
+          <div id="political-scale" className={`center frag${getFragment(document.getElementById("political-scale"))}`}>
             <div className={`def def-orange`}>
               <div className="top">
                 สิทธิ<br />
@@ -869,36 +875,42 @@ function App() {
                 )
               }
             </div> */}
-            <Chart
-              type="bar"
-              ref={el => charts.current['extremity'] = el}
-              data={{
-                labels: ["1", "2", "3", "4", "5", "6"],
-                datasets: [
-                  {
-                    data: [Array(6).fill(100), [545, 511, 370, 301, 184, 105]][curFragment],
-                    backgroundColor: politicalColors,
-                  }
-                ]
-              }}
-              options={{
-                aspectRatio: 1.5,
-                scales: {
-                  y: {
-                    max: 600,
+            <div className="chart-container">
+              <Chart
+                type="bar"
+                width="100%"
+                ref={el => charts.current['extremity'] = el}
+                data={{
+                  labels: ["1", "2", "3", "4", "5", "6"],
+                  datasets: [
+                    {
+                      data: [Array(6).fill(100), Array(6).fill(100), [545, 511, 370, 301, 184, 105]][getFragment(charts.current['extremity']?.canvas)],
+                      backgroundColor: politicalColors,
+                    }
+                  ]
+                }}
+                options={{
+                  aspectRatio: 1.5,
+                  scales: {
+                    y: {
+                      max: 600,
+                      ticks: {
+                        color: ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0)', styles.textColor][getFragment(charts.current['extremity']?.canvas)],
+                      }
+                    },
                   },
-                },
-                plugins: {
-                  title: {
-                    display: true,
-                    text: "xxx",
-                  },
-                  legend: {
-                    display: false,
+                  plugins: {
+                    title: {
+                      display: true,
+                      text: getFragment(charts.current['extremity']?.canvas) === 2 ? "จำนวนผู้ตอบแบบสอบถาม" : "",
+                    },
+                    legend: {
+                      display: false,
+                    }
                   }
-                }
-              }}
-            />
+                }}
+              />
+            </div>
             <div className={`def def-yellow`}>
               <div className="top">
                 ประเพณีนิยม<br />
@@ -912,6 +924,7 @@ function App() {
               </p>
             </div>
           </div>
+          <div className="fragment" />
           <div className="fragment" />
 
         </section>
