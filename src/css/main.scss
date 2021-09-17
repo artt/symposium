@@ -44,7 +44,6 @@
     grid-gap: 3em;
     .chart-container {
       transform: scale(0);
-      // width: 0;
     }
     .def {
       transform: scale(1.2);
@@ -56,18 +55,19 @@
     grid-gap: 1em;
     .chart-container {
       transform: scale(1);
-      // width: 1000px;
     }
     .def {
       transform: scale(1);
     }
   }
-  // .boxes {
-  //   width: 720px;
-  //   height: 120px;
-  //   display: grid;
-  //   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  //   grid-gap: 2px;
-  // }
   
+}
+
+#perception {
+  .p-line {
+    width: 1000px;
+    height: 4px;
+    background-color: $text-color;
+    border-radius: 2px;
+  }
 }

@@ -5,6 +5,7 @@ import Reveal from 'reveal.js'
 
 import Chart from './components/Chart'
 import ComparePop from './components/ComparePop'
+import Perception from './components/Perception'
 import SocialOutline from './components/SocialOutline'
 import { defaults } from 'test-react-chartjs-2'
 import merge from 'lodash.merge'
@@ -20,7 +21,8 @@ import picTrend from './images/trend.png'
 import picSocialQuality from './images/social-quality.png'
 import picDemographics from './images/demographics.png'
 import picSocialMedia from './images/social-media.png'
-
+import picBanana from './images/banana.png'
+import picPassionFruit from './images/passion-fruit.png'
 
 import styles from './css/theme/source/_variables.module.scss'
 import "../node_modules/reveal.js/dist/reveal.css"
@@ -139,7 +141,7 @@ function App() {
   return (
       <div className="slides">
 
-        {/* {// Cover
+        {// Cover
         }
         <section>
           <div className="vertical-center">
@@ -160,33 +162,37 @@ function App() {
         </section>
 
         <section id="outline">
-          <h2>Outline</h2>
-          <div className="grid">
-            
-            <img src={picInternet} style={{filter: 'invert(80%)'}} />
+          <div className="vertical-center">
             <div>
-              ความเปลี่ยนแปลงสำคัญที่กำลังเกิด<br />
-              <orange>มีอะไรบ้าง?</orange>
+              <h2>Outline</h2>
+              <div className="grid">
+                
+                <img src={picInternet} style={{filter: 'invert(80%)'}} />
+                <div>
+                  ความเปลี่ยนแปลงสำคัญที่กำลังเกิด<br />
+                  <orange>มีอะไรบ้าง?</orange>
+                </div>
+                
+                <img src={picTrend} style={{filter: 'invert(80%)'}} />
+                <div>
+                  ความเปราะบางของ "โครงสร้างเศรษฐกิจไทย" ที่มีอยู่แล้ว<br />
+                  <orange>จะถูกกระทบอย่างไร?</orange>
+                </div>
+                
+                <img src={picFamily} style={{filter: 'invert(80%)'}} />
+                <div>
+                  ความเปราะบางของ "โครงสร้างสังคมไทย"<br />
+                  <orange>เป็นอย่างไร?</orange>
+                </div>
+                
+                <img src={picThailand} />
+                <div>
+                  แล้วประเทศไทย<br />
+                  <orange>จะทำอย่างไรต่อไป?</orange>
+                </div>
+              </div>
             </div>
-            
-            <img src={picTrend} style={{filter: 'invert(80%)'}} />
-            <div>
-              ความเปราะบางของ "โครงสร้างเศรษฐกิจไทย" ที่มีอยู่แล้ว<br />
-              <orange>จะถูกกระทบอย่างไร?</orange>
-            </div>
-            
-            <img src={picFamily} style={{filter: 'invert(80%)'}} />
-            <div>
-              ความเปราะบางของ "โครงสร้างสังคมไทย"<br />
-              <orange>เป็นอย่างไร?</orange>
-            </div>
-            
-            <img src={picThailand} />
-            <div>
-              แล้วประเทศไทย<br />
-              <orange>จะทำอย่างไรต่อไป?</orange>
-            </div>
-          </div>
+          </div>  
         </section>
 
         <section>
@@ -513,7 +519,7 @@ function App() {
                 datasets: [
                   {
                     data: [91.0, 72.9, 55.1, 42.1, 41.6, 6.6, 6.3, 3.3, 2.4, 1.1],
-                    backgroundColor: Array(5).fill(styles.greenColor).concat(Array(5).fill(styles.secondaryColor)),
+                    backgroundColor: Array(5).fill(styles.greenColor).concat(Array(5).fill(styles.secondaryColor)).map(color => chroma(color).alpha(areaAlpha).hex()),
                   }
                 ]
               }}
@@ -615,7 +621,7 @@ function App() {
                   {
                     type: "scatter",
                     data: [{x: 25.84000015, y: 0.300940037}, {x: 27.32500076, y: 0.228056431}, {x: 28.10000038, y: 0.128013209}, {x: 31.39999962, y: 0.329317272}, {x: 31.64999962, y: 0.07333333}, {x: 31.79999924, y: 0.445680618}, {x: 32.09999847, y: 0.233082712}, {x: 32.40000153, y: 0.129166663}, {x: 32.75, y: 0.065964758}, {x: 32.79999924, y: 0.138245031}, {x: 33.23333359, y: 0.466930151}, {x: 34, y: 0.205833331}, {x: 34.40000153, y: 0.150833338}, {x: 34.5, y: 0.169134736}, {x: 34.57500076, y: 0.084471963}, {x: 35, y: 0.118699186}, {x: 35.09999847, y: 0.130063519}, {x: 35.5, y: 0.276666671}, {x: 35.52500153, y: 0.114002943}, {x: 36.13999939, y: 0.288886756}, {x: 37.29999924, y: 0.229347616}, {x: 38.47999954, y: 0.046373185}, {x: 38.5, y: 0.163479924}, {x: 38.54999924, y: 0.634894729}, {x: 40.57500076, y: 0.148098737}, {x: 41.09999847, y: 0.195734963}, {x: 41.22499847, y: 0.370217174}, {x: 41.82500076, y: 0.191813305}, {x: 42, y: 0.13995859}, {x: 42.84000015, y: 0.041612707}, {x: 43.45000076, y: 0.053309843}, {x: 44.15999985, y: 0.08514756}, {x: 44.40000153, y: 0.129027218}, {x: 45.36000061, y: 0.057500001}, {x: 45.84999847, y: 0.104989827}, {x: 47.29999924, y: 0.021399178}, {x: 50.59999847, y: 0.045394737}, {x: 53.15999985, y: 0.06524758}],
-                    backgroundColor: styles.fourthColor,
+                    backgroundColor: chroma(styles.fourthColor).alpha(areaAlpha).hex(),
                     borderWidth: 0,
                     pointRadius: 8,
                   },
@@ -668,7 +674,7 @@ function App() {
               datasets: [
                 {
                   data: [41.26466751, 32.16666794, 29.79999924],
-                  backgroundColor: styles.secondaryColor,
+                  backgroundColor: chroma(styles.secondaryColor).alpha(areaAlpha).hex(),
                 }
               ]
             }}
@@ -845,7 +851,7 @@ function App() {
             เทียบกับคุณภาพสังคมด้านอื่น ๆ
           </h2>
 
-        </section> */}
+        </section>
 
         <section>
           <SocialOutline n={2} />
@@ -857,6 +863,7 @@ function App() {
           </h2>
           <div id="political-scale" className={`center frag${getFragment(document.getElementById("political-scale"))}`}>
             <div className={`def def-orange`}>
+              <img src={picPassionFruit} height="200px" />
               <div className="top">
                 สิทธิ<br />
                 เสรีภาพ<br />
@@ -868,13 +875,6 @@ function App() {
                 ให้ความสำคัญกับหลักสิทธิเสรีภาพและความเสมอภาคภายใต้ความหลากหลายในสังคม เช่น สิทธิในการแสดงออก การยกระดับคุณภาพชีวิตของคนในสังคมให้เท่าเทียมกันมากขึ้น เป็นต้น
               </p>
             </div>
-            {/* <div className="boxes">
-              {
-                [...Array(6).keys()].map(i => 
-                  <div style={{backgroundColor: politicalColors[i]}} />
-                )
-              }
-            </div> */}
             <div className="chart-container">
               <Chart
                 type="bar"
@@ -902,7 +902,7 @@ function App() {
                   plugins: {
                     title: {
                       display: true,
-                      text: getFragment(charts.current['extremity']?.canvas) === 2 ? "จำนวนผู้ตอบแบบสอบถาม" : "",
+                      text: getFragment(charts.current['extremity']?.canvas) === 2 ? "จำนวนผู้ตอบแบบสอบถามในแต่ละกลุ่ม" : "",
                     },
                     legend: {
                       display: false,
@@ -912,6 +912,7 @@ function App() {
               />
             </div>
             <div className={`def def-yellow`}>
+              <img src={picBanana} height="200px" />
               <div className="top">
                 ประเพณีนิยม<br />
                 ศีลธรรมอันดีงาม<br />
@@ -952,7 +953,7 @@ function App() {
                   {
                     label: "ค่าเฉลี่ยของกลุ่มตัวอย่าง",
                     data: [36.6, 57.2, 61.6, 65.2, 86.1],
-                    backgroundColor: styles.fourthColor,
+                    backgroundColor: chroma(styles.fourthColor).alpha(areaAlpha).hex(),
                   }
                 ]
               }}
@@ -982,12 +983,12 @@ function App() {
                   {
                     label: "กลุ่มไม่สุดขั้ว",
                     data: [42.1, 61.3, 62.2, 66.0, 85.7],
-                    backgroundColor: styles.greenColor,
+                    backgroundColor: chroma(styles.greenColor).alpha(areaAlpha).hex(),
                   },
                   {
                     label: "กลุ่มสุดขั้ว",
                     data: [25.6, 48.8, 60.3, 63.6, 87.0],
-                    backgroundColor: styles.secondaryColor,
+                    backgroundColor: chroma(styles.secondaryColor).alpha(areaAlpha).hex(),
                   }
                 ]
               }}
@@ -1013,10 +1014,122 @@ function App() {
           <h2>
             ความคิดต่าง ทำให้ยิ่งมองความต่างมากเกินจริง
           </h2>
-          <ul>
-            <li>การศึกษาที่มีมา (เช่น Westfall <em>et al.</em>, 2015 ในสหรัฐฯ) แสดงให้เห็นว่าคนคิดว่าสองฝั่งมีความแตกต่างกันมากกว่าความเป็นจริง</li>
-            <li>ตัวอย่าง: คำถามว่า <strong>"คุณให้ความสำคัญกับการเชื่อฟังผู้อาวุโส หรือผู้มีตำแหน่งสูงกว่า มากน้อยแค่ไหน"</strong></li>
-          </ul>
+          <section>
+            <div>
+              Westfall <em>et al.</em> (2015) พบว่าคน<orange>คิดว่าสองฝั่งมีความแตกต่างกันมากกว่าความเป็นจริง</orange>
+            </div>
+            <div className="spacer" />
+            <div className="fragment">
+              คำถาม<br />
+              <strong>"คุณให้ความสำคัญกับการเชื่อฟังผู้อาวุโส หรือผู้มีตำแหน่งสูงกว่า มากน้อยแค่ไหน"</strong>
+              <div id="perception">
+                <Chart
+                  type="bar"
+                  height={100}
+                  ref={el => charts.current['perception-example'] = el}
+                  data={{
+                    labels: " ",
+                    datasets: [
+                      {
+                        hidden: false,
+                        label: "ความแตกต่างที่คิด",
+                        data: getFragment(charts.current['perception-example']?.canvas) < 6 ? [[3, 3]] : [[2.180633, 4.314031]],
+                        backgroundColor: chroma(styles.fourthColor).alpha(areaAlpha).hex(),
+                      },
+                      {
+                        label: "ความแตกต่างจริง",
+                        data: getFragment(charts.current['perception-example']?.canvas) < 7 ? [[3, 3]] : [[2.985117, 3.854922]],
+                        backgroundColor: chroma(styles.secondaryColor).alpha(areaAlpha).hex(),
+                      }
+                    ]
+                  }}
+                  options={{
+                    indexAxis: 'y',
+                    scales: {
+                      x: {
+                        min: 1,
+                        max: 5,
+                        ticks: {
+                          callback: (value, index, values) => {
+                            if (value === 1)
+                              return ['1', 'น้อยที่สุด']
+                            if (value === 5)
+                              return ['5', 'มากที่สุด']
+                            if (value % 1 === 0)
+                              return value
+                            return null
+                          },
+                        },
+                      },
+                      y: {
+                        grid: {
+                          borderColor: styles.gridColor,
+                        }
+                      }
+                    },
+                    plugins: {
+                      annotation: {
+                        annotations: {
+                          orangeActual: {
+                            type: 'point',
+                            xValue: 2.985117,
+                            yValue: " ",
+                            borderColor: politicalColors[0],
+                            backgroundColor: politicalColors[0],
+                            borderWidth: 3,
+                            display: getFragment(charts.current['perception-example']?.canvas) >= 2 && getFragment(charts.current['perception-example']?.canvas) < 8
+                          },
+                          yellowImage: {
+                            type: 'point',
+                            xValue: 4.314031,
+                            yValue: " ",
+                            backgroundColor: 'rgba(255, 255, 255, 0)',
+                            borderColor: politicalColors[5],
+                            borderWidth: 3,
+                            borderDash: [5, 5],
+                            display: getFragment(charts.current['perception-example']?.canvas) >= 3 && getFragment(charts.current['perception-example']?.canvas) < 8
+                          },
+                          yellowActual: {
+                            type: 'point',
+                            xValue: 3.854922,
+                            yValue: " ",
+                            borderColor: politicalColors[5],
+                            backgroundColor: politicalColors[5],
+                            borderWidth: 3,
+                            display: getFragment(charts.current['perception-example']?.canvas) >= 4 && getFragment(charts.current['perception-example']?.canvas) < 8
+                          },
+                          orangeImage: {
+                            type: 'point',
+                            xValue: 2.180633,
+                            yValue: " ",
+                            backgroundColor: 'rgba(255, 255, 255, 0)',
+                            borderColor: politicalColors[0],
+                            borderWidth: 3,
+                            borderDash: [5, 5],
+                            display: getFragment(charts.current['perception-example']?.canvas) >= 5 && getFragment(charts.current['perception-example']?.canvas) < 8
+                          },
+                        }
+                      },
+                    }
+                  }}
+                />
+              </div>
+              <div className="fragment" />
+              <div className="fragment" />
+              <div className="fragment" />
+              <div className="fragment" />
+              <div className="fragment" />
+              <div className="fragment" />
+              <div className="fragment" />
+            </div>
+          </section>
+          <section>
+            <Perception
+              ref={el => charts.current['perception-all'] = el}
+              highlightArray={[2, 8]}
+              style={{marginTop: '-1.5em'}}
+            />
+          </section>
         </section>
         
 
@@ -1063,6 +1176,11 @@ function App() {
 
         <section>
           <h2>คน "คิดต่าง" อาจไม่ได้ต่างอย่างที่คิด</h2>
+          <Perception
+            ref={el => charts.current['perception-close'] = el}
+            highlightArray={[2, 8]}
+            style={{marginTop: '-0.5em'}}
+          />
         </section>
 
         <section>
