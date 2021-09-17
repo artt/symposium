@@ -1,30 +1,33 @@
 {
   "files": {
-    "main.css": "/symposium/static/css/main.16099707.chunk.css",
-    "main.js": "/symposium/static/js/main.4234ffa9.chunk.js",
-    "main.js.map": "/symposium/static/js/main.4234ffa9.chunk.js.map",
+    "main.css": "/symposium/static/css/main.a365b942.chunk.css",
+    "main.js": "/symposium/static/js/main.f3c35d66.chunk.js",
+    "main.js.map": "/symposium/static/js/main.f3c35d66.chunk.js.map",
     "runtime-main.js": "/symposium/static/js/runtime-main.e50015c4.js",
     "runtime-main.js.map": "/symposium/static/js/runtime-main.e50015c4.js.map",
     "static/css/2.fa4a5ac2.chunk.css": "/symposium/static/css/2.fa4a5ac2.chunk.css",
-    "static/js/2.07a67127.chunk.js": "/symposium/static/js/2.07a67127.chunk.js",
-    "static/js/2.07a67127.chunk.js.map": "/symposium/static/js/2.07a67127.chunk.js.map",
+    "static/js/2.630b5690.chunk.js": "/symposium/static/js/2.630b5690.chunk.js",
+    "static/js/2.630b5690.chunk.js.map": "/symposium/static/js/2.630b5690.chunk.js.map",
     "static/js/3.ad4144cf.chunk.js": "/symposium/static/js/3.ad4144cf.chunk.js",
     "static/js/3.ad4144cf.chunk.js.map": "/symposium/static/js/3.ad4144cf.chunk.js.map",
     "index.html": "/symposium/index.html",
     "static/css/2.fa4a5ac2.chunk.css.map": "/symposium/static/css/2.fa4a5ac2.chunk.css.map",
-    "static/css/main.16099707.chunk.css.map": "/symposium/static/css/main.16099707.chunk.css.map",
-    "static/js/2.07a67127.chunk.js.LICENSE.txt": "/symposium/static/js/2.07a67127.chunk.js.LICENSE.txt",
+    "static/css/main.a365b942.chunk.css.map": "/symposium/static/css/main.a365b942.chunk.css.map",
+    "static/js/2.630b5690.chunk.js.LICENSE.txt": "/symposium/static/js/2.630b5690.chunk.js.LICENSE.txt",
+    "static/media/demographics.ab9f28a4.png": "/symposium/static/media/demographics.ab9f28a4.png",
     "static/media/pier-dark.scss": "/symposium/static/media/muttayat-regular-webfont.ce2e2227.woff2",
     "static/media/nursing-home.85c319dd.svg": "/symposium/static/media/nursing-home.85c319dd.svg",
     "static/media/people.b6444c2c.png": "/symposium/static/media/people.b6444c2c.png",
+    "static/media/social-media.153bc515.png": "/symposium/static/media/social-media.153bc515.png",
+    "static/media/social-quality.dd82837f.png": "/symposium/static/media/social-quality.dd82837f.png",
     "static/media/thailand.a4bfdcf2.png": "/symposium/static/media/thailand.a4bfdcf2.png",
     "static/media/world.c659ced3.png": "/symposium/static/media/world.c659ced3.png"
   },
   "entrypoints": [
     "static/js/runtime-main.e50015c4.js",
     "static/css/2.fa4a5ac2.chunk.css",
-    "static/js/2.07a67127.chunk.js",
-    "static/css/main.16099707.chunk.css",
-    "static/js/main.4234ffa9.chunk.js"
+    "static/js/2.630b5690.chunk.js",
+    "static/css/main.a365b942.chunk.css",
+    "static/js/main.f3c35d66.chunk.js"
   ]
 }
