@@ -1,22 +1,24 @@
 {
   "files": {
-    "main.css": "/symposium/static/css/main.57167331.chunk.css",
-    "main.js": "/symposium/static/js/main.83abcbeb.chunk.js",
-    "main.js.map": "/symposium/static/js/main.83abcbeb.chunk.js.map",
+    "main.css": "/symposium/static/css/main.9ac03168.chunk.css",
+    "main.js": "/symposium/static/js/main.2b99ecea.chunk.js",
+    "main.js.map": "/symposium/static/js/main.2b99ecea.chunk.js.map",
     "runtime-main.js": "/symposium/static/js/runtime-main.29ff52f5.js",
     "runtime-main.js.map": "/symposium/static/js/runtime-main.29ff52f5.js.map",
     "static/css/2.fa4a5ac2.chunk.css": "/symposium/static/css/2.fa4a5ac2.chunk.css",
-    "static/js/2.f018f07a.chunk.js": "/symposium/static/js/2.f018f07a.chunk.js",
-    "static/js/2.f018f07a.chunk.js.map": "/symposium/static/js/2.f018f07a.chunk.js.map",
+    "static/js/2.61589770.chunk.js": "/symposium/static/js/2.61589770.chunk.js",
+    "static/js/2.61589770.chunk.js.map": "/symposium/static/js/2.61589770.chunk.js.map",
     "static/js/3.fd86d5fd.chunk.js": "/symposium/static/js/3.fd86d5fd.chunk.js",
     "static/js/3.fd86d5fd.chunk.js.map": "/symposium/static/js/3.fd86d5fd.chunk.js.map",
     "index.html": "/symposium/index.html",
     "static/css/2.fa4a5ac2.chunk.css.map": "/symposium/static/css/2.fa4a5ac2.chunk.css.map",
-    "static/css/main.57167331.chunk.css.map": "/symposium/static/css/main.57167331.chunk.css.map",
-    "static/js/2.f018f07a.chunk.js.LICENSE.txt": "/symposium/static/js/2.f018f07a.chunk.js.LICENSE.txt",
+    "static/css/main.9ac03168.chunk.css.map": "/symposium/static/css/main.9ac03168.chunk.css.map",
+    "static/js/2.61589770.chunk.js.LICENSE.txt": "/symposium/static/js/2.61589770.chunk.js.LICENSE.txt",
+    "static/media/banana.287d6a56.png": "/symposium/static/media/banana.287d6a56.png",
     "static/media/demographics.ab9f28a4.png": "/symposium/static/media/demographics.ab9f28a4.png",
     "static/media/pier-dark.scss": "/symposium/static/media/muttayat-regular-webfont.ce2e2227.woff2",
     "static/media/nursing-home.85c319dd.svg": "/symposium/static/media/nursing-home.85c319dd.svg",
+    "static/media/passion-fruit.7f3cd371.png": "/symposium/static/media/passion-fruit.7f3cd371.png",
     "static/media/people.b6444c2c.png": "/symposium/static/media/people.b6444c2c.png",
     "static/media/social-media.153bc515.png": "/symposium/static/media/social-media.153bc515.png",
     "static/media/social-quality.dd82837f.png": "/symposium/static/media/social-quality.dd82837f.png",
@@ -26,8 +28,8 @@
   "entrypoints": [
     "static/js/runtime-main.29ff52f5.js",
     "static/css/2.fa4a5ac2.chunk.css",
-    "static/js/2.f018f07a.chunk.js",
-    "static/css/main.57167331.chunk.css",
-    "static/js/main.83abcbeb.chunk.js"
+    "static/js/2.61589770.chunk.js",
+    "static/css/main.9ac03168.chunk.css",
+    "static/js/main.2b99ecea.chunk.js"
   ]
 }
