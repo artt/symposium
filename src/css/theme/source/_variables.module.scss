@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $primary-color: #4e6c7f; // 4f6e82; //rgb(59, 95, 116); <= 3b5f74
 $secondary-color: #dd8357; //rgb(212, 104, 68); <= d46844
 $color-3: rgb(218, 213, 207);
@@ -5,6 +7,10 @@ $color-4: rgb(165, 185, 196);
 $green-color: rgb(53, 147, 159);
 $text-color: #eee;
 $grid-color: scale-color($text-color, $alpha: -80%);
+
+$us-color: #0A3161;
+$cn-color: #df2407;
+
 $base-size: 24px;
 
 :export {
@@ -15,5 +21,7 @@ $base-size: 24px;
 	greenColor: $green-color;
 	textColor: $text-color;
 	gridColor: $grid-color;
+	usColor: $us-color;
+	cnColor: $cn-color;
 	baseSize: $base-size;
 }

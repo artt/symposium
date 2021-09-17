@@ -1,3 +1,5 @@
+@import "./theme/source/variables.module";
+
 #outline {
   .grid {
     display: grid;
@@ -10,4 +12,38 @@
     width: 60%;
     margin: 0 auto;
   }
+}
+
+#political-scale {
+  display: grid;
+  .top {
+    font-size: 0.8em;
+  }
+  .def {
+    p {
+      font-size: 0.6em;
+      opacity: 0.7;
+    }
+  }
+  transition-duration: 3s;
+  &.frag0 {
+    grid-template-columns: 300px 0 300px;
+    .chart-container {
+      // display: none;
+    }
+  }
+  &.frag1 {
+    grid-template-columns: 300px 1200px 300px;
+    .chart-container {
+      // display: block;
+    }
+  }
+  // .boxes {
+  //   width: 720px;
+  //   height: 120px;
+  //   display: grid;
+  //   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  //   grid-gap: 2px;
+  // }
+  
 }

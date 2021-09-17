@@ -6,8 +6,9 @@ import Reveal from 'reveal.js'
 import Chart from './components/Chart'
 import ComparePop from './components/ComparePop'
 import SocialOutline from './components/SocialOutline'
-import ChartComponent, { defaults } from 'test-react-chartjs-2'
+import { defaults } from 'test-react-chartjs-2'
 import merge from 'lodash.merge'
+import chroma from 'chroma-js'
 
 import Logo from './components/Logo'
 
@@ -26,9 +27,9 @@ import "../node_modules/reveal.js/dist/reveal.css"
 import "./css/theme/source/pier-dark.scss"
 import "./css/main.scss"
 
-
-
 const baseSize = parseInt(styles.baseSize.replace("px", ""))
+const areaAlpha = 0.675
+const politicalColors = chroma.scale(['orange', 'white', 'yellow']).colors(6)
 
 merge(defaults, {
   color: styles.textColor,
@@ -75,6 +76,10 @@ function App() {
     }
   }
 
+  function getCurrentData(data, n) {
+    return data[n > data.length ? 0 : n]
+  }
+
   function animateCurrentChart() {
     setTimeout(() => {
       updateFragment()
@@ -91,6 +96,7 @@ function App() {
 
   const _W = 1920
   const _H = 1080
+
 
   function setScale() {
     const scale = Math.min(window.innerWidth / _W, window.innerHeight / _H)
@@ -179,10 +185,10 @@ function App() {
 
         <section>
           <div className="vertical-center">
-            <h2>
+            <h1>
               ความเปลี่ยนแปลงที่กำลังเกิด<br />
-              <orange>ส่งผลกระทบต่อความเปราะบางที่มีอยู่แล้ว</orange>
-            </h2>
+              <orange>ส่งผลกระทบต่อความเปราะบางที่มีอยู่แล้ว…</orange>
+            </h1>
           </div>
 				</section>
 
@@ -210,18 +216,260 @@ function App() {
 
         <section>
           <h2>
-            <orange>#1</orange> เศรษฐกิจไทยเปราะบางต่อความขัดแย้งทางภูมิรัฐศาสตร์<br />
-            ตามการพึ่งพาจีนในระดับสูง
+            <orange>#1</orange> เศรษฐกิจไทยเปราะบางต่อความขัดแย้งทางภูมิรัฐศาสตร์
           </h2>
 
-          ตัวอย่างความเปราะบางของภาคการท่องเที่ยวไทย
-          <ul>
-            <li>
-              รายได้จากนักท่องเที่ยวต่างชาติคิดเป็น <orange>11% ของ GDP ไทย</orange><br />
-              เกี่ยวข้องกับ<orange>แรงงานกว่า 7.5 ล้านคน</orange>
-            </li>
-            <li>ภาคการท่องเที่ยวไทยพึ่งพานักท่องเที่ยวจีนถึง 28% ของนักท่องเที่ยวท้ังหมด</li>
-          </ul>
+          <div>
+            <orange>ตัวอย่างความเปราะบางจากการพึ่งพาจีนและสหรัฐฯ</orange>
+          </div>
+          <div className="spacer" />
+
+          <section>
+            <split>
+              <div>
+                <div>
+                  การส่งออกไทยไปจีนและสหรัฐฯ<br />
+                  มีมูลค่ารวมเกือบ 1 ใน 3 ของการส่งออก
+                </div>
+                <Chart
+                  type="line"
+                  height={280}
+                  ref={el => charts.current['exports'] = el}
+                  data={{
+                    labels: [...Array(26).keys()].map(x => x + 1995),
+                    datasets: [
+                      {
+                        data: [2.907573869, 3.352511432, 3.043451846, 3.242065949, 3.18176053, 4.065222301, 4.408128539, 5.216009315, 7.107585237, 7.371223277, 8.263696605, 9.040960912, 9.649204673, 9.107349445, 10.57521761, 11.10886366, 11.79390837, 11.72921265, 11.91811991, 11.02768863, 11.07391933, 11.04966889, 12.46901342, 11.98499444, 11.84456171, 12.87073393],
+                        label: "จีน",
+                        tension: 0.4,
+                        backgroundColor: chroma(styles.cnColor).alpha(areaAlpha).hex(),
+                        borderColor: styles.cnColor,
+                        fill: true,
+                      },
+                      {
+                        data: [17.82828826, 17.97175979, 19.44514375, 22.330245, 21.63543144, 21.31141409, 20.25002984, 19.82118459, 16.98672979, 16.06464302, 15.32089143, 14.99345676, 12.61859067, 11.40470261, 10.93070977, 10.45045008, 9.786964663, 9.946514876, 10.04517578, 10.50323177, 11.22485985, 11.37467376, 11.22845138, 11.08528019, 12.72935508, 14.84290893],
+                        label: "สหรัฐฯ",
+                        tension: 0.4,
+                        backgroundColor: chroma(styles.usColor).alpha(areaAlpha).hex(),
+                        borderColor: styles.usColor,
+                        fill: true,
+                      },
+                    ]
+                  }}
+                  options={{
+                    layout: {
+                      padding: 0,
+                    },
+                    radius: 0,
+                    scales: {
+                      y: {
+                        stacked: true,
+                        title: {
+                          display: true,
+                          text: "สัดส่วนมูลค่าการส่งออก (%)"
+                        }
+                      }
+                    },
+                    plugins: {
+                      // title: {
+                      //   display: true,
+                      //   text: "สัดส่วนการส่งออกของไทยไปจีนและสหรัฐฯ",
+                      // },
+                    }
+                  }}
+                />
+              </div>
+              <div>
+                <div>
+                  จีน: สินค้าเกษตรและผลิตภัณฑ์พลาสติก<br />
+                  สหรัฐฯ: สินค้าอิเล็กทรอนิกส์และเครื่องจักร
+                </div>
+                <Chart
+                  type="bar"
+                  height={280}
+                  ref={el => charts.current['exports-products'] = el}
+                  data={{
+                    labels: ["Machinery", "Electrical machinery and equipment", "Vehicles", "Pearls, stones, precious metals", "Rubber products", "Plastics products", "Preparations of meat, fish etc.", "Mineral fuels", "Optical products", "Edible fruit and nuts; peel of citrus fruit or melons"],
+                    datasets: [
+                      {
+                        data: [9.186, 9.109, 7.265, 0.781, 26.258, 27.144, 0.878, 10.032, 24.105, 69.528],
+                        label: "จีน",
+                        backgroundColor: chroma(styles.cnColor).alpha(areaAlpha).hex(),
+                        borderColor: styles.cnColor,
+                      },
+                      {
+                        data: [22.286, 21.944, 9.632, 5.663, 26.865, 6.684, 17.254, 0.054, 15.372, 2.393],
+                        label: "สหรัฐฯ",
+                        backgroundColor: chroma(styles.usColor).alpha(areaAlpha).hex(),
+                        borderColor: styles.usColor,
+                      },
+                    ]
+                  }}
+                  options={{
+                    layout: {
+                      padding: 0,
+                    },
+                    radius: 0,
+                    scales: {
+                      y: {
+                        title: {
+                          display: true,
+                          text: "สัดส่วนมูลค่าการส่งออก (%)"
+                        }
+                      }
+                    },
+                    plugins: {
+                      // title: {
+                      //   display: true,
+                      //   text: "สัดส่วนการส่งออกของไทยไปจีนและสหรัฐฯ",
+                      // },
+                    }
+                  }}
+                />
+              </div>
+            </split>
+            <div className="note"><strong>ที่มา</strong>: ธนาคารแห่งประเทศไทย ITC Trademap คำนวณโดยคณะผู้วิจัย</div>
+          </section>
+
+          <section>
+            <split>
+              <div>
+                <div>
+                  ไทยพึ่งพานักท่องเที่ยวจีนถึง 28%<br />
+                  ของนักท่องเที่ยวทั้งหมด
+                </div>
+                <Chart
+                  type="line"
+                  height={280}
+                  ref={el => charts.current['tourists'] = el}
+                  data={{
+                    labels: ["Jan-15", "Feb-15", "Mar-15", "Apr-15", "May-15", "Jun-15", "Jul-15", "Aug-15", "Sep-15", "Oct-15", "Nov-15", "Dec-15", "Jan-16", "Feb-16", "Mar-16", "Apr-16", "May-16", "Jun-16", "Jul-16", "Aug-16", "Sep-16", "Oct-16", "Nov-16", "Dec-16", "Jan-17", "Feb-17", "Mar-17", "Apr-17", "May-17", "Jun-17", "Jul-17", "Aug-17", "Sep-17", "Oct-17", "Nov-17", "Dec-17", "Jan-18", "Feb-18", "Mar-18", "Apr-18", "May-18", "Jun-18", "Jul-18", "Aug-18", "Sep-18", "Oct-18", "Nov-18", "Dec-18", "Jan-19", "Feb-19", "Mar-19", "Apr-19", "May-19", "Jun-19", "Jul-19", "Aug-19", "Sep-19", "Oct-19", "Nov-19", "Dec-19", "Jan-20", "Feb-20", "Mar-20"],
+                    datasets: [
+                      {
+                        data: [3.108, 2.700, 2.922, 2.802, 2.776, 2.991, 2.643, 2.145, 2.607, 3.178, 3.471, 3.408, 3.109, 2.675, 2.978, 2.845, 2.930, 3.224, 2.747, 2.124, 2.439, 3.274, 3.997, 3.757, 3.184, 2.956, 3.106, 3.054, 2.942, 3.181, 2.787, 2.132, 2.422, 2.856, 3.462, 3.423, 3.103, 2.545, 3.049, 2.865, 2.964, 3.002, 2.781, 2.204, 2.466, 3.069, 3.725, 3.379, 3.038, 2.568, 3.048, 2.889, 2.999, 3.097, 2.643, 2.028, 2.208, 2.757, 3.498, 3.279, 2.988, 3.515, 2.947],
+                        label: "สหรัฐฯ",
+                        tension: 0.4,
+                        backgroundColor: chroma(styles.usColor).alpha(areaAlpha).hex(),
+                        borderColor: styles.usColor,
+                        fill: true,
+                      },
+                      {
+                        data: [21.469, 29.302, 25.968, 29.125, 29.026, 27.886, 29.189, 30.621, 26.174, 25.397, 24.130, 21.352, 27.189, 31.105, 29.266, 31.054, 30.036, 29.526, 29.343, 30.912, 27.263, 21.057, 17.634, 17.498, 26.888, 26.632, 26.153, 26.220, 29.308, 27.919, 30.263, 30.841, 29.266, 29.554, 26.018, 22.838, 27.467, 33.754, 28.730, 31.870, 31.748, 29.889, 29.264, 26.865, 24.569, 23.896, 21.291, 21.865, 29.000, 29.973, 28.563, 28.286, 29.396, 27.619, 30.037, 30.431, 30.044, 27.079, 23.768, 21.884, 27.037, 7.787, 6.938],
+                        label: "จีน",
+                        tension: 0.4,
+                        backgroundColor: chroma(styles.cnColor).alpha(areaAlpha).hex(),
+                        borderColor: styles.cnColor,
+                        fill: true,
+                      },
+                    ]
+                  }}
+                  options={{
+                    layout: {
+                      padding: 0,
+                    },
+                    radius: 0,
+                    scales: {
+                      y: {
+                        stacked: true,
+                        title: {
+                          display: true,
+                          text: "สัดส่วนนักท่องเที่ยว (%)"
+                        }
+                      }
+                    },
+                    plugins: {
+                      // title: {
+                      //   display: true,
+                      //   text: "สัดส่วนนักท่องเที่ยวจีนและสหรัฐฯ",
+                      // },
+                      annotation: {
+                        annotations: {
+                          bombing: {
+                            type: 'box',
+                            xMin: "Aug-15",
+                            xMax: "Dec-15",
+                            drawTime: "beforeDatasetsDraw",
+                            borderWidth: 0,
+                            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                          },
+                          tour: {
+                            type: 'box',
+                            xMin: "Oct-16",
+                            xMax: "Dec-16",
+                            drawTime: "beforeDatasetsDraw",
+                            borderWidth: 0,
+                            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                          },
+                          boat: {
+                            type: 'box',
+                            xMin: "Jul-18",
+                            xMax: "Nov-18",
+                            drawTime: "beforeDatasetsDraw",
+                            borderWidth: 0,
+                            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                          }
+                        }
+                      },
+                    }
+                  }}
+                />
+              </div>
+              <div>
+                <div>
+                  การลงทุนทางตรงของสหรัฐฯ ยังอยู่ในระดับสูง<br />
+                  ขณะที่ของจีนเพิ่มขึ้นต่อเนื่อง
+                </div>
+                <Chart
+                  type="line"
+                  height={280}
+                  ref={el => charts.current['tourists'] = el}
+                  data={{
+                    labels: [...Array(15).keys()].map(x => x + 2006),
+                    datasets: [
+                      {
+                        data: [0.461193715, 0.403640965, 0.475220835, 0.50179091, 0.933997959, 1.194895908, 1.448498298, 1.853459414, 1.632765256, 1.689373072, 2.282328423, 2.027178381, 2.283657598, 2.776400004, 2.733742509],
+                        label: "จีน",
+                        tension: 0.4,
+                        backgroundColor: chroma(styles.cnColor).alpha(areaAlpha).hex(),
+                        borderColor: styles.cnColor,
+                        fill: true,
+                      },
+                      {
+                        data: [11.37837563, 10.13135187, 9.677620293, 9.519999818, 9.225781636, 9.258475833, 9.587324964, 8.221337325, 7.907904056, 8.142316389, 7.519867543, 6.611558165, 6.772254041, 6.723215518, 6.219724666],
+                        label: "สหรัฐฯ",
+                        tension: 0.4,
+                        backgroundColor: chroma(styles.usColor).alpha(areaAlpha).hex(),
+                        borderColor: styles.usColor,
+                        fill: true,
+                      },
+                    ]
+                  }}
+                  options={{
+                    layout: {
+                      padding: 0,
+                    },
+                    radius: 0,
+                    scales: {
+                      y: {
+                        stacked: true,
+                        title: {
+                          display: true,
+                          text: "สัดส่วนของ FDI รวม (%)"
+                        }
+                      }
+                    },
+                    plugins: {
+                      // title: {
+                      //   display: true,
+                      //   text: "สัดส่วนการลงทุนทางตรงของจีนและสหรัฐฯ",
+                      // },
+                    }
+                  }}
+                />
+              </div>
+            </split>
+            <div className="note"><strong>ที่มา</strong>: ธนาคารแห่งประเทศไทย ITC Trademap คำนวณโดยคณะผู้วิจัย</div>
+          </section>
 
         </section>
 
@@ -230,14 +478,24 @@ function App() {
             <orange>#2</orange> ความก้าวหน้าทางเทคโนโลยี<br />
             อาจทำให้ไทยตกขบวนรถไฟได้ หากปรับตัวไม่ทัน
           </h2>
+          
           <section>
-            <div>
+            <div className="orange">
               ตัวอย่างความเปราะบางของโครงสร้างการส่งออกไทย
             </div>
-          </section>
-          <section>
+            <div className="spacer" />
             <div>
-              ตัวอย่างความเปราะบางของการพึ่งพา platform ต่างประเทศ:<br />
+              มูลค่าเพิ่มที่ไทยสร้างได้ ยังอยู่ในระดับกลาง ๆ เมื่อเทียบกับประเทศเพื่อนบ้าน
+            </div>
+
+          </section>
+
+          <section>
+            <div className="orange">
+              ตัวอย่างความเปราะบางของการพึ่งพา platform ต่างประเทศ
+            </div>
+            <div className="spacer" />
+            <div>
               คนไทยพึ่งพา platform ต่างประเทศในการซื้อสินค้าและบริการสูงมาก
             </div>
             <Chart
@@ -283,16 +541,41 @@ function App() {
             <orange>#3</orange> ภาวะโลกร้อน เป็นภัยเงียบ<br />
             และจะส่งผลใหญ่หลวงต่อไทยหากไม่เร่งปรับตัว
           </h2>
+          <div className="orange">
+            ตัวอย่างความเปราะบางของภาคอุตสาหกรรมไทย
+          </div>
+          <div className="spacer" />
           <div>
-            ตัวอย่างความเปราะบางของภาคอุตสาหกรรมไทย:<br />
             กรุงเทพฯ และปริมณฑล มีความเสี่ยงต่อน้ำท่วมจากระดับน้ำทะเลที่เพิ่มขึ้น
           </div>
         </section>
 
+        <section>
+          <h2>
+            <orange>#4</orange> สังคมสูงอายุส่งผลหลายด้าน<br />
+          </h2>
+          <div className="orange">
+            ตัวอย่างความเปราะบางของโครงสร้างแรงงานไทย
+          </div>
+          <div className="spacer" />
+          <div>
+            สัดส่วนแรงงานสูงวัย (มากกว่า 50 ปี) <orange>เพิ่มขึ้นเกือบ 3 เท่า</orange>ในช่วงไม่ถึง 20 ปีที่ผ่านมา
+          </div>
+        </section>
 
-
-
-
+        <section>
+          <h2>
+            <orange>#5</orange> วิกฤตโควิด-19 สร้างหลายแผลเป็นต่อเศรษฐกิจไทย
+          </h2>
+          <div className="orange">
+            ตัวอย่างความเปราะบางทางการเงินของครัวเรือนไทย
+          </div>
+          <div className="spacer" />
+          <div>
+            ครัวเรือนไทยเริ่มผิดนัดชำระหนี้ และมีหนี้เสียเป็นวงกว้าง<br />
+            โดยเฉพาะกลุ่มผู้กู้อายุน้อย ซึ่งมีหนี้เร็วและมีสัดส่วนผู้กู้ที่มีหนี้เสียมากอยู่แล้วก่อนวิกฤต
+          </div>
+        </section>
 
 
 
@@ -302,11 +585,11 @@ function App() {
 
         <section>
           <div className="vertical-center">
-            <h2>
+            <h1>
               แต่ประเด็นทางเศรษฐกิจ<br />
               ไม่ได้เป็นความเปราะบางเพียงอย่างเดียว<br />
               <orange>ต้องพิจารณาประเด็นทางสังคมควบคู่ไปด้วย</orange>
-            </h2>
+            </h1>
           </div>
 				</section>
 
@@ -375,7 +658,7 @@ function App() {
             type="bar"
             ref={el => charts.current['trust'] = el}
             data={{
-              labels: ["2007", "2013", "2018"],
+              labels: ["2008", "2013", "2018"],
               datasets: [
                 {
                   data: [41.26466751, 32.16666794, 29.79999924],
@@ -407,7 +690,7 @@ function App() {
           <h2>…ขณะที่มีกลุ่มความคิดทางการเมือง<br />ไปทางซ้ายมากขึ้น</h2>
           <Chart
             type="line"
-            ref={el => charts.current['political_shift'] = el}
+            ref={el => charts.current['political-shift'] = el}
             data={{
               labels: [...Array(10).keys()],
               datasets: [
@@ -427,8 +710,19 @@ function App() {
             options={{
               radius: 0,
               scales: {
+                x: {
+                  ticks: {
+                    callback: (value, index, values) => {
+                      if (index === 1)
+                        return ['เสรีนิยม', 'Liberal']
+                      if (index === 8)
+                        return ['อนุรักษ์นิยม', 'Conservative']
+                      return null
+                    },
+                  },
+                },
                 y: {
-                  max: 0.4
+                  max: 0.4,
                 }
               },
               plugins: {
@@ -445,6 +739,7 @@ function App() {
               }
             }}
           />
+          <div className="note">ที่มา: ข้อมูลจาก World Value Survey รอบที่ 5–7</div>
           <div class="fragment" />
         </section>
 
@@ -554,6 +849,70 @@ function App() {
           <h2>
             การวัดความคิดต่าง
           </h2>
+          <div id="political-scale" className={`frag${curFragment}`}>
+            <div className={`def def-orange`}>
+              <div className="top">
+                สิทธิ<br />
+                เสรีภาพ<br />
+                สิทธิในการแสดงออก<br />
+                ความเสมอภาค<br />
+                ความเท่าเทียม
+              </div>
+              <p>
+                ให้ความสำคัญกับหลักสิทธิเสรีภาพและความเสมอภาคภายใต้ความหลากหลายในสังคม เช่น สิทธิในการแสดงออก การยกระดับคุณภาพชีวิตของคนในสังคมให้เท่าเทียมกันมากขึ้น เป็นต้น
+              </p>
+            </div>
+            {/* <div className="boxes">
+              {
+                [...Array(6).keys()].map(i => 
+                  <div style={{backgroundColor: politicalColors[i]}} />
+                )
+              }
+            </div> */}
+            <Chart
+              type="bar"
+              ref={el => charts.current['extremity'] = el}
+              data={{
+                labels: ["1", "2", "3", "4", "5", "6"],
+                datasets: [
+                  {
+                    data: [Array(6).fill(100), [545, 511, 370, 301, 184, 105]][curFragment],
+                    backgroundColor: politicalColors,
+                  }
+                ]
+              }}
+              options={{
+                aspectRatio: 1.5,
+                scales: {
+                  y: {
+                    max: 600,
+                  },
+                },
+                plugins: {
+                  title: {
+                    display: true,
+                    text: "xxx",
+                  },
+                  legend: {
+                    display: false,
+                  }
+                }
+              }}
+            />
+            <div className={`def def-yellow`}>
+              <div className="top">
+                ประเพณีนิยม<br />
+                ศีลธรรมอันดีงาม<br />
+                ความเป็นอันหนึ่งอันเดียวกัน<br />
+                ความมั่นคงในชีวิต<br />
+                การเคารพผู้อาวุโส
+              </div>
+              <p>
+                ให้ความสำคัญกับความเป็นอันหนึ่งอันเดียวกันในสังคม ความมั่นคงในชีวิต และประเพณีนิยม เช่น ศีลธรรมอันดีงาม การสืบทอดจารีตประเพณี การเคารพผู้อาวุโส
+              </p>
+            </div>
+          </div>
+          <div className="fragment" />
 
         </section>
 
@@ -648,6 +1007,62 @@ function App() {
         </section>
         
 
+        <section>
+          <SocialOutline n={4} />
+        </section>
+
+        <section>
+          <h2><orange>#1</orange> ความสุดขั้ว</h2>
+        </section>
+
+        <section>
+          <h2><orange>#2</orange> ความต่างวัย</h2>
+        </section>
+
+        <section>
+          <h2><orange>#3</orange> ความมั่นคงในชีวิต</h2>
+        </section>
+
+        <section>
+          <h2><orange>#4</orange> การพูดคุยแลกเปลี่ยนความคิดเห็น</h2>
+        </section>
+
+        <section>
+          <h2><orange>#5</orange> การบริโภคสื่อ</h2>
+        </section>
+
+        <section>
+          <div className="vertical-center">
+            <div>
+              <h2>ผลการศึกษาที่สำคัญ</h2>
+              <ol>
+                <li className="fragment fade-in-then-semi-out">ความสมานฉันท์ของสังคมไทยเป็นมิติที่เปราะบางที่สุดเทียบกับคุณภาพสังคมในมิติอื่น ๆ และเทียบกับกลุ่มประเทศรายได้ปานกลาง</li>
+                <li className="fragment fade-in-then-semi-out">ทุกกลุ่มในสังคมไทยมีความคิดต่าง โดยเฉพาะในกลุ่มอายุน้อยที่มีความคิดสุดขั้วมากกว่ากลุ่มอื่น ๆ</li>
+                <li className="fragment fade-in-then-semi-out">ความคิดต่าง โดยเฉพาะแบบสุดขั้ว อาจนำไปสู่ความแตกแยก</li>
+                <li className="fragment">
+                  ความต่างวัย และความไม่มั่นคงทางเศรษฐกิจ อาจนำไปสู่ความแตกแยกเพิ่มขึ้น<br />
+                  การพูดคุยแลกเปลี่ยนความคิดเห็น การบริโภคสื่อที่หลากหลาย ช่วยลดความแตกแยก
+                </li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>คน "คิดต่าง" อาจไม่ได้ต่างอย่างที่คิด</h2>
+        </section>
+
+        <section>
+          <div className="vertical-center">
+            <h1>แล้วเราจะทำอย่างไรต่อไป?</h1>
+          </div>
+        </section>
+
+        <section>
+          <h2><orange>ข้อเสนอ</orange>ในการแก้ไขปัญหาความแตกแยกในสังคม</h2>
+          <h2>PIER</h2>
+        </section>
+        
       </div>
   );
 }
