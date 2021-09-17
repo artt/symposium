@@ -14,6 +14,10 @@ import picInternet from './images/world.png'
 import picThailand from './images/thailand.png'
 import picFamily from './images/people.png'
 import picTrend from './images/trend.png'
+import picSocialQuality from './images/social-quality.png'
+import picDemographics from './images/demographics.png'
+import picSocialMedia from './images/social-media.png'
+
 
 import styles from './css/theme/source/_variables.module.scss'
 import "../node_modules/reveal.js/dist/reveal.css"
@@ -121,7 +125,7 @@ function App() {
   return (
       <div className="slides">
 
-        {// Cover
+        {/* {// Cover
         }
         <section>
           <div className="vertical-center">
@@ -290,9 +294,8 @@ function App() {
 
 
 
-        {/*
-          Social Divide
-        */}
+        {// Social Divide
+        }
 
 
         <section>
@@ -374,7 +377,7 @@ function App() {
               labels: ["2007", "2013", "2018"],
               datasets: [
                 {
-                  data: [41, 32, 29],
+                  data: [41.26466751, 32.16666794, 29.79999924],
                   backgroundColor: styles.secondaryColor,
                 }
               ]
@@ -408,12 +411,12 @@ function App() {
               labels: [...Array(10).keys()],
               datasets: [
                 {
-                  data: [0.02, 0.02, 0.015, 0.04, 0.25, 0.2, 0.24, 0.16, 0.03, 0.03],
+                  data: [0.023483366, 0.021526419, 0.014350946, 0.041748206, 0.259621657, 0.200260926, 0.240704501, 0.127853881, 0.033920417, 0.03652968],
                   label: "2008",
                   tension: 0.4,
                 },
                 {
-                  data: [[0.02, 0.02, 0.015, 0.04, 0.25, 0.2, 0.24, 0.16, 0.03, 0.03], [0.02, 0.018, 0.021, 0.06, 0.36, 0.2, 0.115, 0.11, 0.03, 0.05]][curFragment],
+                  data: [[0.023483366, 0.021526419, 0.014350946, 0.041748206, 0.259621657, 0.200260926, 0.240704501, 0.127853881, 0.033920417, 0.03652968], [0.019212296, 0.014409222, 0.030739673, 0.055715658, 0.361191162, 0.194044188, 0.11431316, 0.106628242, 0.037463977, 0.066282421]][curFragment],
                   label: "2018",
                   tension: 0.4,
                   borderColor: styles.textColor,
@@ -442,6 +445,40 @@ function App() {
             }}
           />
           <div class="fragment" />
+        </section> */}
+
+        <section>
+          <h2>
+            แบบสำรวจ <orange>"คิดต่าง อย่างมีภูมิ"</orange>
+          </h2>
+          <div>
+            <h3>คำถามวิจัย</h3>
+            <ul>
+              <li>ภาพความสมานฉันท์ในสังคมไทย</li>
+              <li>ภาพความ "คิดต่าง" ในสังคมไทย</li>
+              <li>ความคิดต่าง นำไปสู่ความแตกแยกหรือไม่ อย่างไร</li>
+              <li>ปัจจัยที่ส่งผลต่อความแตกแยก</li>
+            </ul>
+          </div>
+          <div className="spacer" />
+          <div className="fragment">
+            <h3>แบบสอบถามออนไลน์</h3>
+            <p>สิงหาคม–กันยายน 2564 หลากหลายกลุ่มเศรษฐกิจและสังคม</p>
+            <div className="flex center" style={{height: '5em', width: '50%'}}>
+              <div className="fragment">
+                <img src={picSocialQuality} className="center" style={{display: 'block'}} />
+                <div className="small">Social Quality</div>
+              </div>
+              <div className="fragment">
+                <img src={picDemographics} className="center" style={{display: 'block'}} />
+                <div className="small">Demographics</div>
+              </div>
+              <div className="fragment">
+                <img src={picSocialMedia} className="center" style={{display: 'block'}} />
+                <div className="small">Media & Exchange</div>
+              </div>
+            </div>
+          </div>
         </section>
 
       </div>

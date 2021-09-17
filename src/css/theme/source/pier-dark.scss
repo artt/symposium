@@ -81,15 +81,9 @@ $heading4Size: 1.2em;
   > section > section:not([data-transition]) {
     &.past {
       transform: translate(0, -var(--slide-height));
-      .note {
-        transform: translate(0, var(--slide-height));
-      }
     }
     &.future {
       transform: translate(0, var(--slide-height));
-      .note {
-        transform: translate(0, -var(--slide-height));
-      }
     }
   }
 
@@ -111,16 +105,14 @@ $heading4Size: 1.2em;
     @extend .center;
     font-size: 0.5em;
     // color: scale-color($text-color, $alpha: -50%);
-    background-color: rgba(black, 0.3);
+    // background-color: rgba(black, 0.3);
     position: fixed;
     bottom: 0;
-    padding: 0.4em 1em;
-    border-radius: 0.5em 0.5em 0 0;
-    opacity: 0;
+    padding-bottom: 0.4em;
+    // padding: 0.4em 1em;
+    // border-radius: 0.5em 0.5em 0 0;
+    // opacity: 0;
     // transition-delay: 2s;
-  }
-  section.present > .note {
-    opacity: 1;
   }
 
   h2 {
@@ -142,6 +134,19 @@ $heading4Size: 1.2em;
   .center {
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .spacer {
+    height: 1em;
+  }
+
+  .flex {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .small {
+    font-size: 0.6em;
   }
   
 }
