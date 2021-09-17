@@ -499,6 +499,34 @@ function App() {
             <div>
               มูลค่าเพิ่มที่ไทยสร้างได้ ยังอยู่ในระดับกลาง ๆ เมื่อเทียบกับประเทศเพื่อนบ้าน
             </div>
+            <div>
+              <Chart
+                type="line"
+                height={110}
+                ref={el => charts.current['value-added-computers'] = el}
+                data={{
+                  labels: ["2011", "2016"],
+                  datasets: [
+                    {
+                      data: [43.5, 54.3],
+                    }
+                  ]
+                }}
+                options={{
+                  scales: {
+                  },
+                  plugins: {
+                    title: {
+                      display: true,
+                      text: "ช่องทางออนไลน์ที่คนไทยซื้อสินค้าและบริการ",
+                    },
+                    legend: {
+                      display: false,
+                    }
+                  }
+                }}
+              />
+            </div>
 
           </section>
 
