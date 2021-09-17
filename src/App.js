@@ -572,12 +572,13 @@ function App() {
           <section>
             <Chart
               type="bar"
-              height={110}
+              // height={180}
               ref={el => charts.current['social-divide-1'] = el}
               data={{
                 labels: ["ความเห็นอกเห็นใจ (ช่วยว่าความให้หากเป็นทนาย)", "ความชอบ/ไม่ชอบ", "ยอมแลกเปลี่ยนความคิดเห็น", "ความไว้วางใจ", "ความเห็นอกเห็นใจ (ช่วยเหลือหากประสบอุบัติเหตุ)"],
                 datasets: [
                   {
+                    label: "ค่าเฉลี่ยของกลุ่มตัวอย่าง",
                     data: [36.6, 57.2, 61.6, 65.2, 86.1],
                     backgroundColor: styles.fourthColor,
                   }
@@ -585,15 +586,15 @@ function App() {
               }}
               options={{
                 indexAxis: 'y',
-                plugins: {
-                  title: {
-                    // display: true,
-                    // text: "ช่องทางออนไลน์ที่คนไทยซื้อสินค้าและบริการ",
+                scales: {
+                  x: {
+                    max: 100,
+                    title: {
+                      display: true,
+                      text: "← ความรู้สึกไม่ดีสูง"
+                    }
                   },
-                  legend: {
-                    display: false,
-                  }
-                }
+                },
               }}
             />
           </section>
@@ -601,7 +602,7 @@ function App() {
           <section>
             <Chart
               type="bar"
-              height={110}
+              // height={180}
               ref={el => charts.current['social-divide-2'] = el}
               data={{
                 labels: ["ความเห็นอกเห็นใจ (ช่วยว่าความให้หากเป็นทนาย)", "ความชอบ/ไม่ชอบ", "ยอมแลกเปลี่ยนความคิดเห็น", "ความไว้วางใจ", "ความเห็นอกเห็นใจ (ช่วยเหลือหากประสบอุบัติเหตุ)"],
@@ -623,21 +624,27 @@ function App() {
                 scales: {
                   x: {
                     max: 100,
+                    title: {
+                      display: true,
+                      text: "← ความรู้สึกไม่ดีสูง"
+                    }
                   },
                 },
-                plugins: {
-                  title: {
-                    // display: true,
-                    // text: "ช่องทางออนไลน์ที่คนไทยซื้อสินค้าและบริการ",
-                  },
-                  legend: {
-                    // display: false,
-                  }
-                }
               }}
             />
           </section>
 
+        </section>
+
+
+        <section>
+          <h2>
+            ความคิดต่าง ทำให้ยิ่งมองความต่างมากเกินจริง
+          </h2>
+          <ul>
+            <li>การศึกษาที่มีมา (เช่น Westfall <em>et al.</em>, 2015 ในสหรัฐฯ) แสดงให้เห็นว่าคนคิดว่าสองฝั่งมีความแตกต่างกันมากกว่าความเป็นจริง</li>
+            <li>ตัวอย่าง: คำถามว่า <strong>"คุณให้ความสำคัญกับการเชื่อฟังผู้อาวุโส หรือผู้มีตำแหน่งสูงกว่า มากน้อยแค่ไหน"</strong></li>
+          </ul>
         </section>
         
 
