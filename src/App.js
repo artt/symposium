@@ -241,115 +241,109 @@ function App() {
           <div className="spacer" />
 
           <section>
-            <split>
-              <div>
-                <div>
-                  การส่งออกไทยไปจีนและสหรัฐฯ<br />
-                  มีมูลค่ารวมเกือบ 1 ใน 3 ของการส่งออก
-                </div>
-                <Chart
-                  type="line"
-                  width="100%"
-                  height={210}
-                  ref={el => charts.current['exports'] = el}
-                  data={{
-                    labels: [...Array(26).keys()].map(x => x + 1995),
-                    datasets: [
-                      {
-                        data: [2.907573869, 3.352511432, 3.043451846, 3.242065949, 3.18176053, 4.065222301, 4.408128539, 5.216009315, 7.107585237, 7.371223277, 8.263696605, 9.040960912, 9.649204673, 9.107349445, 10.57521761, 11.10886366, 11.79390837, 11.72921265, 11.91811991, 11.02768863, 11.07391933, 11.04966889, 12.46901342, 11.98499444, 11.84456171, 12.87073393],
-                        label: "จีน",
-                        tension: 0.4,
-                        backgroundColor: chroma(styles.cnColor).alpha(areaAlpha).hex(),
-                        borderColor: styles.cnColor,
-                        fill: true,
-                      },
-                      {
-                        data: [17.82828826, 17.97175979, 19.44514375, 22.330245, 21.63543144, 21.31141409, 20.25002984, 19.82118459, 16.98672979, 16.06464302, 15.32089143, 14.99345676, 12.61859067, 11.40470261, 10.93070977, 10.45045008, 9.786964663, 9.946514876, 10.04517578, 10.50323177, 11.22485985, 11.37467376, 11.22845138, 11.08528019, 12.72935508, 14.84290893],
-                        label: "สหรัฐฯ",
-                        tension: 0.4,
-                        backgroundColor: chroma(styles.usColor).alpha(areaAlpha).hex(),
-                        borderColor: styles.usColor,
-                        fill: true,
-                      },
-                    ]
-                  }}
-                  options={{
-                    layout: {
-                      padding: 0,
-                    },
-                    radius: 0,
-                    scales: {
-                      y: {
-                        stacked: true,
-                        title: {
-                          display: true,
-                          text: "สัดส่วนมูลค่าการส่งออก (%)"
-                        }
-                      }
-                    },
-                    plugins: {
-                      // title: {
-                      //   display: true,
-                      //   text: "สัดส่วนการส่งออกของไทยไปจีนและสหรัฐฯ",
-                      // },
+            <div>
+              การส่งออกไทยไปจีนและสหรัฐฯ<br />
+              มีมูลค่ารวมเกือบ 1 ใน 3 ของการส่งออก
+            </div>
+            <Chart
+              type="line"
+              height={120}
+              ref={el => charts.current['exports'] = el}
+              data={{
+                labels: [...Array(26).keys()].map(x => x + 1995),
+                datasets: [
+                  {
+                    data: [2.907573869, 3.352511432, 3.043451846, 3.242065949, 3.18176053, 4.065222301, 4.408128539, 5.216009315, 7.107585237, 7.371223277, 8.263696605, 9.040960912, 9.649204673, 9.107349445, 10.57521761, 11.10886366, 11.79390837, 11.72921265, 11.91811991, 11.02768863, 11.07391933, 11.04966889, 12.46901342, 11.98499444, 11.84456171, 12.87073393],
+                    label: "จีน",
+                    tension: 0.4,
+                    backgroundColor: chroma(styles.cnColor).alpha(areaAlpha).hex(),
+                    borderColor: styles.cnColor,
+                    fill: true,
+                  },
+                  {
+                    data: [17.82828826, 17.97175979, 19.44514375, 22.330245, 21.63543144, 21.31141409, 20.25002984, 19.82118459, 16.98672979, 16.06464302, 15.32089143, 14.99345676, 12.61859067, 11.40470261, 10.93070977, 10.45045008, 9.786964663, 9.946514876, 10.04517578, 10.50323177, 11.22485985, 11.37467376, 11.22845138, 11.08528019, 12.72935508, 14.84290893],
+                    label: "สหรัฐฯ",
+                    tension: 0.4,
+                    backgroundColor: chroma(styles.usColor).alpha(areaAlpha).hex(),
+                    borderColor: styles.usColor,
+                    fill: true,
+                  },
+                ]
+              }}
+              options={{
+                layout: {
+                  padding: 0,
+                },
+                radius: 0,
+                scales: {
+                  y: {
+                    stacked: true,
+                    title: {
+                      display: true,
+                      text: "สัดส่วนมูลค่าการส่งออก (%)"
                     }
-                  }}
-                />
-              </div>
-              <div>
-                <div>
-                  จีน: สินค้าเกษตรและผลิตภัณฑ์พลาสติก<br />
-                  สหรัฐฯ: สินค้าอิเล็กทรอนิกส์และเครื่องจักร
-                </div>
-                <Chart
-                  type="bar"
-                  width="100%"
-                  height={210}
-                  ref={el => charts.current['exports-products'] = el}
-                  data={{
-                    // labels: ["Machinery", "Electrical machinery and equipment", "Vehicles", "Pearls, stones, precious metals", "Rubber products", "Plastics products", "Preparations of meat, fish etc.", "Mineral fuels", "Optical products", "Edible fruit and nuts; peel of citrus fruit or melons"],
-                    // labels: ["Machinery", "Electrical machinery", "Vehicles", "Pearls, stones, precious metals", "Rubber products", "Plastics products", "Preparations of meat, fish etc.", "Mineral fuels", "Optical products", "Edible fruit and nuts; peel of citrus fruit or melons"],
-                    labels: ["Rubber products", "Machinery", "Plastics", "Electrical machinery", "Edible fruits and nuts"],
-                    datasets: [
-                      {
-                        // data: [9.186, 9.109, 7.265, 0.781, 26.258, 27.144, 0.878, 10.032, 24.105, 69.528],
-                        data: [26.258, 9.186, 27.144, 9.109, 69.528], // new
-                        label: "จีน",
-                        backgroundColor: chroma(styles.cnColor).alpha(areaAlpha).hex(),
-                        borderColor: styles.cnColor,
-                      },
-                      {
-                        // data: [22.286, 21.944, 9.632, 5.663, 26.865, 6.684, 17.254, 0.054, 15.372, 2.393],
-                        data: [26.865, 22.286, 6.684, 21.944, 2.393],
-                        label: "สหรัฐฯ",
-                        backgroundColor: chroma(styles.usColor).alpha(areaAlpha).hex(),
-                        borderColor: styles.usColor,
-                      },
-                    ]
-                  }}
-                  options={{
-                    layout: {
-                      padding: 0,
-                    },
-                    radius: 0,
-                    scales: {
-                      y: {
-                        title: {
-                          display: true,
-                          text: "สัดส่วนมูลค่าการส่งออก (%)"
-                        }
-                      }
-                    },
-                    plugins: {
-                      // title: {
-                      //   display: true,
-                      //   text: "สัดส่วนการส่งออกของไทยไปจีนและสหรัฐฯ",
-                      // },
+                  }
+                },
+                plugins: {
+                  // title: {
+                  //   display: true,
+                  //   text: "สัดส่วนการส่งออกของไทยไปจีนและสหรัฐฯ",
+                  // },
+                }
+              }}
+            />
+          </section>
+          <section>
+            <div>
+              จีน: สินค้าเกษตรและผลิตภัณฑ์พลาสติก<br />
+              สหรัฐฯ: สินค้าอิเล็กทรอนิกส์และเครื่องจักร
+            </div>
+            <Chart
+              type="bar"
+              height={120}
+              ref={el => charts.current['exports-products'] = el}
+              data={{
+                // labels: ["Machinery", "Electrical machinery and equipment", "Vehicles", "Pearls, stones, precious metals", "Rubber products", "Plastics products", "Preparations of meat, fish etc.", "Mineral fuels", "Optical products", "Edible fruit and nuts; peel of citrus fruit or melons"],
+                // labels: ["Machinery", "Electrical machinery", "Vehicles", "Pearls, stones, precious metals", "Rubber products", "Plastics products", "Preparations of meat, fish etc.", "Mineral fuels", "Optical products", "Edible fruit and nuts; peel of citrus fruit or melons"],
+                labels: ["Rubber products", "Machinery", "Plastics", "Electrical machinery", "Edible fruits and nuts"],
+                datasets: [
+                  {
+                    // data: [9.186, 9.109, 7.265, 0.781, 26.258, 27.144, 0.878, 10.032, 24.105, 69.528],
+                    data: [26.258, 9.186, 27.144, 9.109, 69.528], // new
+                    label: "จีน",
+                    backgroundColor: chroma(styles.cnColor).alpha(areaAlpha).hex(),
+                    borderColor: styles.cnColor,
+                  },
+                  {
+                    // data: [22.286, 21.944, 9.632, 5.663, 26.865, 6.684, 17.254, 0.054, 15.372, 2.393],
+                    data: [26.865, 22.286, 6.684, 21.944, 2.393],
+                    label: "สหรัฐฯ",
+                    backgroundColor: chroma(styles.usColor).alpha(areaAlpha).hex(),
+                    borderColor: styles.usColor,
+                  },
+                ]
+              }}
+              options={{
+                layout: {
+                  padding: 0,
+                },
+                radius: 0,
+                scales: {
+                  y: {
+                    title: {
+                      display: true,
+                      text: "สัดส่วนมูลค่าการส่งออก (%)"
                     }
-                  }}
-                />
-              </div>
-            </split>
+                  }
+                },
+                plugins: {
+                  // title: {
+                  //   display: true,
+                  //   text: "สัดส่วนการส่งออกของไทยไปจีนและสหรัฐฯ",
+                  // },
+                }
+              }}
+            />
             <div className="note"><strong>ที่มา</strong>: ธนาคารแห่งประเทศไทย ITC Trademap คำนวณโดยคณะผู้วิจัย</div>
           </section>
 
