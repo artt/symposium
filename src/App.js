@@ -9,6 +9,7 @@ import Chart from './components/Chart'
 import Pop from './components/Pop'
 import ComparePop from './components/ComparePop'
 import Perception from './components/Perception'
+import Coefficients from './components/Coefficients'
 import SocialOutline from './components/SocialOutline'
 import ValueAdded from './components/ValueAdded'
 import { defaults } from 'test-react-chartjs-2'
@@ -303,20 +304,20 @@ function App() {
               height={120}
               ref={el => charts.current['exports-products'] = el}
               data={{
-                // labels: ["Machinery", "Electrical machinery and equipment", "Vehicles", "Pearls, stones, precious metals", "Rubber products", "Plastics products", "Preparations of meat, fish etc.", "Mineral fuels", "Optical products", "Edible fruit and nuts; peel of citrus fruit or melons"],
+                labels: ["Machinery", "Electrical machinery and equipment", "Vehicles", "Pearls, stones, precious metals", "Rubber products", "Plastics products", "Preparations of meat, fish etc.", "Mineral fuels", "Optical products", "Edible fruit and nuts; peel of citrus fruit or melons"],
                 // labels: ["Machinery", "Electrical machinery", "Vehicles", "Pearls, stones, precious metals", "Rubber products", "Plastics products", "Preparations of meat, fish etc.", "Mineral fuels", "Optical products", "Edible fruit and nuts; peel of citrus fruit or melons"],
-                labels: ["Rubber products", "Machinery", "Plastics", "Electrical machinery", "Edible fruits and nuts"],
+                // labels: ["Rubber products", "Machinery", "Plastics", "Electrical machinery", "Edible fruits and nuts"],
                 datasets: [
                   {
-                    // data: [9.186, 9.109, 7.265, 0.781, 26.258, 27.144, 0.878, 10.032, 24.105, 69.528],
-                    data: [26.258, 9.186, 27.144, 9.109, 69.528], // new
+                    data: [9.186, 9.109, 7.265, 0.781, 26.258, 27.144, 0.878, 10.032, 24.105, 69.528],
+                    // data: [26.258, 9.186, 27.144, 9.109, 69.528], // new
                     label: "จีน",
                     backgroundColor: chroma(styles.cnColor).alpha(areaAlpha).hex(),
                     borderColor: styles.cnColor,
                   },
                   {
-                    // data: [22.286, 21.944, 9.632, 5.663, 26.865, 6.684, 17.254, 0.054, 15.372, 2.393],
-                    data: [26.865, 22.286, 6.684, 21.944, 2.393],
+                    data: [22.286, 21.944, 9.632, 5.663, 26.865, 6.684, 17.254, 0.054, 15.372, 2.393],
+                    // data: [26.865, 22.286, 6.684, 21.944, 2.393],
                     label: "สหรัฐฯ",
                     backgroundColor: chroma(styles.usColor).alpha(areaAlpha).hex(),
                     borderColor: styles.usColor,
@@ -631,7 +632,7 @@ function App() {
 
         <section>
           <h2>
-            <orange>#4</orange> สังคมสูงอายุส่งผลหลายด้าน<br />
+            <orange>#4</orange> สังคมสูงอายุส่งผลต่อโครงสร้างเศรษฐกิจไทยหลายด้าน<br />
           </h2>
           <div className="orange">
             ตัวอย่างความเปราะบางของโครงสร้างแรงงานไทย
@@ -640,7 +641,7 @@ function App() {
           <div>
             สัดส่วนแรงงานสูงวัย (มากกว่า 50 ปี) <orange>เพิ่มขึ้นเกือบ 3 เท่า</orange>ในช่วงไม่ถึง 20 ปีที่ผ่านมา
           </div>
-          <div id="pop">
+          <div id="pop" className="grid-3">
             <Pop
               ref={el => charts.current['pop-2002'] = el}
               title="2002 (3.42%)"
@@ -1297,6 +1298,17 @@ function App() {
 
         <section>
           <h2><orange>#2</orange> ความต่างวัย</h2>
+          <div className="grid-3">
+            <Coefficients
+              ref={el => charts.current['coef-age-ext'] = el}
+            />
+            <Coefficients
+              ref={el => charts.current['coef-age-affection'] = el}
+            />
+            <Coefficients
+              ref={el => charts.current['coef-age-perception'] = el}
+            />
+          </div>
         </section>
 
         <section>
