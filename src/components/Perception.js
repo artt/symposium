@@ -6,7 +6,7 @@ import styles from '../css/theme/source/_variables.module.scss'
 
 const areaAlpha = 0.75
 
-const Perception = React.forwardRef(({highlightArray=[], ...rest }, ref) => {
+const Perception = React.forwardRef(({ highlightArray=[], ...rest }, ref) => {
 
   function alpharize(color) {
     return Array(9).fill(chroma(color).alpha(0.3).hex()).map((x, i) => highlightArray.includes(i) ? color : x)

@@ -6,14 +6,15 @@ import styles from '../css/theme/source/_variables.module.scss'
 
 const areaAlpha = 0.75
 
-const Coefficients = React.forwardRef(({...rest }, ref) => {
+const Coefficients = React.forwardRef(({ highlightArray=[], title, input, ...rest }, ref) => {
 
-  // function alpharize(color, alpha=areaAlpha) {
-  //   return [
-  //     ...Array(6).fill(chroma(color).alpha(0.3*alpha).hex()),
-  //     ...Array(3).fill(chroma(color).alpha(alpha).hex()),
-  //   ]
-  // }
+  function alpharize(color) {
+    return Array(10).fill(chroma(color).alpha(0.3).hex()).map((x, i) => highlightArray.includes(i) ? color : x)
+  }
+
+  const barColors = input
+    .map(x => x > 0 ? 'green' : 'firebrick')
+    .map((x, i) => chroma(x).brighten(1).alpha(areaAlpha * (highlightArray.includes(i) ? 1 : 0.3)).hex())
 
   return(
     <Chart
@@ -22,11 +23,11 @@ const Coefficients = React.forwardRef(({...rest }, ref) => {
       height={400}
       ref={ref}
       data={{
-        labels: ["Ext 1", "Ext 2", "30–39", "40–59", "≥ 60", "Security Index", "Media entropy", "Media echo", "Openness family", "Openness Friends"],
+        labels: ["Ext 1", "Ext 2", "30–39", "40–59", "≥ 60", "Security Index", "Openness family", "Openness Friends", "Media entropy", "Media echo"],
         datasets: [
           {
-            data: [-3.168377, -6.185956, -4.332496, -5.34668, -7.804648, 9.998635, 4.615053, -12.45545, 5.958668, 3.164143],
-            backgroundColor: styles.secondaryColor, //alpharize(styles.cnColor),
+            data: input,
+            backgroundColor: barColors,
           },
         ]
       }}
@@ -39,11 +40,10 @@ const Coefficients = React.forwardRef(({...rest }, ref) => {
           y: {
             // stacked: true,
             ticks: {
-              // color: alpharize(styles.textColor, 1),
+              color: alpharize(styles.textColor, 1),
             }
           },
           x: {
-            reverse: true,
             // ticks: {
             //   callback: (value, index) => {
             //     if (value % 5e5 === 0)
@@ -56,13 +56,14 @@ const Coefficients = React.forwardRef(({...rest }, ref) => {
         plugins: {
           title: {
             display: true,
-            text: "abc",
+            text: title,
           },
           legend: {
             display: false,
           }
         }
       }}
+      {...rest}
     />
   )
 })

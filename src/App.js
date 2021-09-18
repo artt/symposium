@@ -38,6 +38,21 @@ const baseSize = parseInt(styles.baseSize.replace("px", ""))
 const areaAlpha = 0.75
 const politicalColors = chroma.scale(['orange', 'white', 'yellow']).colors(6)
 
+const coefData = [
+  {
+    title: "ความสุดขั้ว", 
+    data: [0, 0, -0.2205991, -0.6915629, -0.4377571, -1.58721, -0.4587052, 0.0399224, -0.0624773, 2.305114]
+  },
+  {
+    title: "ความรู้สึกไม่ดีต่อฝั่งตรงข้าม",
+    data: [-3.168377, -6.185956, -4.332496, -5.34668, -7.804648, 9.998635, 5.958668, 3.164143, 4.615053, -12.45545]
+  },
+  {
+    title: "ความคิดว่าต่างมากเกินจริง",
+    data: [0.3459591, 0.5754136, -0.1405119, -0.3061428, -0.1909025, -0.4560134, 0.0107633, -0.2896076, 0.3828785, 1.081103]
+  },
+]
+
 merge(defaults, {
   color: styles.textColor,
   backgroundColor: styles.secondaryColor,
@@ -1294,33 +1309,82 @@ function App() {
 
         <section>
           <h2><orange>#1</orange> ความสุดขั้ว</h2>
+          <div className="grid-3">
+            {
+              [...Array(3).keys()].map(i =>
+                <Coefficients
+                  ref={el => charts.current[`coef-ext-${i}`] = el}
+                  title={coefData[i].title}
+                  input={coefData[i].data}
+                  highlightArray={[0, 1]}
+                />
+              )
+            }
+          </div>
         </section>
 
         <section>
           <h2><orange>#2</orange> ความต่างวัย</h2>
           <div className="grid-3">
-            <Coefficients
-              ref={el => charts.current['coef-age-ext'] = el}
-            />
-            <Coefficients
-              ref={el => charts.current['coef-age-affection'] = el}
-            />
-            <Coefficients
-              ref={el => charts.current['coef-age-perception'] = el}
-            />
+            {
+              [...Array(3).keys()].map(i =>
+                <Coefficients
+                  ref={el => charts.current[`coef-age-${i}`] = el}
+                  title={coefData[i].title}
+                  input={coefData[i].data}
+                  highlightArray={[2, 3, 4]}
+                />
+              )
+            }
           </div>
         </section>
 
         <section>
           <h2><orange>#3</orange> ความมั่นคงในชีวิต</h2>
+          <div className="grid-3">
+            {
+              [...Array(3).keys()].map(i =>
+                <Coefficients
+                  ref={el => charts.current[`coef-security-${i}`] = el}
+                  title={coefData[i].title}
+                  input={coefData[i].data}
+                  highlightArray={[5]}
+                />
+              )
+            }
+          </div>
         </section>
 
         <section>
           <h2><orange>#4</orange> การพูดคุยแลกเปลี่ยนความคิดเห็น</h2>
+          <div className="grid-3">
+            {
+              [...Array(3).keys()].map(i =>
+                <Coefficients
+                  ref={el => charts.current[`coef-open-${i}`] = el}
+                  title={coefData[i].title}
+                  input={coefData[i].data}
+                  highlightArray={[6, 7]}
+                />
+              )
+            }
+          </div>
         </section>
 
         <section>
           <h2><orange>#5</orange> การบริโภคสื่อ</h2>
+          <div className="grid-3">
+            {
+              [...Array(3).keys()].map(i =>
+                <Coefficients
+                  ref={el => charts.current[`coef-media-${i}`] = el}
+                  title={coefData[i].title}
+                  input={coefData[i].data}
+                  highlightArray={[8, 9]}
+                />
+              )
+            }
+          </div>
         </section>
 
         <section>

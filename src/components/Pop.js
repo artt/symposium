@@ -86,6 +86,7 @@ const ComparePop = React.forwardRef(({title, data, ...rest }, ref) => {
           }
         }
       }}
+      {...rest}
     />
   )
 })
