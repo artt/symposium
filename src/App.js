@@ -88,6 +88,7 @@ function App() {
   const charts = React.useRef({})
 
   const [curFragment, setCurFragment] = React.useState(0)
+  const [curV, setCurV] = React.useState(0)
 
   function updateFragment() {
     if (!deck.current.getCurrentSlide().getAttribute('data-fragment')) {
@@ -106,11 +107,12 @@ function App() {
     return 0
   }
 
-  function animateCurrentChart() {
+  function handleSlideChanged(event) {
+    setCurV(event.indexv)
+    // animate slide
+    // TODO: use event.currentSlide to go through all the slides instead?
     setTimeout(() => {
       updateFragment()
-      // if (charts.current['foreign-platforms'].canvas.closest('.present'))
-      //   console.log('xxxxxxx')
       Object.keys(charts.current).forEach(c => {
         const curChart = charts.current[c]
         if (curChart.canvas.closest('.present:not(.stack)')) {
@@ -142,12 +144,12 @@ function App() {
       margin: 0.2,
       disableLayout: true,
     })
-    deck.current.addEventListener('slidechanged', animateCurrentChart)
+    deck.current.addEventListener('slidechanged', handleSlideChanged)
     deck.current.addEventListener('fragmentshown', updateFragment)
     deck.current.addEventListener('fragmenthidden', updateFragment)
     window.addEventListener('resize', setScale);
     return () => {
-      deck.current.removeEventListener('slidechanged', animateCurrentChart)
+      deck.current.removeEventListener('slidechanged', handleSlideChanged)
       deck.current.removeEventListener('fragmentshown', updateFragment)
       deck.current.removeEventListener('fragmenthidden', updateFragment)
       window.removeEventListener('resize', setScale);
@@ -157,6 +159,11 @@ function App() {
   React.useEffect(() => {
     console.log("Current Fragment", curFragment)
   }, [curFragment])
+
+  React.useEffect(() => {
+    
+    console.log("Current V", curV)
+  }, [curV])
 
   return (
       <div className="slides">
@@ -364,144 +371,138 @@ function App() {
           </section>
 
           <section>
-            <split>
-              <div>
-                <div>
-                  ไทยพึ่งพานักท่องเที่ยวจีนถึง 28%<br />
-                  ของนักท่องเที่ยวทั้งหมด
-                </div>
-                <Chart
-                  type="line"
-                  width="100%"
-                  height={210}
-                  ref={el => charts.current['tourists'] = el}
-                  data={{
-                    labels: ["Jan-15", "Feb-15", "Mar-15", "Apr-15", "May-15", "Jun-15", "Jul-15", "Aug-15", "Sep-15", "Oct-15", "Nov-15", "Dec-15", "Jan-16", "Feb-16", "Mar-16", "Apr-16", "May-16", "Jun-16", "Jul-16", "Aug-16", "Sep-16", "Oct-16", "Nov-16", "Dec-16", "Jan-17", "Feb-17", "Mar-17", "Apr-17", "May-17", "Jun-17", "Jul-17", "Aug-17", "Sep-17", "Oct-17", "Nov-17", "Dec-17", "Jan-18", "Feb-18", "Mar-18", "Apr-18", "May-18", "Jun-18", "Jul-18", "Aug-18", "Sep-18", "Oct-18", "Nov-18", "Dec-18", "Jan-19", "Feb-19", "Mar-19", "Apr-19", "May-19", "Jun-19", "Jul-19", "Aug-19", "Sep-19", "Oct-19", "Nov-19", "Dec-19", "Jan-20", "Feb-20", "Mar-20"],
-                    datasets: [
-                      {
-                        data: [3.108, 2.700, 2.922, 2.802, 2.776, 2.991, 2.643, 2.145, 2.607, 3.178, 3.471, 3.408, 3.109, 2.675, 2.978, 2.845, 2.930, 3.224, 2.747, 2.124, 2.439, 3.274, 3.997, 3.757, 3.184, 2.956, 3.106, 3.054, 2.942, 3.181, 2.787, 2.132, 2.422, 2.856, 3.462, 3.423, 3.103, 2.545, 3.049, 2.865, 2.964, 3.002, 2.781, 2.204, 2.466, 3.069, 3.725, 3.379, 3.038, 2.568, 3.048, 2.889, 2.999, 3.097, 2.643, 2.028, 2.208, 2.757, 3.498, 3.279, 2.988, 3.515, 2.947],
-                        label: "สหรัฐฯ",
-                        tension: 0.4,
-                        backgroundColor: chroma(styles.usColor).alpha(areaAlpha).hex(),
-                        borderColor: styles.usColor,
-                        fill: true,
-                      },
-                      {
-                        data: [21.469, 29.302, 25.968, 29.125, 29.026, 27.886, 29.189, 30.621, 26.174, 25.397, 24.130, 21.352, 27.189, 31.105, 29.266, 31.054, 30.036, 29.526, 29.343, 30.912, 27.263, 21.057, 17.634, 17.498, 26.888, 26.632, 26.153, 26.220, 29.308, 27.919, 30.263, 30.841, 29.266, 29.554, 26.018, 22.838, 27.467, 33.754, 28.730, 31.870, 31.748, 29.889, 29.264, 26.865, 24.569, 23.896, 21.291, 21.865, 29.000, 29.973, 28.563, 28.286, 29.396, 27.619, 30.037, 30.431, 30.044, 27.079, 23.768, 21.884, 27.037, 7.787, 6.938],
-                        label: "จีน",
-                        tension: 0.4,
-                        backgroundColor: chroma(styles.cnColor).alpha(areaAlpha).hex(),
-                        borderColor: styles.cnColor,
-                        fill: true,
-                      },
-                    ]
-                  }}
-                  options={{
-                    layout: {
-                      padding: 0,
-                    },
-                    radius: 0,
-                    scales: {
-                      y: {
-                        stacked: true,
-                        title: {
-                          display: true,
-                          text: "สัดส่วนนักท่องเที่ยว (%)"
-                        }
-                      }
-                    },
-                    plugins: {
-                      // title: {
-                      //   display: true,
-                      //   text: "สัดส่วนนักท่องเที่ยวจีนและสหรัฐฯ",
-                      // },
-                      annotation: {
-                        annotations: {
-                          bombing: {
-                            type: 'box',
-                            xMin: "Aug-15",
-                            xMax: "Dec-15",
-                            drawTime: "beforeDatasetsDraw",
-                            borderWidth: 0,
-                            backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                          },
-                          tour: {
-                            type: 'box',
-                            xMin: "Oct-16",
-                            xMax: "Dec-16",
-                            drawTime: "beforeDatasetsDraw",
-                            borderWidth: 0,
-                            backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                          },
-                          boat: {
-                            type: 'box',
-                            xMin: "Jul-18",
-                            xMax: "Nov-18",
-                            drawTime: "beforeDatasetsDraw",
-                            borderWidth: 0,
-                            backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                          }
-                        }
-                      },
+            <div>
+              ไทยพึ่งพานักท่องเที่ยวจีนถึง 28%<br />
+              ของนักท่องเที่ยวทั้งหมด
+            </div>
+            <Chart
+              type="line"
+              height={120}
+              ref={el => charts.current['tourists'] = el}
+              data={{
+                labels: ["Jan-15", "Feb-15", "Mar-15", "Apr-15", "May-15", "Jun-15", "Jul-15", "Aug-15", "Sep-15", "Oct-15", "Nov-15", "Dec-15", "Jan-16", "Feb-16", "Mar-16", "Apr-16", "May-16", "Jun-16", "Jul-16", "Aug-16", "Sep-16", "Oct-16", "Nov-16", "Dec-16", "Jan-17", "Feb-17", "Mar-17", "Apr-17", "May-17", "Jun-17", "Jul-17", "Aug-17", "Sep-17", "Oct-17", "Nov-17", "Dec-17", "Jan-18", "Feb-18", "Mar-18", "Apr-18", "May-18", "Jun-18", "Jul-18", "Aug-18", "Sep-18", "Oct-18", "Nov-18", "Dec-18", "Jan-19", "Feb-19", "Mar-19", "Apr-19", "May-19", "Jun-19", "Jul-19", "Aug-19", "Sep-19", "Oct-19", "Nov-19", "Dec-19", "Jan-20", "Feb-20", "Mar-20"],
+                datasets: [
+                  {
+                    data: [3.108, 2.700, 2.922, 2.802, 2.776, 2.991, 2.643, 2.145, 2.607, 3.178, 3.471, 3.408, 3.109, 2.675, 2.978, 2.845, 2.930, 3.224, 2.747, 2.124, 2.439, 3.274, 3.997, 3.757, 3.184, 2.956, 3.106, 3.054, 2.942, 3.181, 2.787, 2.132, 2.422, 2.856, 3.462, 3.423, 3.103, 2.545, 3.049, 2.865, 2.964, 3.002, 2.781, 2.204, 2.466, 3.069, 3.725, 3.379, 3.038, 2.568, 3.048, 2.889, 2.999, 3.097, 2.643, 2.028, 2.208, 2.757, 3.498, 3.279, 2.988, 3.515, 2.947],
+                    label: "สหรัฐฯ",
+                    tension: 0.4,
+                    backgroundColor: chroma(styles.usColor).alpha(areaAlpha).hex(),
+                    borderColor: styles.usColor,
+                    fill: true,
+                  },
+                  {
+                    data: [21.469, 29.302, 25.968, 29.125, 29.026, 27.886, 29.189, 30.621, 26.174, 25.397, 24.130, 21.352, 27.189, 31.105, 29.266, 31.054, 30.036, 29.526, 29.343, 30.912, 27.263, 21.057, 17.634, 17.498, 26.888, 26.632, 26.153, 26.220, 29.308, 27.919, 30.263, 30.841, 29.266, 29.554, 26.018, 22.838, 27.467, 33.754, 28.730, 31.870, 31.748, 29.889, 29.264, 26.865, 24.569, 23.896, 21.291, 21.865, 29.000, 29.973, 28.563, 28.286, 29.396, 27.619, 30.037, 30.431, 30.044, 27.079, 23.768, 21.884, 27.037, 7.787, 6.938],
+                    label: "จีน",
+                    tension: 0.4,
+                    backgroundColor: chroma(styles.cnColor).alpha(areaAlpha).hex(),
+                    borderColor: styles.cnColor,
+                    fill: true,
+                  },
+                ]
+              }}
+              options={{
+                layout: {
+                  padding: 0,
+                },
+                radius: 0,
+                scales: {
+                  y: {
+                    stacked: true,
+                    title: {
+                      display: true,
+                      text: "สัดส่วนนักท่องเที่ยว (%)"
                     }
-                  }}
-                />
-              </div>
-              <div>
-                <div>
-                  การลงทุนทางตรงของสหรัฐฯ ยังอยู่ในระดับสูง<br />
-                  ขณะที่ของจีนเพิ่มขึ้นต่อเนื่อง
-                </div>
-                <Chart
-                  type="line"
-                  width="100%"
-                  height={210}
-                  ref={el => charts.current['tourists'] = el}
-                  data={{
-                    labels: [...Array(15).keys()].map(x => x + 2006),
-                    datasets: [
-                      {
-                        data: [0.461193715, 0.403640965, 0.475220835, 0.50179091, 0.933997959, 1.194895908, 1.448498298, 1.853459414, 1.632765256, 1.689373072, 2.282328423, 2.027178381, 2.283657598, 2.776400004, 2.733742509],
-                        label: "จีน",
-                        tension: 0.4,
-                        backgroundColor: chroma(styles.cnColor).alpha(areaAlpha).hex(),
-                        borderColor: styles.cnColor,
-                        fill: true,
+                  }
+                },
+                plugins: {
+                  // title: {
+                  //   display: true,
+                  //   text: "สัดส่วนนักท่องเที่ยวจีนและสหรัฐฯ",
+                  // },
+                  annotation: {
+                    annotations: {
+                      bombing: {
+                        type: 'box',
+                        xMin: "Aug-15",
+                        xMax: "Dec-15",
+                        drawTime: "beforeDatasetsDraw",
+                        borderWidth: 0,
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
                       },
-                      {
-                        data: [11.37837563, 10.13135187, 9.677620293, 9.519999818, 9.225781636, 9.258475833, 9.587324964, 8.221337325, 7.907904056, 8.142316389, 7.519867543, 6.611558165, 6.772254041, 6.723215518, 6.219724666],
-                        label: "สหรัฐฯ",
-                        tension: 0.4,
-                        backgroundColor: chroma(styles.usColor).alpha(areaAlpha).hex(),
-                        borderColor: styles.usColor,
-                        fill: true,
+                      tour: {
+                        type: 'box',
+                        xMin: "Oct-16",
+                        xMax: "Dec-16",
+                        drawTime: "beforeDatasetsDraw",
+                        borderWidth: 0,
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
                       },
-                    ]
-                  }}
-                  options={{
-                    layout: {
-                      padding: 0,
-                    },
-                    radius: 0,
-                    scales: {
-                      y: {
-                        stacked: true,
-                        title: {
-                          display: true,
-                          text: "สัดส่วนของ FDI รวม (%)"
-                        }
+                      boat: {
+                        type: 'box',
+                        xMin: "Jul-18",
+                        xMax: "Nov-18",
+                        drawTime: "beforeDatasetsDraw",
+                        borderWidth: 0,
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
                       }
-                    },
-                    plugins: {
-                      // title: {
-                      //   display: true,
-                      //   text: "สัดส่วนการลงทุนทางตรงของจีนและสหรัฐฯ",
-                      // },
                     }
-                  }}
-                />
-              </div>
-            </split>
+                  },
+                }
+              }}
+            />
+          </section>
+          <section>
+            <div>
+              การลงทุนทางตรงของสหรัฐฯ ยังอยู่ในระดับสูง<br />
+              ขณะที่ของจีนเพิ่มขึ้นต่อเนื่อง
+            </div>
+            <Chart
+              type="line"
+              height={120}
+              ref={el => charts.current['tourists'] = el}
+              data={{
+                labels: [...Array(15).keys()].map(x => x + 2006),
+                datasets: [
+                  {
+                    data: [0.461193715, 0.403640965, 0.475220835, 0.50179091, 0.933997959, 1.194895908, 1.448498298, 1.853459414, 1.632765256, 1.689373072, 2.282328423, 2.027178381, 2.283657598, 2.776400004, 2.733742509],
+                    label: "จีน",
+                    tension: 0.4,
+                    backgroundColor: chroma(styles.cnColor).alpha(areaAlpha).hex(),
+                    borderColor: styles.cnColor,
+                    fill: true,
+                  },
+                  {
+                    data: [11.37837563, 10.13135187, 9.677620293, 9.519999818, 9.225781636, 9.258475833, 9.587324964, 8.221337325, 7.907904056, 8.142316389, 7.519867543, 6.611558165, 6.772254041, 6.723215518, 6.219724666],
+                    label: "สหรัฐฯ",
+                    tension: 0.4,
+                    backgroundColor: chroma(styles.usColor).alpha(areaAlpha).hex(),
+                    borderColor: styles.usColor,
+                    fill: true,
+                  },
+                ]
+              }}
+              options={{
+                layout: {
+                  padding: 0,
+                },
+                radius: 0,
+                scales: {
+                  y: {
+                    stacked: true,
+                    title: {
+                      display: true,
+                      text: "สัดส่วนของ FDI รวม (%)"
+                    }
+                  }
+                },
+                plugins: {
+                  // title: {
+                  //   display: true,
+                  //   text: "สัดส่วนการลงทุนทางตรงของจีนและสหรัฐฯ",
+                  // },
+                }
+              }}
+            />
             <div className="note"><strong>ที่มา</strong>: ธนาคารแห่งประเทศไทย ITC Trademap คำนวณโดยคณะผู้วิจัย</div>
           </section>
 
@@ -535,14 +536,14 @@ function App() {
                 showTicks={true}
               />
               <ValueAdded
-                ref={el => charts.current['value-added-food'] = el}
-                title="Food"
+                ref={el => charts.current['value-added-chemicals'] = el}
+                title="Chemicals"
                 data={[
-                  [80.40, 84.15],
-                  [90.83, 92.71],
-                  [67.05, 73.32],
-                  [88.52, 89.54],
-                  [62.12, 63.21],
+                  [57.59, 67.78],
+                  [81.17, 86.29],
+                  [59.64, 64.85],
+                  [64.20, 71.54],
+                  [49.14, 53.58],
                 ]}
               />
               <ValueAdded
@@ -557,17 +558,6 @@ function App() {
                 ]}
               />
               <ValueAdded
-                ref={el => charts.current['value-added-chemicals'] = el}
-                title="Chemicals"
-                data={[
-                  [57.59, 67.78],
-                  [81.17, 86.29],
-                  [59.64, 64.85],
-                  [64.20, 71.54],
-                  [49.14, 53.58],
-                ]}
-              />
-              <ValueAdded
                 ref={el => charts.current['value-added-rubber'] = el}
                 title="Rubbers"
                 data={[
@@ -576,6 +566,17 @@ function App() {
                   [51.33, 56.20],
                   [64.00, 68.08],
                   [45.84, 48.21],
+                ]}
+              />
+              <ValueAdded
+                ref={el => charts.current['value-added-food'] = el}
+                title="Food"
+                data={[
+                  [80.40, 84.15],
+                  [90.83, 92.71],
+                  [67.05, 73.32],
+                  [88.52, 89.54],
+                  [62.12, 63.21],
                 ]}
               />
             </div>
@@ -974,6 +975,8 @@ function App() {
           <SocialOutline n={1} />
         </section>
 
+        {// TODO: add poor => no social trust & young => no inst trust
+        }
         <section>
           <h2>
             ความสมานฉันท์ในสังคมไทยอยู่ในระดับต่ำ<br />
@@ -1308,76 +1311,40 @@ function App() {
         </section>
 
         <section>
-          <h2><orange>#1</orange> ความสุดขั้ว</h2>
+
+          <section><h2><orange>#1</orange> ความสุดขั้ว</h2></section>
+          <section><h2><orange>#2</orange> ความต่างวัย</h2></section>
+          <section><h2><orange>#3</orange> ความมั่นคงในชีวิต</h2></section>
+          <section><h2><orange>#4</orange> การพูดคุยแลกเปลี่ยนความคิดเห็น</h2></section>
+          <section>
+            <h2><orange>#5</orange> การบริโภคสื่อ</h2>
+            <div id="media" className="fragment fade-out">
+              Bla bla bla
+            </div>
+          </section>
+          
+          <div style={{height: '3.5em'}} />
           <div className="grid-3">
             {
               [...Array(3).keys()].map(i =>
                 <Coefficients
-                  ref={el => charts.current[`coef-ext-${i}`] = el}
-                  title={coefData[i].title}
-                  input={coefData[i].data}
-                  highlightArray={[0, 1]}
+                  ref={el => charts.current[`coef-1-${i}`] = el}
+                  data={coefData}
+                  i={i}
+                  highlightArray={[[0, 1], [2, 3, 4], [5], [6, 7], [8, 9]][curV]}
                 />
               )
             }
           </div>
         </section>
 
-        <section>
-          <h2><orange>#2</orange> ความต่างวัย</h2>
-          <div className="grid-3">
-            {
-              [...Array(3).keys()].map(i =>
-                <Coefficients
-                  ref={el => charts.current[`coef-age-${i}`] = el}
-                  title={coefData[i].title}
-                  input={coefData[i].data}
-                  highlightArray={[2, 3, 4]}
-                />
-              )
-            }
-          </div>
-        </section>
-
-        <section>
-          <h2><orange>#3</orange> ความมั่นคงในชีวิต</h2>
-          <div className="grid-3">
-            {
-              [...Array(3).keys()].map(i =>
-                <Coefficients
-                  ref={el => charts.current[`coef-security-${i}`] = el}
-                  title={coefData[i].title}
-                  input={coefData[i].data}
-                  highlightArray={[5]}
-                />
-              )
-            }
-          </div>
-        </section>
-
-        <section>
-          <h2><orange>#4</orange> การพูดคุยแลกเปลี่ยนความคิดเห็น</h2>
-          <div className="grid-3">
-            {
-              [...Array(3).keys()].map(i =>
-                <Coefficients
-                  ref={el => charts.current[`coef-open-${i}`] = el}
-                  title={coefData[i].title}
-                  input={coefData[i].data}
-                  highlightArray={[6, 7]}
-                />
-              )
-            }
-          </div>
-        </section>
-
-        <section>
+        {/* <section>
           <h2><orange>#5</orange> การบริโภคสื่อ</h2>
           <div className="grid-3">
             {
               [...Array(3).keys()].map(i =>
                 <Coefficients
-                  ref={el => charts.current[`coef-media-${i}`] = el}
+                  ref={el => charts.current[`coef-2-${i}`] = el}
                   title={coefData[i].title}
                   input={coefData[i].data}
                   highlightArray={[8, 9]}
@@ -1385,7 +1352,7 @@ function App() {
               )
             }
           </div>
-        </section>
+        </section> */}
 
         <section>
           <div className="vertical-center">
@@ -1420,8 +1387,12 @@ function App() {
         </section>
 
         <section>
-          <h2><orange>ข้อเสนอ</orange>ในการแก้ไขปัญหาความแตกแยกในสังคม</h2>
-          <h2>PIER</h2>
+          <div className="vertical-center">
+            <div>
+              <h1>เปิดใจ รับฟัง พูดคุย ร่วมมือ</h1>
+              <h2>"คิดต่าง อย่างมีภูมิ"</h2>
+            </div>
+          </div>
         </section>
         
       </div>

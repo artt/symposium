@@ -6,15 +6,13 @@ import styles from '../css/theme/source/_variables.module.scss'
 
 const areaAlpha = 0.75
 
-const Coefficients = React.forwardRef(({ highlightArray=[], title, input, ...rest }, ref) => {
+const Coefficients = React.forwardRef(({ highlightArray=[], data, i, ...rest }, ref) => {
 
   function alpharize(color) {
     return Array(10).fill(chroma(color).alpha(0.3).hex()).map((x, i) => highlightArray.includes(i) ? color : x)
   }
 
-  const barColors = input
-    .map(x => x > 0 ? 'green' : 'firebrick')
-    .map((x, i) => chroma(x).brighten(1).alpha(areaAlpha * (highlightArray.includes(i) ? 1 : 0.3)).hex())
+  const barColors = data[i].data.map(x => x > 0 ? 'green' : 'firebrick').map(x => chroma(x).brighten(1).hex())
 
   return(
     <Chart
@@ -23,11 +21,11 @@ const Coefficients = React.forwardRef(({ highlightArray=[], title, input, ...res
       height={400}
       ref={ref}
       data={{
-        labels: ["Ext 1", "Ext 2", "30–39", "40–59", "≥ 60", "Security Index", "Openness family", "Openness Friends", "Media entropy", "Media echo"],
+        labels: (i === 0 ? [" ", " "] : ["Ext 1", "Ext 2"]).concat(["30–39", "40–59", "≥ 60", "Security Index", "Openness family", "Openness Friends", "Media entropy", "Media echo"]),
         datasets: [
           {
-            data: input,
-            backgroundColor: barColors,
+            data: data[i].data,
+            backgroundColor: barColors//.map((c, i) => chroma(c).alpha(areaAlpha * (highlightArray.includes(i) ? 1 : 0.3)).hex()),
           },
         ]
       }}
@@ -56,10 +54,22 @@ const Coefficients = React.forwardRef(({ highlightArray=[], title, input, ...res
         plugins: {
           title: {
             display: true,
-            text: title,
+            text: data[i].title,
           },
           legend: {
             display: false,
+          },
+          annotation: {
+            annotations: {
+              highlight: {
+                type: 'box',
+                yMin: ((highlightArray[0] === 0) && (i === 0)) ? 1.5 : highlightArray[0]-0.5,
+                yMax: ((highlightArray[0] === 0) && (i === 0)) ? 1.5 : highlightArray[highlightArray.length - 1] + 0.5,
+                backgroundColor: chroma(styles.fourthColor).alpha(0.2).hex(),
+                borderColor: 'rgba(255, 255, 255, 0)',
+                drawTime: 'beforeDraw'
+              }
+            }
           }
         }
       }}
