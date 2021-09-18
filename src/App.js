@@ -588,7 +588,10 @@ function App() {
                 datasets: [
                   {
                     data: [91.0, 72.9, 55.1, 42.1, 41.6, 6.6, 6.3, 3.3, 2.4, 1.1],
-                    backgroundColor: Array(5).fill(styles.greenColor).concat(Array(5).fill(styles.secondaryColor)).map(color => chroma(color).alpha(areaAlpha).hex()),
+                    backgroundColor: [
+                      ...Array(5).fill(styles.greenColor),
+                      ...Array(5).fill(styles.secondaryColor),
+                    ].map(color => chroma(color).alpha(areaAlpha).hex()),
                   }
                 ]
               }}
@@ -708,9 +711,19 @@ function App() {
 
         <section>
 					<h2>
-						มีความสัมพันธ์ระหว่างความเหลื่อมล้ำทางเศรษฐกิจกับความสมานฉันท์ในสังคม (social cohesion)
+						มีความสัมพันธ์ระหว่างความเหลื่อมล้ำทางเศรษฐกิจ<br />
+            กับความสมานฉันท์ในสังคม (social cohesion)
           </h2>
-          
+
+          <section>
+            <div id="cohesion">
+              <div className="circle inequality">ความเหลื่อมล้ำ</div>
+              <div className="circle cohesion">ความสมานฉันท์</div>
+              <div className="fragment arrow-pointer arrow-pointer-right">Easterly <em>et al.</em> (2006)</div>
+              <div className="fragment arrow-pointer arrow-pointer-left">Sommon (2019)</div>
+            </div>
+          </section>
+
           <section>
             <Chart
               width="700px"
@@ -757,9 +770,6 @@ function App() {
               }}
             />
             <div className="note">ที่มา: ข้อมูลจาก World Value Survey รอบที่ 5–7</div>
-          </section>
-          <section>
-            PIC
           </section>
 				</section>
 
@@ -982,10 +992,6 @@ function App() {
               scales: {
                 x: {
                   max: 100,
-                  // title: {
-                  //   display: true,
-                  //   text: "← ความรู้สึกไม่ดีสูง"
-                  // }
                 },
                 y: {
                   ticks: {
