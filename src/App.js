@@ -7,6 +7,7 @@ import Chart from './components/Chart'
 import ComparePop from './components/ComparePop'
 import Perception from './components/Perception'
 import SocialOutline from './components/SocialOutline'
+import ValueAdded from './components/ValueAdded'
 import { defaults } from 'test-react-chartjs-2'
 import merge from 'lodash.merge'
 import chroma from 'chroma-js'
@@ -147,7 +148,7 @@ function App() {
           <div className="vertical-center">
             <div>
               <h1>
-                โครงสร้างเศรษฐกิจสังคมไทย<br />
+                โครงสร้างเศรษฐกิจสังคมไทย 🇹🇭<br />
                 <orange>ความเปราะบางท่ามกลางความเปลี่ยนแปลง</orange>
               </h1>
               <div style={{height: "4rem"}} />
@@ -301,16 +302,19 @@ function App() {
                   height={280}
                   ref={el => charts.current['exports-products'] = el}
                   data={{
-                    labels: ["Machinery", "Electrical machinery and equipment", "Vehicles", "Pearls, stones, precious metals", "Rubber products", "Plastics products", "Preparations of meat, fish etc.", "Mineral fuels", "Optical products", "Edible fruit and nuts; peel of citrus fruit or melons"],
+                    // labels: ["Machinery", "Electrical machinery and equipment", "Vehicles", "Pearls, stones, precious metals", "Rubber products", "Plastics products", "Preparations of meat, fish etc.", "Mineral fuels", "Optical products", "Edible fruit and nuts; peel of citrus fruit or melons"],
+                    labels: ["Rubber products", "Machinery", "Plastics", "Electrical machinery", "Edible fruits and nuts"],
                     datasets: [
                       {
-                        data: [9.186, 9.109, 7.265, 0.781, 26.258, 27.144, 0.878, 10.032, 24.105, 69.528],
+                        // data: [9.186, 9.109, 7.265, 0.781, 26.258, 27.144, 0.878, 10.032, 24.105, 69.528],
+                        data: [26.258, 9.186, 27.144, 9.109, 69.528], // new
                         label: "จีน",
                         backgroundColor: chroma(styles.cnColor).alpha(areaAlpha).hex(),
                         borderColor: styles.cnColor,
                       },
                       {
-                        data: [22.286, 21.944, 9.632, 5.663, 26.865, 6.684, 17.254, 0.054, 15.372, 2.393],
+                        // data: [22.286, 21.944, 9.632, 5.663, 26.865, 6.684, 17.254, 0.054, 15.372, 2.393],
+                        data: [26.865, 22.286, 6.684, 21.944, 2.393],
                         label: "สหรัฐฯ",
                         backgroundColor: chroma(styles.usColor).alpha(areaAlpha).hex(),
                         borderColor: styles.usColor,
@@ -499,32 +503,62 @@ function App() {
             <div>
               มูลค่าเพิ่มที่ไทยสร้างได้ ยังอยู่ในระดับกลาง ๆ เมื่อเทียบกับประเทศเพื่อนบ้าน
             </div>
-            <div>
-              <Chart
-                type="line"
-                height={110}
+            <div id="value-added">
+              <ValueAdded
                 ref={el => charts.current['value-added-computers'] = el}
-                data={{
-                  labels: ["2011", "2016"],
-                  datasets: [
-                    {
-                      data: [43.5, 54.3],
-                    }
-                  ]
-                }}
-                options={{
-                  scales: {
-                  },
-                  plugins: {
-                    title: {
-                      display: true,
-                      text: "ช่องทางออนไลน์ที่คนไทยซื้อสินค้าและบริการ",
-                    },
-                    legend: {
-                      display: false,
-                    }
-                  }
-                }}
+                title="Computers"
+                data={[
+                  [43.49, 54.29],
+                  [61.07, 71.60],
+                  [39.08, 44.98],
+                  [64.22, 60.68],
+                  [45.76, 37.13],
+                ]}
+                showTicks={true}
+              />
+              <ValueAdded
+                ref={el => charts.current['value-added-food'] = el}
+                title="Food"
+                data={[
+                  [80.40, 84.15],
+                  [90.83, 92.71],
+                  [67.05, 73.32],
+                  [88.52, 89.54],
+                  [62.12, 63.21],
+                ]}
+              />
+              <ValueAdded
+                ref={el => charts.current['value-added-motorvehicles'] = el}
+                title="Motor vehicles"
+                data={[
+                  [48.09, 54.23],
+                  [79.79, 83.78],
+                  [39.71, 44.43],
+                  [65.12, 59.06],
+                  [48.17, 48.46],
+                ]}
+              />
+              <ValueAdded
+                ref={el => charts.current['value-added-chemicals'] = el}
+                title="Chemicals"
+                data={[
+                  [57.59, 67.78],
+                  [81.17, 86.29],
+                  [59.64, 64.85],
+                  [64.20, 71.54],
+                  [49.14, 53.58],
+                ]}
+              />
+              <ValueAdded
+                ref={el => charts.current['value-added-rubber'] = el}
+                title="Rubbers"
+                data={[
+                  [50.80, 58.59],
+                  [71.01, 74.38],
+                  [51.33, 56.20],
+                  [64.00, 68.08],
+                  [45.84, 48.21],
+                ]}
               />
             </div>
 

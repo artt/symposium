@@ -39,12 +39,9 @@
     color: yellow;
   }
   .chart-container {
-    // align-self: center;
-    // width: 900px;
     transition-duration: 3s;
   }
   &.frag0 {
-    // grid-template-columns: 300px 0 300px;
     gap: 3em;
     .chart-container {
       transform: scale(0);
@@ -56,7 +53,6 @@
   }
   &.frag1,
   &.frag2 {
-    // grid-template-columns: 300px 900px 300px;
     gap: 1em;
     .chart-container {
       transform: scale(1);
@@ -76,4 +72,9 @@
     background-color: $text-color;
     border-radius: 2px;
   }
+}
+
+#value-added {
+  display: grid;
+  grid-template-columns: 1fr repeat(4, 1fr);
 }
