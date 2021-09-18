@@ -4,9 +4,14 @@ import chroma from 'chroma-js'
 
 import styles from '../css/theme/source/_variables.module.scss'
 
-const areaAlpha = 0.675
+const areaAlpha = 0.75
 
 const Perception = React.forwardRef(({highlightArray=[], ...rest }, ref) => {
+
+  function alpharize(color) {
+    return Array(9).fill(chroma(color).alpha(0.3).hex()).map((x, i) => highlightArray.includes(i) ? color : x)
+  }
+
   return(
     <Chart
       type="bar"
@@ -30,13 +35,13 @@ const Perception = React.forwardRef(({highlightArray=[], ...rest }, ref) => {
             hidden: false,
             label: "ความแตกต่างที่คิด",
             data: [[2.183398, 3.985496], [3.346723, 2.042187], [1.57685, 3.795764], [1.735632, 3.631497], [1.54352, 3.471264], [2.136179, 3.566745], [4.2, 3.122143], [3.28, 3.193705], [2.031056, 3.256369]],
-            backgroundColor: chroma(styles.fourthColor).alpha(areaAlpha).hex(),
+            backgroundColor: alpharize(chroma(styles.fourthColor).alpha(areaAlpha).hex()),
             categoryPercentage: 0.5,
           },
           {
             label: "ความแตกต่างจริง",
             data: [[2.102983, 3.418564], [3.7066, 2.55536], [1.58794, 2.704626], [1.767591, 2.866432], [1.388889, 2.326279], [1.85592, 2.134276], [4.701779, 4.439153], [4.016429, 3.816254], [1.441029, 1.563604]],
-            backgroundColor: chroma(styles.secondaryColor).alpha(areaAlpha).hex(),
+            backgroundColor: alpharize(chroma(styles.secondaryColor).alpha(areaAlpha).hex()),
             categoryPercentage: 0.5,
           }
         ]
@@ -61,7 +66,7 @@ const Perception = React.forwardRef(({highlightArray=[], ...rest }, ref) => {
           },
           y: {
             ticks: {
-              color: Array(9).fill(chroma(styles.textColor).alpha(0.3).hex()).map((x, i) => highlightArray.includes(i) ? styles.textColor : x),
+              color: alpharize(styles.textColor),
             }
           }
         },

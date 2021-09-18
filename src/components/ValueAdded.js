@@ -4,11 +4,16 @@ import chroma from 'chroma-js'
 
 import styles from '../css/theme/source/_variables.module.scss'
 
-const areaAlpha = 0.675
+const areaAlpha = 0.75
 
 const ValueAdded = React.forwardRef(({ title, data, showTicks=true, ...rest }, ref) => {
+
   const countryList = ["ไทย", "อินโดนีเซีย", "มาเลเซีย", "ฟิลิปปินส์", "เวียดนาม"]
-  const colorList = [styles.secondaryColor].concat(chroma.brewer.Pastel2.slice(0, 4).map(c => chroma(c).alpha(0.8).hex()))
+  const colorList = [
+    styles.secondaryColor,
+    ...chroma.brewer.Pastel2.slice(0, 4).map(c => chroma(c).alpha(0.8).hex())
+  ]
+  
   return(
     <Chart
       type="line"

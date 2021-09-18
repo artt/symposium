@@ -1,9 +1,12 @@
+// https://stackoverflow.com/questions/57528694/chart-js-multiple-charts-with-one-common-legend
+
 import React from 'react'
 
 import Reveal from 'reveal.js'
 // import Markdown from 'reveal.js/plugin/markdown/markdown.esm.js';
 
 import Chart from './components/Chart'
+import Pop from './components/Pop'
 import ComparePop from './components/ComparePop'
 import Perception from './components/Perception'
 import SocialOutline from './components/SocialOutline'
@@ -31,7 +34,7 @@ import "./css/theme/source/pier-dark.scss"
 import "./css/main.scss"
 
 const baseSize = parseInt(styles.baseSize.replace("px", ""))
-const areaAlpha = 0.675
+const areaAlpha = 0.75
 const politicalColors = chroma.scale(['orange', 'white', 'yellow']).colors(6)
 
 merge(defaults, {
@@ -148,7 +151,7 @@ function App() {
           <div className="vertical-center">
             <div>
               <h1>
-                โครงสร้างเศรษฐกิจสังคมไทย 🇹🇭<br />
+                โครงสร้างเศรษฐกิจสังคมไทย<br />
                 <orange>ความเปราะบางท่ามกลางความเปลี่ยนแปลง</orange>
               </h1>
               <div style={{height: "4rem"}} />
@@ -246,7 +249,8 @@ function App() {
                 </div>
                 <Chart
                   type="line"
-                  height={280}
+                  width="100%"
+                  height={210}
                   ref={el => charts.current['exports'] = el}
                   data={{
                     labels: [...Array(26).keys()].map(x => x + 1995),
@@ -299,7 +303,8 @@ function App() {
                 </div>
                 <Chart
                   type="bar"
-                  height={280}
+                  width="100%"
+                  height={210}
                   ref={el => charts.current['exports-products'] = el}
                   data={{
                     // labels: ["Machinery", "Electrical machinery and equipment", "Vehicles", "Pearls, stones, precious metals", "Rubber products", "Plastics products", "Preparations of meat, fish etc.", "Mineral fuels", "Optical products", "Edible fruit and nuts; peel of citrus fruit or melons"],
@@ -356,7 +361,8 @@ function App() {
                 </div>
                 <Chart
                   type="line"
-                  height={280}
+                  width="100%"
+                  height={210}
                   ref={el => charts.current['tourists'] = el}
                   data={{
                     labels: ["Jan-15", "Feb-15", "Mar-15", "Apr-15", "May-15", "Jun-15", "Jul-15", "Aug-15", "Sep-15", "Oct-15", "Nov-15", "Dec-15", "Jan-16", "Feb-16", "Mar-16", "Apr-16", "May-16", "Jun-16", "Jul-16", "Aug-16", "Sep-16", "Oct-16", "Nov-16", "Dec-16", "Jan-17", "Feb-17", "Mar-17", "Apr-17", "May-17", "Jun-17", "Jul-17", "Aug-17", "Sep-17", "Oct-17", "Nov-17", "Dec-17", "Jan-18", "Feb-18", "Mar-18", "Apr-18", "May-18", "Jun-18", "Jul-18", "Aug-18", "Sep-18", "Oct-18", "Nov-18", "Dec-18", "Jan-19", "Feb-19", "Mar-19", "Apr-19", "May-19", "Jun-19", "Jul-19", "Aug-19", "Sep-19", "Oct-19", "Nov-19", "Dec-19", "Jan-20", "Feb-20", "Mar-20"],
@@ -437,7 +443,8 @@ function App() {
                 </div>
                 <Chart
                   type="line"
-                  height={280}
+                  width="100%"
+                  height={210}
                   ref={el => charts.current['tourists'] = el}
                   data={{
                     labels: [...Array(15).keys()].map(x => x + 2006),
@@ -635,6 +642,38 @@ function App() {
           <div>
             สัดส่วนแรงงานสูงวัย (มากกว่า 50 ปี) <orange>เพิ่มขึ้นเกือบ 3 เท่า</orange>ในช่วงไม่ถึง 20 ปีที่ผ่านมา
           </div>
+          <div id="pop">
+            <Pop
+              ref={el => charts.current['pop-2002'] = el}
+              title="2002 (3.42%)"
+              data={{
+                male: [721554, 566617, 446071, 305765, 191807, 117316, 66743, 29584, 13721],
+                female: [868050, 605420, 456874, 298911, 174206, 87170, 38207, 13422, 4504],
+                maleForeign: [813, 2336, 4140, 4783, 4155, 3426, 3117, 1741, 672],
+                femaleForeign: [364, 664, 649, 460, 344, 203, 121, 57, 31],
+              }}
+            />
+            <Pop
+              ref={el => charts.current['pop-2009'] = el}
+              title="2009 (5.84%)"
+              data={{
+                male: [689001, 803854, 671193, 506708, 374290, 244438, 142516, 69234, 24534],
+                female: [741137, 813156, 646882, 498837, 362407, 221357, 109873, 42109, 12807],
+                maleForeign: [5169, 6161, 6802, 7733, 7866, 6313, 4532, 3314, 1501],
+                femaleForeign: [3612, 2923, 2037, 1728, 1072, 630, 354, 144, 59],
+              }}
+            />
+            <Pop
+              ref={el => charts.current['pop-2019'] = el}
+              title="2019 (9.91%)"
+              data={{
+                male: [715941, 736427, 653627, 664370, 539958, 412479, 294215, 144834, 51606],
+                female: [780933, 781834, 674107, 659776, 514249, 390667, 262010, 114599, 35804],
+                maleForeign: [146626, 131895, 115796, 84238, 48089, 28214, 14476, 5103, 2417],
+                femaleForeign: [110226, 96483, 80600, 55819, 27738, 14753, 5430, 715, 178],
+              }}
+            />
+          </div>
         </section>
 
         <section>
@@ -769,12 +808,12 @@ function App() {
               labels: [...Array(10).keys()],
               datasets: [
                 {
-                  data: [0.023483366, 0.021526419, 0.014350946, 0.041748206, 0.259621657, 0.200260926, 0.240704501, 0.127853881, 0.033920417, 0.03652968],
+                  data: [0.023483366, 0.021526419, 0.014350946, 0.041748206, 0.259621657, 0.200260926, 0.240704501, 0.127853881, 0.033920417, 0.03652968].map(x => x*100),
                   label: "2008",
                   tension: 0.4,
                 },
                 {
-                  data: [[0.023483366, 0.021526419, 0.014350946, 0.041748206, 0.259621657, 0.200260926, 0.240704501, 0.127853881, 0.033920417, 0.03652968], [0.019212296, 0.014409222, 0.030739673, 0.055715658, 0.361191162, 0.194044188, 0.11431316, 0.106628242, 0.037463977, 0.066282421]][getFragment(charts.current['political-shift']?.canvas)],
+                  data: [[0.023483366, 0.021526419, 0.014350946, 0.041748206, 0.259621657, 0.200260926, 0.240704501, 0.127853881, 0.033920417, 0.03652968], [0.019212296, 0.014409222, 0.030739673, 0.055715658, 0.361191162, 0.194044188, 0.11431316, 0.106628242, 0.037463977, 0.066282421]][getFragment(charts.current['political-shift']?.canvas)].map(x => x*100),
                   label: "2018",
                   tension: 0.4,
                   borderColor: styles.textColor,
@@ -794,9 +833,16 @@ function App() {
                       return null
                     },
                   },
+                  grid: {
+                    color: 'rgb(255, 255, 255, 0)',
+                  },
                 },
                 y: {
-                  max: 0.4,
+                  max: 40,
+                  title: {
+                    display: true,
+                    text: "สัดส่วนผู้ตอบแบบสอบถาม (%)"
+                  }
                 }
               },
               plugins: {
@@ -912,7 +958,52 @@ function App() {
             ความสมานฉันท์ในสังคมไทยอยู่ในระดับต่ำ<br />
             เทียบกับคุณภาพสังคมด้านอื่น ๆ
           </h2>
-
+          <Chart
+            type="bar"
+            // height={180}
+            ref={el => charts.current['cohesion'] = el}
+            data={{
+              labels: ["เศรษฐกิจ", "สังคม", "แรงงาน", "การศึกษา", "ความเชื่อใจทางสังคม", "ความเชื่อมั่นในองค์กร", "ความสามัคคี", "ความอิสระในการกำหนดเส้นทางชีวิต", "กิจกรรมการเมือง", "ความสามารถในการเปลี่ยนแปลงสังคม"],
+              datasets: [
+                {
+                  label: "ค่าเฉลี่ยของกลุ่มตัวอย่าง",
+                  data: [78.01819, 72.15211, 51.61855, 48.9426, 43.25326, 33.90756, 30.442, 72.68779, 64.38076, 60.83162],
+                  backgroundColor: [
+                    ...Array(2).fill(chroma(chroma.brewer.Pastel2[0]).alpha(0.3*areaAlpha).hex()),
+                    ...Array(2).fill(chroma(chroma.brewer.Pastel2[1]).alpha(0.3*areaAlpha).hex()),
+                    ...Array(3).fill(chroma(styles.secondaryColor).alpha(areaAlpha).hex()),
+                    ...Array(3).fill(chroma(chroma.brewer.Pastel2[2]).alpha(0.3*areaAlpha).hex()),
+                  ],
+                }
+              ]
+            }}
+            options={{
+              indexAxis: 'y',
+              scales: {
+                x: {
+                  max: 100,
+                  // title: {
+                  //   display: true,
+                  //   text: "← ความรู้สึกไม่ดีสูง"
+                  // }
+                },
+                y: {
+                  ticks: {
+                    color: [
+                      ...Array(4).fill(chroma(styles.textColor).alpha(0.3).hex()),
+                      ...Array(3).fill(styles.textColor),
+                      ...Array(3).fill(chroma(styles.textColor).alpha(0.3).hex()),
+                    ]
+                  }
+                }
+              },
+              plugins: {
+                legend: {
+                  display: false,
+                }
+              }
+            }}
+          />
         </section>
 
         <section>

@@ -4,7 +4,7 @@ import chroma from 'chroma-js'
 
 import styles from '../css/theme/source/_variables.module.scss'
 
-const areaAlpha = 0.675
+const areaAlpha = 0.75
 
 const ComparePop = React.forwardRef(({groups, pop, sample, title, ...rest }, ref) => {
   return(
