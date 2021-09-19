@@ -28,6 +28,8 @@ import picDemographics from './images/demographics.png'
 import picSocialMedia from './images/social-media.png'
 import picBanana from './images/banana.png'
 import picPassionFruit from './images/passion-fruit.png'
+import picFloodArea from './images/flood-area.png'
+import picFloodBiz from './images/flood-biz.png'
 
 import styles from './css/theme/source/_variables.module.scss'
 import "../node_modules/reveal.js/dist/reveal.css"
@@ -392,6 +394,103 @@ function App() {
               height={120}
               ref={el => charts.current['tourists'] = el}
               data={{
+                labels: ["Jan-15", "Feb-15", "Mar-15", "Apr-15", "May-15", "Jun-15", "Jul-15", "Aug-15", "Sep-15", "Oct-15", "Nov-15", "Dec-15", "Jan-16", "Feb-16", "Mar-16", "Apr-16", "May-16", "Jun-16", "Jul-16", "Aug-16", "Sep-16", "Oct-16", "Nov-16", "Dec-16", "Jan-17", "Feb-17", "Mar-17", "Apr-17", "May-17", "Jun-17", "Jul-17", "Aug-17", "Sep-17", "Oct-17", "Nov-17", "Dec-17", "Jan-18", "Feb-18", "Mar-18", "Apr-18", "May-18", "Jun-18", "Jul-18", "Aug-18", "Sep-18", "Oct-18", "Nov-18", "Dec-18", "Jan-19", "Feb-19", "Mar-19", "Apr-19", "May-19", "Jun-19", "Jul-19", "Aug-19", "Sep-19", "Oct-19", "Nov-19", "Dec-19", "Jan-20", "Feb-20", "Mar-20", "Apr-20", "May-20", "Jun-20", "Jul-20", "Aug-20", "Sep-20", "Oct-20", "Nov-20", "Dec-20", "Jan-21", "Feb-21", "Mar-21", "Apr-21", "May-21", "Jun-21", "Jul-21"],
+                datasets: [
+                  {
+                    data: [81118, 71915, 74675, 67450, 63906, 67891, 70255, 56090, 53057, 70841, 88502, 101820, 93149, 82406, 87171, 74761, 72047, 78120, 81007, 61234, 58956, 73760, 98031, 115001, 101785, 87679, 93757, 87128, 76498, 86889, 86394, 67972, 62989, 77854, 105216, 122262, 109577, 90388, 106562, 88698, 81146, 90468, 88351, 71161, 65009, 82986, 118125, 129617, 112815, 92454, 106045, 92922, 82083, 94655, 88356, 70438, 63798, 84767, 118439, 129438, 113847, 72484, 24151, 0, 0, 0, 0, 0, 0, 23, 133, 437, 757, 668, 725, 1172, 1156, 850, 2510],
+                    label: "สหรัฐฯ",
+                    tension: 0.4,
+                    backgroundColor: chroma(styles.usColor).alpha(areaAlpha).hex(),
+                    borderColor: styles.usColor,
+                    fill: true,
+                  },
+                  {
+                    data: [560360, 780516, 663571, 701169, 668079, 632889, 775829, 800596, 532696, 566053, 615195, 637838, 814693, 958201, 856683, 816029, 738601, 715411, 865355, 891382, 658895, 474363, 432467, 535566, 859617, 790051, 789417, 748127, 762193, 762481, 937971, 983245, 760999, 805616, 790839, 815704, 969996, 1198971, 1004025, 986703, 869206, 900652, 929738, 867481, 647664, 646141, 675129, 838634, 1076816, 1079300, 993627, 909942, 804453, 844240, 1004061, 1056767, 868292, 832446, 804876, 863838, 1030148, 160564, 56852, 0, 0, 0, 0, 0, 0, 471, 914, 961, 572, 359, 589, 643, 505, 323, 1032],
+                    label: "จีน",
+                    tension: 0.4,
+                    backgroundColor: chroma(styles.cnColor).alpha(areaAlpha).hex(),
+                    borderColor: styles.cnColor,
+                    fill: true,
+                  },
+                ]
+              }}
+              options={{
+                layout: {
+                  padding: 0,
+                },
+                radius: 0,
+                scales: {
+                  y: {
+                    stacked: true,
+                    title: {
+                      display: true,
+                      text: "จำนวนนักท่องเที่ยว (คน)"
+                    }
+                  }
+                },
+                plugins: {
+                  // title: {
+                  //   display: true,
+                  //   text: "สัดส่วนนักท่องเที่ยวจีนและสหรัฐฯ",
+                  // },
+                  legend: {
+                    reverse: true,
+                  },
+                  annotation: {
+                    annotations: {
+                      bombing: {
+                        type: 'box',
+                        xMin: "Aug-15",
+                        xMax: "Dec-15",
+                        drawTime: "beforeDatasetsDraw",
+                        borderWidth: 0,
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                      },
+                      tour: {
+                        type: 'box',
+                        xMin: "Oct-16",
+                        xMax: "Dec-16",
+                        drawTime: "beforeDatasetsDraw",
+                        borderWidth: 0,
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                      },
+                      boat: {
+                        type: 'box',
+                        xMin: "Jul-18",
+                        xMax: "Nov-18",
+                        drawTime: "beforeDatasetsDraw",
+                        borderWidth: 0,
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                      }
+                    }
+                  },
+                  texts: {
+                    texts: {
+                      bombing: {
+                        text: 'เหตุการณ์ระเบิดราชประสงค์',
+                        x: 160,
+                        y: 35,
+                      },
+                      tour: {
+                        text: 'ทัวร์ศูนย์เหรียญ',
+                        x: 460,
+                        y: 35,
+                      },
+                      boat: {
+                        text: 'เหตุการณ์เรือล่ม',
+                        x: 775,
+                        y: 35,
+                      },
+                    }
+                  }
+                }
+              }}
+            />
+            {/* <Chart
+              type="line"
+              height={120}
+              ref={el => charts.current['tourists'] = el}
+              data={{
                 labels: ["Jan-15", "Feb-15", "Mar-15", "Apr-15", "May-15", "Jun-15", "Jul-15", "Aug-15", "Sep-15", "Oct-15", "Nov-15", "Dec-15", "Jan-16", "Feb-16", "Mar-16", "Apr-16", "May-16", "Jun-16", "Jul-16", "Aug-16", "Sep-16", "Oct-16", "Nov-16", "Dec-16", "Jan-17", "Feb-17", "Mar-17", "Apr-17", "May-17", "Jun-17", "Jul-17", "Aug-17", "Sep-17", "Oct-17", "Nov-17", "Dec-17", "Jan-18", "Feb-18", "Mar-18", "Apr-18", "May-18", "Jun-18", "Jul-18", "Aug-18", "Sep-18", "Oct-18", "Nov-18", "Dec-18", "Jan-19", "Feb-19", "Mar-19", "Apr-19", "May-19", "Jun-19", "Jul-19", "Aug-19", "Sep-19", "Oct-19", "Nov-19", "Dec-19", "Jan-20", "Feb-20", "Mar-20"],
                 datasets: [
                   {
@@ -483,7 +582,7 @@ function App() {
                   }
                 }
               }}
-            />
+            /> */}
           </section>
           {/* <section>
             <div>
@@ -679,6 +778,17 @@ function App() {
           <div>
             กรุงเทพฯ และปริมณฑล มีความเสี่ยงต่อน้ำท่วมจากระดับน้ำทะเลที่เพิ่มขึ้น
           </div>
+          <div id="flood-container" className={`frag${getFragment(document.getElementById("flood-container"))}`}>
+            <div id="flood-data">
+              <div className="more">มากกว่า</div><div className="num">30%</div><div className="bottom">ของแรงงานนอกภาคเกษตร</div>
+              <div className="more">มากกว่า</div><div className="num">20%</div><div className="bottom">ของจำนวนสถานประกอบการ</div>
+              <div className="more">มากกว่า</div><div className="num">10%</div><div className="bottom">ของธุรกิจในอุตสาหกรรมส่งออกหลัก</div>
+            </div>
+            <img src={picFloodArea} id="flood-area" />
+            <img src={picFloodBiz} id="flood-biz" />
+          </div>
+          <div className="fragment" />
+          <div className="fragment" />
         </section>
 
         <section>

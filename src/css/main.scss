@@ -209,3 +209,60 @@
     gap: 0.3em;
   }
 }
+
+#flood-container {
+  position: relative;
+  height: 500px;
+  > img {
+    height: 500px;
+    top: 0;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    transition-duration: 3s;
+  }
+  #flood-biz {
+    opacity: 0;
+    mix-blend-mode: darken;
+  }
+  #flood-data {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition-duration: 3s;
+    .more {
+      font-size: 0.6em;
+    }
+    .num {
+      font-size: 2em;
+      color: $secondary-color;
+      margin: -20px 0;
+    }
+    .bottom {
+      font-size: 0.7em;
+    }
+  }
+
+  &.frag1 {
+    #flood-biz {
+      opacity: 1;
+    }
+  }
+  &.frag2 {
+    #flood-biz {
+      transform: translateX(50%);
+      // mix-blend-mode: normal;
+      opacity: 1;
+    }
+    #flood-area {
+      transform: translateX(-150%);
+    }
+    #flood-data {
+      opacity: 1;
+    }
+  }
+
+  
+}
