@@ -11,6 +11,7 @@ $grid-color: scale-color($text-color, $alpha: -80%);
 $us-color: #0A3161;
 $cn-color: #df2407;
 
+$base-font: "Dindan";
 $base-size: 24px;
 
 :export {
@@ -24,4 +25,5 @@ $base-size: 24px;
 	usColor: $us-color;
 	cnColor: $cn-color;
 	baseSize: $base-size;
+	baseFont: $base-font;
 }

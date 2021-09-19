@@ -11,7 +11,7 @@ import ComparePop from './components/ComparePop'
 import Perception from './components/Perception'
 import Coefficients from './components/Coefficients'
 import SocialOutline from './components/SocialOutline'
-import ValueAdded from './components/ValueAdded'
+import ValueAdded, { ValueAddedLabel } from './components/ValueAdded'
 import { defaults } from 'test-react-chartjs-2'
 import merge from 'lodash.merge'
 import chroma from 'chroma-js'
@@ -419,6 +419,9 @@ function App() {
                   //   display: true,
                   //   text: "สัดส่วนนักท่องเที่ยวจีนและสหรัฐฯ",
                   // },
+                  legend: {
+                    reverse: true,
+                  },
                   annotation: {
                     annotations: {
                       bombing: {
@@ -447,11 +450,30 @@ function App() {
                       }
                     }
                   },
+                  texts: {
+                    texts: {
+                      bombing: {
+                        text: 'เหตุการณ์ระเบิดราชประสงค์',
+                        x: 215,
+                        y: 20,
+                      },
+                      tour: {
+                        text: 'ทัวร์ศูนย์เหรียญ',
+                        x: 500,
+                        y: 20,
+                      },
+                      boat: {
+                        text: 'เหตุการณ์เรือล่ม',
+                        x: 917,
+                        y: 20,
+                      },
+                    }
+                  }
                 }
               }}
             />
           </section>
-          <section>
+          {/* <section>
             <div>
               การลงทุนทางตรงของสหรัฐฯ ยังอยู่ในระดับสูง<br />
               ขณะที่ของจีนเพิ่มขึ้นต่อเนื่อง
@@ -459,7 +481,7 @@ function App() {
             <Chart
               type="line"
               height={120}
-              ref={el => charts.current['tourists'] = el}
+              ref={el => charts.current['fdi'] = el}
               data={{
                 labels: [...Array(15).keys()].map(x => x + 2006),
                 datasets: [
@@ -504,7 +526,7 @@ function App() {
               }}
             />
             <div className="note"><strong>ที่มา</strong>: ธนาคารแห่งประเทศไทย ITC Trademap คำนวณโดยคณะผู้วิจัย</div>
-          </section>
+          </section> */}
 
         </section>
 
@@ -580,6 +602,7 @@ function App() {
                 ]}
               />
             </div>
+            <ValueAddedLabel />
 
           </section>
 
@@ -892,10 +915,10 @@ function App() {
           <div>
             <h3>คำถามวิจัย</h3>
             <ul>
-              <li>ภาพความสมานฉันท์ในสังคมไทย</li>
-              <li>ภาพความ "คิดต่าง" ในสังคมไทย</li>
-              <li>ความคิดต่าง นำไปสู่ความแตกแยกหรือไม่ อย่างไร</li>
-              <li>ปัจจัยที่ส่งผลต่อความแตกแยก</li>
+              <li>ความสมานฉันท์ในสังคมไทย</li>
+              <li>ความ "คิดต่าง" ในสังคมไทย</li>
+              <li>ความคิดต่าง กับความแตกแยก</li>
+              <li>ปัจจัยที่สัมพันธ์กับความแตกแยก</li>
             </ul>
           </div>
           <div className="spacer" />
@@ -987,7 +1010,18 @@ function App() {
             // height={180}
             ref={el => charts.current['cohesion'] = el}
             data={{
-              labels: ["เศรษฐกิจ", "สังคม", "แรงงาน", "การศึกษา", "ความเชื่อใจทางสังคม", "ความเชื่อมั่นในองค์กร", "ความสามัคคี", "ความอิสระในการกำหนดเส้นทางชีวิต", "กิจกรรมการเมือง", "ความสามารถในการเปลี่ยนแปลงสังคม"],
+              labels: [
+                "ความรู้สึกมั่นคงทางเศรษฐกิจ",
+                "ความรู้สึกมั่นคงทางสังคม",
+                "การเข้าถึงตลาดแรงงาน",
+                "การเข้าถึงการศึกษา",
+                "ความเชื่อใจทางสังคม",
+                "ความเชื่อมั่นในองค์กร",
+                "ความสามัคคี",
+                "ความอิสระในการกำหนดเส้นทางชีวิต",
+                "การมีส่วนร่วมในกิจกรรมการเมือง",
+                "ความสามารถในการเปลี่ยนแปลงสังคม"
+              ],
               datasets: [
                 {
                   label: "ค่าเฉลี่ยของกลุ่มตัวอย่าง",
@@ -1020,6 +1054,18 @@ function App() {
               plugins: {
                 legend: {
                   display: false,
+                },
+                annotation: {
+                  annotations: {
+                    highlight: {
+                      type: 'box',
+                      yMin: 3.5,
+                      yMax: 6.5,
+                      backgroundColor: chroma('black').alpha(0.2).hex(),
+                      borderColor: 'rgba(255, 255, 255, 0)',
+                      drawTime: 'beforeDraw'
+                    }
+                  }
                 }
               }
             }}
@@ -1089,7 +1135,7 @@ function App() {
               <div className="top">
                 ประเพณีนิยม<br />
                 ศีลธรรมอันดีงาม<br />
-                ความเป็นอันหนึ่งอันเดียวกัน<br />
+                ความเป็นหนึ่งเดียว<br />
                 ความมั่นคงในชีวิต<br />
                 การเคารพผู้อาวุโส
               </div>
@@ -1109,16 +1155,16 @@ function App() {
 
         <section>
           <h2>
-            ความคิดต่าง นำไปสู่ความรู้สึกไม่ดีต่อคนต่างความคิด และความแตกแยก
+            ความคิดต่าง นำไปสู่ความรู้สึกไม่ดีต่อคนต่างความคิด
           </h2>
-          <div>
+          {/* <div>
             คนที่มีความเห็นสุดขั้ว มีความรู้สึกไม่ดีต่อคน "คิดต่าง" มากกว่ากลุ่มที่มีความคิดเห็นกลาง ๆ
-          </div>
+          </div> */}
           
-          <section>
+          {/* <section> */}
             <Chart
               type="bar"
-              // height={180}
+              height={180}
               ref={el => charts.current['social-divide-1'] = el}
               data={{
                 labels: ["ความเห็นอกเห็นใจ (ช่วยว่าความให้หากเป็นทนาย)", "ความชอบ/ไม่ชอบ", "ยอมแลกเปลี่ยนความคิดเห็น", "ความไว้วางใจ", "ความเห็นอกเห็นใจ (ช่วยเหลือหากประสบอุบัติเหตุ)"],
@@ -1132,6 +1178,11 @@ function App() {
               }}
               options={{
                 indexAxis: 'y',
+                plugins: {
+                  legend: {
+                    display: false,
+                  }
+                },
                 scales: {
                   x: {
                     max: 100,
@@ -1143,9 +1194,9 @@ function App() {
                 },
               }}
             />
-          </section>
+          {/* </section> */}
 
-          <section>
+          {/* <section>
             <Chart
               type="bar"
               // height={180}
@@ -1178,7 +1229,7 @@ function App() {
                 },
               }}
             />
-          </section>
+          </section> */}
 
         </section>
 
@@ -1187,6 +1238,7 @@ function App() {
           <h2>
             ความคิดต่าง ทำให้ยิ่งมองความต่างมากเกินจริง
           </h2>
+          <div className="spacer" />
           <section>
             <div>
               Westfall <em>et al.</em> (2015) พบว่าคน<orange>คิดว่าสองฝั่งมีความแตกต่างกันมากกว่าความเป็นจริง</orange>
@@ -1206,12 +1258,12 @@ function App() {
                       {
                         hidden: false,
                         label: "ความแตกต่างที่คิด",
-                        data: getFragment(charts.current['perception-example']?.canvas) < 6 ? [[3, 3]] : [[2.180633, 4.314031]],
+                        data: getFragment(charts.current['perception-example']?.canvas) < 6 ? [Array(2).fill((2.180633 + 4.314031) / 2)] : [[2.180633, 4.314031]],
                         backgroundColor: chroma(styles.fourthColor).alpha(areaAlpha).hex(),
                       },
                       {
                         label: "ความแตกต่างจริง",
-                        data: getFragment(charts.current['perception-example']?.canvas) < 7 ? [[3, 3]] : [[2.985117, 3.854922]],
+                        data: getFragment(charts.current['perception-example']?.canvas) < 7 ? [Array(2).fill((2.985117 + 3.854922) / 2)] : [[2.985117, 3.854922]],
                         backgroundColor: chroma(styles.secondaryColor).alpha(areaAlpha).hex(),
                       }
                     ]
@@ -1299,7 +1351,7 @@ function App() {
           <section>
             <Perception
               ref={el => charts.current['perception-all'] = el}
-              highlightArray={[2, 8]}
+              highlightArray={[2]}
               style={{marginTop: '-1.5em'}}
             />
           </section>
@@ -1308,6 +1360,20 @@ function App() {
 
         <section>
           <SocialOutline n={4} />
+        </section>
+
+        <section>
+          <div className="vertical-center">
+            <div>
+              <h2>ปัจจัยที่สัมพันธ์กับความแตกแยก</h2>
+              <ol>
+                <li>ความสุดขั้ว</li>
+                <li>ความต่างวัย</li>
+                <li>ความมั่นคงในชีวิต</li>
+                <li>การพูดคุยแลกเปลี่ยนความคิดเห็น</li>
+              </ol>
+            </div>
+          </div>
         </section>
 
         <section>
@@ -1359,8 +1425,8 @@ function App() {
             <div>
               <h2>ผลการศึกษาที่สำคัญ</h2>
               <ol>
-                <li className="fragment fade-in-then-semi-out">ความสมานฉันท์ของสังคมไทยเป็นมิติที่เปราะบางที่สุดเทียบกับคุณภาพสังคมในมิติอื่น ๆ และเทียบกับกลุ่มประเทศรายได้ปานกลาง</li>
-                <li className="fragment fade-in-then-semi-out">ทุกกลุ่มในสังคมไทยมีความคิดต่าง โดยเฉพาะในกลุ่มอายุน้อยที่มีความคิดสุดขั้วมากกว่ากลุ่มอื่น ๆ</li>
+                <li className="fragment fade-in-then-semi-out">ความสมานฉันท์ของสังคมไทยเป็นมิติที่เปราะบางที่สุดเทียบกับคุณภาพสังคมในมิติอื่น ๆ</li>
+                <li className="fragment fade-in-then-semi-out">ทุกกลุ่มในสังคมไทยมีความคิดต่าง</li>
                 <li className="fragment fade-in-then-semi-out">ความคิดต่าง โดยเฉพาะแบบสุดขั้ว อาจนำไปสู่ความแตกแยก</li>
                 <li className="fragment">
                   ความต่างวัย และความไม่มั่นคงทางเศรษฐกิจ อาจนำไปสู่ความแตกแยกเพิ่มขึ้น<br />
@@ -1375,7 +1441,7 @@ function App() {
           <h2>คน "คิดต่าง" อาจไม่ได้ต่างอย่างที่คิด</h2>
           <Perception
             ref={el => charts.current['perception-close'] = el}
-            highlightArray={[2, 8]}
+            highlightArray={[6, 7, 8]}
             style={{marginTop: '-0.5em'}}
           />
         </section>
@@ -1389,11 +1455,19 @@ function App() {
         <section>
           <div className="vertical-center">
             <div>
-              <h1>เปิดใจ รับฟัง พูดคุย ร่วมมือ</h1>
-              <h2>"คิดต่าง อย่างมีภูมิ"</h2>
+              <h1>
+                เปิดใจ
+                <span className="fragment"> รับฟัง</span>
+                <span className="fragment"> พูดคุย</span>
+                <span className="fragment"> ร่วมมือ</span>
+              </h1>
+              <h2 className="fragment orange" style={{marginBottom: 0}}>"คิดต่าง อย่างมีภูมิ"</h2>
             </div>
           </div>
         </section>
+
+        {// phase ต่อไป?
+        }
         
       </div>
   );

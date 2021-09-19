@@ -5,15 +5,31 @@ import chroma from 'chroma-js'
 import styles from '../css/theme/source/_variables.module.scss'
 
 const areaAlpha = 0.75
+const countryList = ["ไทย", "อินโดนีเซีย", "มาเลเซีย", "ฟิลิปปินส์", "เวียดนาม"]
+const colorList = [
+  styles.secondaryColor,
+  ...chroma.brewer.Pastel2.slice(0, 4).map(c => chroma(c).alpha(0.8).hex())
+]
+
+export function ValueAddedLabel({}) {
+
+  return(
+    <div id="value-added-legend">
+      {
+        [...Array(5).keys()].map(i =>
+          <div>
+            <div className="va-line" style={{backgroundColor: colorList[i]}} />
+            <span className="va-legend">{countryList[i]}</span>
+          </div>
+        )
+      }
+    </div>
+  )
+
+}
 
 const ValueAdded = React.forwardRef(({ title, data, showTicks=true, ...rest }, ref) => {
 
-  const countryList = ["ไทย", "อินโดนีเซีย", "มาเลเซีย", "ฟิลิปปินส์", "เวียดนาม"]
-  const colorList = [
-    styles.secondaryColor,
-    ...chroma.brewer.Pastel2.slice(0, 4).map(c => chroma(c).alpha(0.8).hex())
-  ]
-  
   return(
     <Chart
       type="line"
@@ -32,7 +48,7 @@ const ValueAdded = React.forwardRef(({ title, data, showTicks=true, ...rest }, r
       }}
       options={{
         // maintainAspectRatio: true,
-        aspectRatio: 0.5,
+        aspectRatio: 0.6,
         layout: {
           padding: 0,
         },
@@ -71,6 +87,7 @@ const ValueAdded = React.forwardRef(({ title, data, showTicks=true, ...rest }, r
       {...rest}
     />
   )
+
 })
 
 export default ValueAdded

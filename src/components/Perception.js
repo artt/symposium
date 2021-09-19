@@ -12,6 +12,17 @@ const Perception = React.forwardRef(({ highlightArray=[], ...rest }, ref) => {
     return Array(9).fill(chroma(color).alpha(0.3).hex()).map((x, i) => highlightArray.includes(i) ? color : x)
   }
 
+  const x = highlightArray.map(i => {
+    return({
+      type: 'box',
+      yMin: i - 0.5,
+      yMax: i + 0.5,
+      backgroundColor: chroma('black').alpha(0.2).hex(),
+      borderColor: 'rgba(255, 255, 255, 0)',
+      drawTime: 'beforeDraw'
+    })
+  })
+
   return(
     <Chart
       type="bar"
@@ -70,6 +81,11 @@ const Perception = React.forwardRef(({ highlightArray=[], ...rest }, ref) => {
             }
           }
         },
+        plugins: {
+          annotation: {
+            annotations: x
+          }
+        }
       }}
       {...rest}
     />

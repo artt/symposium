@@ -63,9 +63,9 @@ const Coefficients = React.forwardRef(({ highlightArray=[], data, i, ...rest }, 
             annotations: {
               highlight: {
                 type: 'box',
-                yMin: ((highlightArray[0] === 0) && (i === 0)) ? 1.5 : highlightArray[0]-0.5,
-                yMax: ((highlightArray[0] === 0) && (i === 0)) ? 1.5 : highlightArray[highlightArray.length - 1] + 0.5,
-                backgroundColor: chroma(styles.fourthColor).alpha(0.2).hex(),
+                yMin: ((highlightArray[0] === 0) && (i === 0)) ? 1.5 : highlightArray[0] - 0.5,
+                yMax: ((highlightArray[0] === 0) && (i === 0)) ? 1.5 : highlightArray[highlightArray.length-1] + 0.5,
+                backgroundColor: chroma('black').alpha(0.2).hex(),
                 borderColor: 'rgba(255, 255, 255, 0)',
                 drawTime: 'beforeDraw'
               }
