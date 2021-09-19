@@ -36,7 +36,7 @@ import "./css/main.scss"
 
 const baseSize = parseInt(styles.baseSize.replace("px", ""))
 const areaAlpha = 0.75
-const politicalColors = chroma.scale(['orange', 'white', 'yellow']).colors(6)
+const politicalColors = chroma.scale(['orange', 'white', 'yellow'])
 
 const coefData = [
   {
@@ -52,6 +52,8 @@ const coefData = [
     data: [0.3459591, 0.5754136, -0.1405119, -0.3061428, -0.1909025, -0.4560134, 0.0107633, -0.2896076, 0.3828785, 1.081103]
   },
 ]
+
+const mediaData = [-5, 0, 4.7]
 
 merge(defaults, {
   color: styles.textColor,
@@ -804,7 +806,7 @@ function App() {
                 }
               }}
             />
-            <div className="note">ที่มา: ข้อมูลจาก World Value Survey รอบที่ 5–7</div>
+            <div className="note">ที่มา: ข้อมูลจาก World Values Survey รอบที่ 5–7</div>
           </section>
 				</section>
 
@@ -841,7 +843,7 @@ function App() {
               }
             }}
           />
-          <div className="note">ที่มา: ข้อมูลจาก World Value Survey รอบที่ 5–7</div>
+          <div className="note">ที่มา: ข้อมูลจาก World Values Survey รอบที่ 5–7</div>
         </section>
 
         <section>
@@ -904,7 +906,7 @@ function App() {
               }
             }}
           />
-          <div className="note">ที่มา: ข้อมูลจาก World Value Survey รอบที่ 5–7</div>
+          <div className="note">ที่มา: ข้อมูลจาก World Values Survey รอบที่ 5–7</div>
           <div class="fragment" />
         </section>
 
@@ -1086,7 +1088,7 @@ function App() {
               <div className="top">
                 สิทธิ<br />
                 เสรีภาพ<br />
-                สิทธิในการแสดงออก<br />
+                ความหลากหลาย<br />
                 ความเสมอภาค<br />
                 ความเท่าเทียม
               </div>
@@ -1104,7 +1106,7 @@ function App() {
                   datasets: [
                     {
                       data: [Array(6).fill(100), Array(6).fill(100), [545, 511, 370, 301, 184, 105]][getFragment(charts.current['extremity']?.canvas)],
-                      backgroundColor: politicalColors,
+                      backgroundColor: politicalColors.colors(6),
                     }
                   ]
                 }}
@@ -1299,8 +1301,8 @@ function App() {
                             type: 'point',
                             xValue: 2.985117,
                             yValue: " ",
-                            borderColor: politicalColors[0],
-                            backgroundColor: politicalColors[0],
+                            borderColor: politicalColors.colors(6)[0],
+                            backgroundColor: politicalColors.colors(6)[0],
                             borderWidth: 3,
                             display: getFragment(charts.current['perception-example']?.canvas) >= 2 && getFragment(charts.current['perception-example']?.canvas) < 8
                           },
@@ -1309,7 +1311,7 @@ function App() {
                             xValue: 4.314031,
                             yValue: " ",
                             backgroundColor: 'rgba(255, 255, 255, 0)',
-                            borderColor: politicalColors[5],
+                            borderColor: politicalColors.colors(6)[5],
                             borderWidth: 3,
                             borderDash: [5, 5],
                             display: getFragment(charts.current['perception-example']?.canvas) >= 3 && getFragment(charts.current['perception-example']?.canvas) < 8
@@ -1318,8 +1320,8 @@ function App() {
                             type: 'point',
                             xValue: 3.854922,
                             yValue: " ",
-                            borderColor: politicalColors[5],
-                            backgroundColor: politicalColors[5],
+                            borderColor: politicalColors.colors(6)[5],
+                            backgroundColor: politicalColors.colors(6)[5],
                             borderWidth: 3,
                             display: getFragment(charts.current['perception-example']?.canvas) >= 4 && getFragment(charts.current['perception-example']?.canvas) < 8
                           },
@@ -1328,7 +1330,7 @@ function App() {
                             xValue: 2.180633,
                             yValue: " ",
                             backgroundColor: 'rgba(255, 255, 255, 0)',
-                            borderColor: politicalColors[0],
+                            borderColor: politicalColors.colors(6)[0],
                             borderWidth: 3,
                             borderDash: [5, 5],
                             display: getFragment(charts.current['perception-example']?.canvas) >= 5 && getFragment(charts.current['perception-example']?.canvas) < 8
@@ -1385,7 +1387,25 @@ function App() {
           <section>
             <h2><orange>#5</orange> การบริโภคสื่อ</h2>
             <div id="media" className="fragment fade-out">
-              Bla bla bla
+              <h3>สื่อ เรียงลำดับตามความเป็นไปได้ที่คนแต่ละกลุ่มจะติดตาม</h3>
+              <Chart
+                type="bar"
+                ref={el => charts.current["media"] = el}
+                data={{
+                  labels: ["VoiceTV", "ThaiPublica", "Top News"],
+                  datasets: [
+                    {
+                      label: "x",
+                      data: mediaData,
+                      backgroundColor: mediaData.map(x => politicalColors((x + 8) / 16).hex()),
+                    },
+                  ]
+                }}
+                options={{
+                  indexAxis: 'y',
+                }}
+              />
+
             </div>
           </section>
           
@@ -1453,17 +1473,19 @@ function App() {
         </section>
 
         <section>
-          <div className="vertical-center">
-            <div>
-              <h1>
-                เปิดใจ
-                <span className="fragment"> รับฟัง</span>
-                <span className="fragment"> พูดคุย</span>
-                <span className="fragment"> ร่วมมือ</span>
-              </h1>
-              <h2 className="fragment orange" style={{marginBottom: 0}}>"คิดต่าง อย่างมีภูมิ"</h2>
+          <div style={{height: '9em'}} />
+          <section><h1 style={{fontSize: '3em'}}>เปิดใจ</h1></section>
+          <section><h1 style={{fontSize: '3em'}}>รับฟัง</h1></section>
+          <section><h1 style={{fontSize: '3em'}}>พูดคุย</h1></section>
+          <section><h1 style={{fontSize: '3em'}}>ร่วมมือ</h1></section>
+          <section>
+            <div className="vertical-center">
+              <div>
+                <h1>เปิดใจ รับฟัง พูดคุย ร่วมมือ</h1>
+                <h2 className="orange" style={{marginBottom: 0}}>"คิดต่าง อย่างมีภูมิ"</h2>
+              </div>
             </div>
-          </div>
+          </section>
         </section>
 
         {// phase ต่อไป?
