@@ -32,6 +32,12 @@ import picPassionFruit from './images/passion-fruit.png'
 import picFloodArea from './images/flood-area.png'
 import picFloodBiz from './images/flood-biz.png'
 
+import picGeopolitics from './images/geopolitics.png'
+import picTech from './images/tech.png'
+import picGlobalWarming from './images/global-warming.png'
+import picAging from './images/aging.png'
+import picCovid from './images/covid.png'
+
 import picVoiceTV from './images/media/voice-tv.png'
 import picPrachathai from './images/media/prachathai.png'
 import picTheStandard from './images/media/the-standard.png'
@@ -267,7 +273,10 @@ function App() {
                 </div>
               </div>
             </div>
-          </div>  
+          </div> 
+          <div className="note">
+            Flaticon.com
+          </div>
         </section>
 
         <section>
@@ -293,10 +302,42 @@ function App() {
               <h2>
                 Megatrends สำคัญ
               </h2>
-              <div style={{width: '50%', marginLeft: "auto", marginRight: "auto"}}>
-                <PicNursingHome />
+
+              <div id="megatrends">
+                <div className="trend">
+                  <img src={picGeopolitics} />
+                  <div>ภูมิรัฐศาสตร์</div>
+                  <div className="below">Geopolitics</div>
+                </div>
+                <div className="trend fragment">
+                  <img src={picTech} />
+                  <div>ความก้าวหน้าทางเทคโนโลยี</div>
+                  <div className="below">Technological advancement</div>
+                </div>
+                <div className="trend fragment">
+                  <img src={picGlobalWarming} />
+                  <div>ภาวะโลกร้อน</div>
+                  <div className="below">Global warming</div>
+                </div>
+                <div className="trend fragment">
+                  <img src={picAging} />
+                  <div>สังคมสูงอายุ</div>
+                  <div className="below">Aged society</div>
+                </div>
+                <div className="trend fragment">
+                  <img src={picCovid} />
+                  <div>แผลเป็นหลังโควิด</div>
+                  <div className="below">COVID-19 scar</div>
+                </div>
               </div>
+
+              {/* <div style={{width: '50%', marginLeft: "auto", marginRight: "auto"}}>
+                <PicNursingHome />
+              </div> */}
             </div>
+          </div>
+          <div className="note">
+            Flaticon.com
           </div>
 				</section>
 
@@ -415,7 +456,7 @@ function App() {
                   //   text: "สัดส่วนการส่งออกของไทยไปจีนและสหรัฐฯ",
                   // },
                   annotation: {
-                    annotations: [[8, 9], [0, 1, 8, 9]][getFragment(charts.current['exports-products']?.canvas)].map(x => (
+                    annotations: ([[8, 9], [0, 1, 8, 9]][getFragment(charts.current['exports-products']?.canvas)] || [8, 9]).map(x => (
                       {
                         type: 'box',
                         yMin: x - 0.5,
@@ -1260,6 +1301,9 @@ function App() {
               </div>
             </div>
           </div>
+          <div className="note">
+            Flaticon.com
+          </div>
         </section>
 
         <section>
@@ -1474,7 +1518,9 @@ function App() {
           </div>
           <div className="fragment" />
           <div className="fragment" />
-
+          <div className="note">
+            Flaticon.com
+          </div>
         </section>
 
         <section>

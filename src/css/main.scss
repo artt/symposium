@@ -270,3 +270,24 @@
 
   
 }
+
+#megatrends {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+  .trend {
+    flex-basis: 500px;
+    // flex-grow: 1;
+  }
+  img {
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    display: block;
+  }
+  .below {
+    font-size: 0.8em;
+    color: $secondary-color;
+  }
+}
