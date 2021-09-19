@@ -76,6 +76,8 @@ import "../node_modules/reveal.js/dist/reveal.css"
 import "./css/theme/source/pier-dark.scss"
 import "./css/main.scss"
 
+const queryString = require('query-string');
+
 const baseSize = parseInt(styles.baseSize.replace("px", ""))
 const areaAlpha = 0.75
 const politicalColors = chroma.scale(['orange', 'white', 'yellow'])
@@ -188,6 +190,8 @@ function App() {
   }
 
   React.useEffect(() => {
+    // const params = new URLSearchParams(window.location.search)
+    const opts = queryString.parse(window.location.search, {parseBooleans: true})
     setScale()
     deck.current = new Reveal({
       // plugins: [ Markdown ],
@@ -197,6 +201,7 @@ function App() {
       height: _H,
       margin: 0.2,
       disableLayout: true,
+      ...opts
     })
     deck.current.addEventListener('slidechanged', handleSlideChanged)
     deck.current.addEventListener('fragmentshown', updateFragment)
