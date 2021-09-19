@@ -9,7 +9,7 @@ const areaAlpha = 0.75
 const Coefficients = React.forwardRef(({ highlightArray=[], data, i, ...rest }, ref) => {
 
   function alpharize(color) {
-    return Array(10).fill(chroma(color).alpha(0.3).hex()).map((x, i) => highlightArray.includes(i) ? color : x)
+    return Array(12).fill(chroma(color).alpha(0.3).hex()).map((x, i) => highlightArray.includes(i) ? color : x)
   }
 
   const barColors = 

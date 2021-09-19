@@ -23,13 +23,47 @@ import picInternet from './images/world.png'
 import picThailand from './images/thailand.png'
 import picFamily from './images/people.png'
 import picTrend from './images/trend.png'
-import picSocialQuality from './images/social-quality.png'
 import picDemographics from './images/demographics.png'
+import picSocialQuality from './images/social-quality.png'
+import picOpinions from './images/opinions.png'
 import picSocialMedia from './images/social-media.png'
 import picBanana from './images/banana.png'
 import picPassionFruit from './images/passion-fruit.png'
 import picFloodArea from './images/flood-area.png'
 import picFloodBiz from './images/flood-biz.png'
+
+import picVoiceTV from './images/media/voice-tv.png'
+import picPrachathai from './images/media/prachathai.png'
+import picTheStandard from './images/media/the-standard.png'
+import picMatichon from './images/media/matichon.png'
+import picTheReporters from './images/media/the-reporters.jpg'
+import picBBCThai from './images/media/bbc-thai.png'
+import picKhaosod from './images/media/khaosod.png'
+import picTheMatter from './images/media/the-matter.png'
+import picBangkokPost from './images/media/bangkok-post.png'
+import picWorkpoint from './images/media/workpoint.png'
+import picTheMomentum from './images/media/the-momentum.png'
+import picAmarinTv from './images/media/amarin-tv.jpg'
+import picNew18 from './images/media/new-18.png'
+import picSpringNews from './images/media/spring-news.jpg'
+import pic101World from './images/media/101-world.png'
+import picKom from './images/media/kom.jpg'
+import picPPTV36 from './images/media/pptv-36.jpg'
+import picDailyNews from './images/media/daily-news.jpg'
+import picThaipbs from './images/media/thaipbs.png'
+import picThairath from './images/media/thairath.jpg'
+import picPrachachat from './images/media/prachachat.jpg'
+import picBluesky from './images/media/bluesky.png'
+import picNaewna from './images/media/naewna.png'
+import picThaipublica from './images/media/thaipublica.jpg'
+import picCh3 from './images/media/ch-3.png'
+import picTNN16 from './images/media/tnn-16.png'
+import picIsraNews from './images/media/isranews.png'
+import picThaiPost from './images/media/thaipost.jpg'
+import picMCOT from './images/media/mcot.png'
+import picNation from './images/media/nation.png'
+import picManager from './images/media/manager.png'
+import picTopNews from './images/media/top-news.png'
 
 import styles from './css/theme/source/_variables.module.scss'
 import "../node_modules/reveal.js/dist/reveal.css"
@@ -56,7 +90,8 @@ const coefData = [
 ]
 
 const mediaData = [-5.68, -5.41, -4.94, -4.34, -4.25, -4.14, -2.29, -1.95, -1.02, -0.95, -0.85, -0.62, -0.47, -0.06, 0.09, 0.26, 0.53, 0.62, 0.71, 0.81, 0.94, 1.06, 1.07, 1.17, 1.38, 1.44, 1.53, 1.58, 1.97, 2.58, 4.74, 7.77]
-const mediaLabel = ["VoiceTV", "ประชาไท", "The Standard", "มติชน", "The Reporter", "BBC Thai", "ข่าวสด", "The Matter", "Bangkok Post", "Workpoint", "The Momentum", "AmarinTV", "News18", "Spring News", "The 101.World", "คมชัดลึก", "PPTV", "เดลินิวส์", "ThaiPBS", "ไทยรัฐ", "ประชาชาติ", "BLUESKY", "แนวหน้า", "ThaiPublica", "ช่อง 3", "TNN", "สำนักข่าวอิศรา", "ไทยโพสต์", "อสมท.", "Nation", "ผู้จัดการ", "Top News"]
+const mediaLabel = ["VoiceTV", "ประชาไท", "The Standard", "มติชน", "The Reporter", "BBC Thai", "ข่าวสด", "The Matter", "Bangkok Post", "Workpoint", "The Momentum", "AmarinTV", "New18", "Spring News", "The 101.World", "คมชัดลึก", "PPTV", "เดลินิวส์", "ThaiPBS", "ไทยรัฐ", "ประชาชาติ", "BLUESKY", "แนวหน้า", "ThaiPublica", "ช่อง 3", "TNN", "สำนักข่าวอิศรา", "ไทยโพสต์", "อสมท.", "Nation", "ผู้จัดการ", "Top News"]
+const mediaLogo = [picVoiceTV, picPrachathai, picTheStandard, picMatichon, picTheReporters, picBBCThai, picKhaosod, picTheMatter, picBangkokPost, picWorkpoint, picTheMomentum, picAmarinTv, picNew18, picSpringNews, pic101World, picKom, picPPTV36, picDailyNews, picThaipbs, picThairath, picPrachachat, picBluesky, picNaewna, picThaipublica, picCh3, picTNN16, picIsraNews, picThaiPost, picMCOT, picNation, picManager, picTopNews]
 
 merge(defaults, {
   color: styles.textColor,
@@ -134,7 +169,7 @@ function App() {
       event.currentSlide.querySelectorAll('.present:not(.stack) .note').forEach(n => {
         n.classList.add('show')
       })
-    }, 500)
+    }, 1000)
   }
 
   const _W = 1920
@@ -328,6 +363,7 @@ function App() {
                 }
               }}
             />
+            <div className="note"><strong>ที่มา</strong>: ธนาคารแห่งประเทศไทย คำนวณโดยคณะผู้วิจัย</div>
           </section>
           <section>
             <div>
@@ -394,7 +430,9 @@ function App() {
               }}
             />
             <div className="fragment" />
-            <div className="note"><strong>ที่มา</strong>: ธนาคารแห่งประเทศไทย ITC Trademap คำนวณโดยคณะผู้วิจัย</div>
+            <div className="note">
+              <strong>ที่มา</strong>: ITC Trademap คำนวณโดยคณะผู้วิจัย
+            </div>
           </section>
 
           <section>
@@ -474,6 +512,14 @@ function App() {
                         drawTime: "beforeDatasetsDraw",
                         borderWidth: 0,
                         backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                      },
+                      covid: {
+                        type: 'box',
+                        xMin: "Feb-20",
+                        xMax: "Jul-21",
+                        drawTime: "beforeDatasetsDraw",
+                        borderWidth: 0,
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
                       }
                     }
                   },
@@ -492,6 +538,11 @@ function App() {
                       boat: {
                         text: 'เหตุการณ์เรือล่ม',
                         x: 775,
+                        y: 35,
+                      },
+                      covid: {
+                        text: 'วิกฤตโควิด-19',
+                        x: 1110,
                         y: 35,
                       },
                     }
@@ -596,6 +647,9 @@ function App() {
                 }
               }}
             /> */}
+            <div className="note">
+              <strong>ที่มา</strong>: กระทรวงการท่องเที่ยวและกีฬา คำนวณโดยคณะผู้วิจัย
+            </div>
           </section>
           {/* <section>
             <div>
@@ -727,7 +781,9 @@ function App() {
               />
             </div>
             <ValueAddedLabel />
-
+            <div className="note">
+              <strong>ที่มา</strong>: ธนาคารแห่งประเทศไทย คำนวณโดยคณะผู้วิจัย
+            </div>
           </section>
 
           <section>
@@ -774,7 +830,9 @@ function App() {
               }}
             />
             <div class="fragment" />
-
+            <div className="note">
+              <strong>ที่มา</strong>: รายงานผลการสำรวจพฤติกรรมผู้ใช้อินเทอร์เน็ตในประเทศไทย ปี 2563 สำนักงานพัฒนาธุรกรรมทางอิเล็กทรอนิกส์
+            </div>
           </section>
 
         </section>
@@ -802,6 +860,9 @@ function App() {
           </div>
           <div className="fragment" />
           <div className="fragment" />
+          <div className="note">
+            <strong>ที่มา</strong>: Climate Central, สำมะโนอุตสาหกรรม ปี 2560 คำนวณโดยธนาคารแห่งประเทศไทย
+          </div>
         </section>
 
         <section>
@@ -846,6 +907,9 @@ function App() {
                 femaleForeign: [110226, 96483, 80600, 55819, 27738, 14753, 5430, 715, 178],
               }}
             />
+          </div>
+          <div className="note">
+            <strong>ที่มา</strong>: สำนักงานประกันสังคม คำนวณโดยธนาคารแห่งประเทศไทย
           </div>
         </section>
 
@@ -954,7 +1018,7 @@ function App() {
                       stacked: true,
                       title: {
                         display: true,
-                        text: "สัดส่วนผู้กู้ที่ค้างชำระหนี้เกิน 90 วัน (%)"
+                        text: "สัดส่วนผู้กู้ที่ค้างชำระเกิน 90 วัน (%)"
                       },
                     },
                     x: {
@@ -971,6 +1035,9 @@ function App() {
               />
             </div>
           </split>
+          <div className="note">
+            <strong>ที่มา</strong>: ข้อมูลเชิงสถิติจากเครดิตบูโร คำนวณโดยคณะผู้วิจัย
+          </div>
         </section>
 
 
@@ -1049,7 +1116,7 @@ function App() {
                 }
               }}
             />
-            <div className="note">ที่มา: ข้อมูลจาก World Values Survey รอบที่ 5–7</div>
+            <div className="note"><strong>ที่มา</strong>: ข้อมูลจาก World Values Survey และ World Bank คำนวณโดยคณะผู้วิจัย</div>
           </section>
 				</section>
 
@@ -1090,7 +1157,7 @@ function App() {
               }
             }}
           />
-          <div className="note">ที่มา: ข้อมูลจาก World Values Survey รอบที่ 5–7</div>
+          <div className="note"><strong>ที่มา</strong>: ข้อมูลจาก World Values Survey รอบที่ 5–7</div>
         </section>
 
         <section>
@@ -1153,7 +1220,7 @@ function App() {
               }
             }}
           />
-          <div className="note">ที่มา: ข้อมูลจาก World Values Survey รอบที่ 5–7</div>
+          <div className="note"><strong>ที่มา</strong>: ข้อมูลจาก World Values Survey รอบที่ 5–7</div>
           <div class="fragment" />
         </section>
 
@@ -1182,6 +1249,10 @@ function App() {
               <div className="fragment">
                 <img src={picSocialQuality} className="center" style={{display: 'block'}} />
                 <div className="small">Social Quality</div>
+              </div>
+              <div className="fragment">
+                <img src={picOpinions} className="center" style={{display: 'block'}} />
+                <div className="small">Values & Opinions</div>
               </div>
               <div className="fragment">
                 <img src={picSocialMedia} className="center" style={{display: 'block'}} />
@@ -1650,12 +1721,23 @@ function App() {
               <div id="media-scale">
                 {
                   mediaData.map((data, i) => (
-                    <div className="media-box" style={{backgroundColor: politicalColors((data + 8) / 16).hex()}}>
-                      <div className="media-text">{mediaLabel[i]}</div>
+                    <div className="media-box">
+                      <div style={{height: `${Math.abs(data)*30}px`, backgroundColor: politicalColors((data + 8) / 16).hex()}} />
+                      <img className="media-logo" src={mediaLogo[i]} />
                     </div>
                   ))
                 }
               </div>
+              <split>
+                <div>
+                  <h3 className="orange">Echo chamber</h3>
+                  <p>สัดส่วนของสื่อที่ติดตามที่คนกลุ่มเดียวกันติดตาม</p>
+                </div>
+                <div>
+                  <h3 className="orange">Media entropy</h3>
+                  <p>ความหลากหลายของสื่อที่ติดตาม</p>
+                </div>
+              </split>
               {/* <Chart
                 type="bar"
                 height={200}
