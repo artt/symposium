@@ -369,7 +369,7 @@ function App() {
                   x: {
                     title: {
                       display: true,
-                      text: "สัดส่วนมูลค่าการส่งออก (%)"
+                      text: "สัดส่วนมูลค่าการส่งออกในหมวดสินค้านั้น ๆ (%)"
                     }
                   }
                 },
@@ -378,9 +378,22 @@ function App() {
                   //   display: true,
                   //   text: "สัดส่วนการส่งออกของไทยไปจีนและสหรัฐฯ",
                   // },
+                  annotation: {
+                    annotations: [[8, 9], [0, 1, 8, 9]][getFragment(charts.current['exports-products']?.canvas)].map(x => (
+                      {
+                        type: 'box',
+                        yMin: x - 0.5,
+                        yMax: x + 0.5,
+                        backgroundColor: chroma('white').alpha(0.2).hex(),
+                        borderColor: 'rgba(255, 255, 255, 0)',
+                        drawTime: 'beforeDraw'
+                      }
+                    ))
+                  }
                 }
               }}
             />
+            <div className="fragment" />
             <div className="note"><strong>ที่มา</strong>: ธนาคารแห่งประเทศไทย ITC Trademap คำนวณโดยคณะผู้วิจัย</div>
           </section>
 
@@ -780,9 +793,9 @@ function App() {
           </div>
           <div id="flood-container" className={`frag${getFragment(document.getElementById("flood-container"))}`}>
             <div id="flood-data">
-              <div className="more">มากกว่า</div><div className="num">30%</div><div className="bottom">ของแรงงานนอกภาคเกษตร</div>
-              <div className="more">มากกว่า</div><div className="num">20%</div><div className="bottom">ของจำนวนสถานประกอบการ</div>
-              <div className="more">มากกว่า</div><div className="num">10%</div><div className="bottom">ของธุรกิจในอุตสาหกรรมส่งออกหลัก</div>
+              <div><div className="more">มากกว่า</div><div className="num">30%</div><div className="bottom">ของแรงงานนอกภาคเกษตร</div></div>
+              <div><div className="more">มากกว่า</div><div className="num">20%</div><div className="bottom">ของจำนวนสถานประกอบการ</div></div>
+              <div><div className="more">มากกว่า</div><div className="num">10%</div><div className="bottom">ของธุรกิจในอุตสาหกรรมส่งออกหลัก</div></div>
             </div>
             <img src={picFloodArea} id="flood-area" />
             <img src={picFloodBiz} id="flood-biz" />
@@ -848,6 +861,116 @@ function App() {
             ครัวเรือนไทยเริ่มผิดนัดชำระหนี้ และมีหนี้เสียเป็นวงกว้าง<br />
             โดยเฉพาะกลุ่มผู้กู้อายุน้อย ซึ่งมีหนี้เร็วและมีสัดส่วนผู้กู้ที่มีหนี้เสียมากอยู่แล้วก่อนวิกฤต
           </div>
+          <split>
+            <div>
+            <Chart
+                type="line"
+                width="100%"
+                height={200}
+                ref={el => charts.current['debt-time'] = el}
+                data={{
+                  labels: ["2019Q1", "2019Q2", "2019Q3", "2019Q4", "2020Q1", "2020Q2", "2020Q3", "2020Q4", "2021Q1", "2021Q2"],
+                  datasets: [
+                    {
+                      data: [270590, 226722, 230139, 269892, 300600, 148902, 246712, 375870, 485447, 414478],
+                      label: "เริ่มค้างชำระเกิน 30 วัน",
+                      tension: 0.4,
+                      backgroundColor: chroma('yellow').saturate(0).brighten(-0.5).alpha(areaAlpha*0.7).hex(),
+                      borderColor: chroma('yellow').saturate(0).brighten(-0.5).alpha(areaAlpha*0.7).hex(),
+                      fill: true,
+                    },
+                    {
+                      data: [116539, 188692, 159448, 166203, 151044, 95208, 147564, 160150, 224416, 293584],
+                      label: "เริ่มค้างชำระเกิน 60 วัน",
+                      tension: 0.4,
+                      backgroundColor: chroma('orange').saturate(0).brighten(-0.5).alpha(areaAlpha*0.7).hex(),
+                      borderColor: chroma('orange').saturate(0).brighten(-0.5).alpha(areaAlpha*0.7).hex(),
+                      fill: true,
+                    },
+                    {
+                      data: [99443, 286083, 199731, 172685, 128786, 87597, 87027, 127230, 167354, 252879],
+                      label: "เริ่มค้างชำระเกิน 90 วัน",
+                      tension: 0.4,
+                      backgroundColor: chroma('red').saturate(0).brighten(-0.5).alpha(areaAlpha*0.7).hex(),
+                      borderColor: chroma('red').saturate(0).brighten(-0.5).alpha(areaAlpha*0.7).hex(),
+                      fill: true,
+                    },
+                  ]
+                }}
+                options={{
+                  layout: {
+                    padding: 0,
+                  },
+                  radius: 0,
+                  scales: {
+                    y: {
+                      stacked: true,
+                      title: {
+                        display: true,
+                        text: "จำนวนผู้กู้ (คน)"
+                      },
+                    },
+                    x: {
+                      stacked: true,
+                    }
+                  },
+                  plugins: {
+                    // title: {
+                    //   display: true,
+                    //   text: "สัดส่วนการส่งออกของไทยไปจีนและสหรัฐฯ",
+                    // },
+                  }
+                }}
+              />
+            </div>
+            <div>
+              <Chart
+                type="bar"
+                width="100%"
+                height={200}
+                ref={el => charts.current['debt-age'] = el}
+                data={{
+                  labels: ["< 30", "30–34", "35–40", "41–44", "45–50", "51–54", "55–60", "> 60"],
+                  datasets: [
+                    {
+                      data: [0.1635731, 0.1742387, 0.1722372, 0.1623036, 0.1486334, 0.1371109, 0.1249853, 0.1181232].map(x => x * 100),
+                      label: "ก่อนโควิด-19",
+                      backgroundColor: chroma(styles.fourthColor).alpha(areaAlpha).hex(),
+                    },
+                    {
+                      data: [0.0588485, 0.0624361, 0.0555808, 0.0466168, 0.036707, 0.0287787, 0.0239221, 0.0152312].map(x => x * 100),
+                      label: "เพิ่มช่วงโควิด-19",
+                      backgroundColor: chroma(styles.secondaryColor).alpha(areaAlpha).hex(),
+                    },
+                  ]
+                }}
+                options={{
+                  layout: {
+                    padding: 0,
+                  },
+                  radius: 0,
+                  scales: {
+                    y: {
+                      stacked: true,
+                      title: {
+                        display: true,
+                        text: "สัดส่วนผู้กู้ที่ค้างชำระหนี้เกิน 90 วัน (%)"
+                      },
+                    },
+                    x: {
+                      stacked: true,
+                    }
+                  },
+                  plugins: {
+                    // title: {
+                    //   display: true,
+                    //   text: "สัดส่วนการส่งออกของไทยไปจีนและสหรัฐฯ",
+                    // },
+                  }
+                }}
+              />
+            </div>
+          </split>
         </section>
 
 

@@ -219,26 +219,31 @@
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
-    transition-duration: 3s;
+    transition-duration: 2s;
+    border-radius: 40px;
   }
   #flood-biz {
     opacity: 0;
     mix-blend-mode: darken;
   }
   #flood-data {
+    > div {
+      margin: 0.4em 0;
+    }
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
-    transition-duration: 3s;
+    transition-duration: 2s;
     .more {
       font-size: 0.6em;
+      color: $secondary-color;
     }
     .num {
       font-size: 2em;
       color: $secondary-color;
-      margin: -20px 0;
+      margin: -20px 0 -25px 0;
     }
     .bottom {
       font-size: 0.7em;
@@ -253,7 +258,6 @@
   &.frag2 {
     #flood-biz {
       transform: translateX(50%);
-      // mix-blend-mode: normal;
       opacity: 1;
     }
     #flood-area {
