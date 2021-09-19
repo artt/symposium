@@ -41,19 +41,20 @@ const politicalColors = chroma.scale(['orange', 'white', 'yellow'])
 const coefData = [
   {
     title: "ความสุดขั้ว", 
-    data: [0, 0, -0.2205991, -0.6915629, -0.4377571, -1.58721, -0.4587052, 0.0399224, -0.0624773, 2.305114]
+    data: [0, 0, 0, 0, -0.2205991, -0.6915629, -0.4377571, -1.58721, -0.4587052, 0.0399224, -0.0624773, 2.305114]
   },
   {
     title: "ความรู้สึกไม่ดีต่อฝั่งตรงข้าม",
-    data: [-3.168377, -6.185956, -4.332496, -5.34668, -7.804648, 9.998635, 5.958668, 3.164143, 4.615053, -12.45545]
+    data: [0, -3.168377, -6.185956, 0, -4.332496, -5.34668, -7.804648, 9.998635, 5.958668, 3.164143, 4.615053, -12.45545]
   },
   {
     title: "ความคิดว่าต่างมากเกินจริง",
-    data: [0.3459591, 0.5754136, -0.1405119, -0.3061428, -0.1909025, -0.4560134, 0.0107633, -0.2896076, 0.3828785, 1.081103]
+    data: [0, 0.3459591, 0.5754136, 0, -0.1405119, -0.3061428, -0.1909025, -0.4560134, 0.0107633, -0.2896076, 0.3828785, 1.081103]
   },
 ]
 
-const mediaData = [-5, 0, 4.7]
+const mediaData = [-5.68, -5.41, -4.94, -4.34, -4.25, -4.14, -2.29, -1.95, -1.02, -0.95, -0.85, -0.62, -0.47, -0.06, 0.09, 0.26, 0.53, 0.62, 0.71, 0.81, 0.94, 1.06, 1.07, 1.17, 1.38, 1.44, 1.53, 1.58, 1.97, 2.58, 4.74, 7.77]
+const mediaLabel = ["VoiceTV", "ประชาไท", "The Standard", "มติชน", "The Reporter", "BBC Thai", "ข่าวสด", "The Matter", "Bangkok Post", "Workpoint", "The Momentum", "AmarinTV", "News18", "Spring News", "The 101.World", "คมชัดลึก", "PPTV", "เดลินิวส์", "ThaiPBS", "ไทยรัฐ", "ประชาชาติ", "BLUESKY", "แนวหน้า", "ThaiPublica", "ช่อง 3", "TNN", "สำนักข่าวอิศรา", "ไทยโพสต์", "อสมท.", "Nation", "ผู้จัดการ", "Top News"]
 
 merge(defaults, {
   color: styles.textColor,
@@ -124,6 +125,14 @@ function App() {
         }
       })
     }, 0)
+    document.querySelectorAll('.note').forEach(n => {
+      n.classList.remove('show')
+    })
+    setTimeout(() => {
+      event.currentSlide.querySelectorAll('.present:not(.stack) .note').forEach(n => {
+        n.classList.add('show')
+      })
+    }, 500)
   }
 
   const _W = 1920
@@ -349,12 +358,13 @@ function App() {
                 ]
               }}
               options={{
+                indexAxis: 'y',
                 layout: {
                   padding: 0,
                 },
                 radius: 0,
                 scales: {
-                  y: {
+                  x: {
                     title: {
                       display: true,
                       text: "สัดส่วนมูลค่าการส่งออก (%)"
@@ -610,11 +620,11 @@ function App() {
 
           <section>
             <div className="orange">
-              ตัวอย่างความเปราะบางของการพึ่งพา platform ต่างประเทศ
+              ตัวอย่างความเปราะบางของการพึ่งพาแพลตฟอร์มต่างประเทศ
             </div>
             <div className="spacer" />
             <div>
-              คนไทยพึ่งพา platform ต่างประเทศในการซื้อสินค้าและบริการสูงมาก
+              คนไทยพึ่งพาแพลตฟอร์มต่างประเทศในการซื้อสินค้าและบริการสูงมาก
             </div>
             <Chart
               type="bar"
@@ -739,7 +749,7 @@ function App() {
         <section>
           <div className="vertical-center">
             <h1>
-              แต่ประเด็นทางเศรษฐกิจ<br />
+              …แต่ประเด็นทางเศรษฐกิจ<br />
               ไม่ได้เป็นความเปราะบางเพียงอย่างเดียว<br />
               <orange>ต้องพิจารณาประเด็นทางสังคมควบคู่ไปด้วย</orange>
             </h1>
@@ -756,7 +766,7 @@ function App() {
             <div id="cohesion">
               <div className="circle inequality">ความเหลื่อมล้ำ</div>
               <div className="circle cohesion">ความสมานฉันท์</div>
-              <div className="fragment arrow-pointer arrow-pointer-right">Easterly <em>et al.</em> (2006)</div>
+              <div className="fragment arrow-pointer arrow-pointer-right"><span>Easterly <em>et al.</em> (2006)</span></div>
               <div className="fragment arrow-pointer arrow-pointer-left">Sommon (2019)</div>
             </div>
           </section>
@@ -829,6 +839,10 @@ function App() {
             options={{
               scales: {
                 y: {
+                  title: {
+                    display: true,
+                    text: "คะแนน"
+                  }
                   // max: 100,
                 },
               },
@@ -895,7 +909,7 @@ function App() {
               plugins: {
                 title: {
                   display: true,
-                  text: "ความคิดทางการเมืองจาก World Values Survey",
+                  text: "ทัศนคติทางการเมืองจาก World Values Survey",
                 },
                 legend: {
                   labels: {
@@ -919,7 +933,7 @@ function App() {
             <ul>
               <li>ความสมานฉันท์ในสังคมไทย</li>
               <li>ความ "คิดต่าง" ในสังคมไทย</li>
-              <li>ความคิดต่าง กับความแตกแยก</li>
+              <li>ความคิดต่างกับความแตกแยก</li>
               <li>ปัจจัยที่สัมพันธ์กับความแตกแยก</li>
             </ul>
           </div>
@@ -929,12 +943,12 @@ function App() {
             <p>สิงหาคม–กันยายน 2564 หลากหลายกลุ่มเศรษฐกิจและสังคม</p>
             <div className="flex center" style={{height: '5em', width: '50%'}}>
               <div className="fragment">
-                <img src={picSocialQuality} className="center" style={{display: 'block'}} />
-                <div className="small">Social Quality</div>
-              </div>
-              <div className="fragment">
                 <img src={picDemographics} className="center" style={{display: 'block'}} />
                 <div className="small">Demographics</div>
+              </div>
+              <div className="fragment">
+                <img src={picSocialQuality} className="center" style={{display: 'block'}} />
+                <div className="small">Social Quality</div>
               </div>
               <div className="fragment">
                 <img src={picSocialMedia} className="center" style={{display: 'block'}} />
@@ -952,20 +966,11 @@ function App() {
           <div>
             <ul>
               <li>ผู้ตอบแบบสอบถาม 2,016 ราย (Phase I)</li>
-              <li>จากข้อจำกัดด้านเวลาและสถานการณ์โควิด กลุ่มตัวอย่างที่ได้ มีกลุ่มอายุวัยกลางคน กลุ่มคนกรุงเทพฯ และระดับการศึกษาสูง สูงกว่าโครงสร้างประชากรไทย</li>
+              <li>จากข้อจำกัดด้านเวลาและสถานการณ์โควิด กลุ่มตัวอย่างที่ได้ มีกลุ่มอายุวัยกลางคน กลุ่มคนกรุงเทพฯ และรายได้ สูงกว่าโครงสร้างประชากรไทย</li>
             </ul>
           </div>
           
 
-          <section>
-            <ComparePop
-              ref={el => charts.current['survey-area'] = el}
-              groups={["นอกเขตเทศบาล", "ในเขตเทศบาล", "กรุงเทพฯ"]}
-              pop={[0.563505023, 0.313015343, 0.123479635]}
-              sample={[0.159067882, 0.242654509, 0.598277609]}
-              title="พื้นที่"
-            />
-          </section>
           <section>
             <ComparePop
               ref={el => charts.current['survey-age'] = el}
@@ -977,14 +982,23 @@ function App() {
           </section>
           <section>
             <ComparePop
+              ref={el => charts.current['survey-area'] = el}
+              groups={["นอกเขตเทศบาล", "ในเขตเทศบาล", "กรุงเทพฯ"]}
+              pop={[0.563505023, 0.313015343, 0.123479635]}
+              sample={[0.159067882, 0.242654509, 0.598277609]}
+              title="พื้นที่"
+            />
+          </section>
+          <section>
+            <ComparePop
               ref={el => charts.current['survey-income'] = el}
-              groups={["น้อยกว่า 10,000", "10,000–25,000", "25,001–50,000", "50,001–80,000", "80,001–120,000", "120,001–200,000", "200,001–500,000", "มากกว่า 500,000"]}
+              groups={["< 10,000", "10,000–25,000", "25,001–50,000", "50,001–80,000", "80,001–120,000", "120,001–200,000", "200,001–500,000", "> 500,000"]}
               pop={[0.154819513, 0.405666645, 0.251476368, 0.103813561, 0.044534863, 0.024262061, 0.011692634, 0.003734356]}
               sample={[0.032928065, 0.095744681, 0.166666667, 0.151975684, 0.151469098, 0.138804458, 0.168693009, 0.093718338]}
               title="รายได้"
             />
           </section>
-          <section>
+          {/* <section>
             <ComparePop
               ref={el => charts.current['survey-occupation'] = el}
               groups={["ธุรกิจส่วนตัว/รับจ้าง", "ข้าราชการ", "นักเรียน", "ทำงานที่บ้าน", "พนักงานเอกชน ", "เกษียณ/ว่างงาน"]}
@@ -992,7 +1006,7 @@ function App() {
               sample={[0.240894901, 0.277835588, 0.041623309, 0.036940687, 0.294484912, 0.108220604]}
               title="อาชีพ"
             />
-          </section>
+          </section> */}
 
         </section>
 
@@ -1029,10 +1043,10 @@ function App() {
                   label: "ค่าเฉลี่ยของกลุ่มตัวอย่าง",
                   data: [78.01819, 72.15211, 51.61855, 48.9426, 43.25326, 33.90756, 30.442, 72.68779, 64.38076, 60.83162],
                   backgroundColor: [
-                    ...Array(2).fill(chroma(chroma.brewer.Pastel2[0]).alpha(0.3*areaAlpha).hex()),
-                    ...Array(2).fill(chroma(chroma.brewer.Pastel2[1]).alpha(0.3*areaAlpha).hex()),
+                    ...Array(2).fill(chroma(chroma.brewer.Pastel1[0]).saturate(0.4).alpha(0.3*areaAlpha).hex()),
+                    ...Array(2).fill(chroma(chroma.brewer.Pastel1[1]).saturate(0.4).alpha(0.3*areaAlpha).hex()),
                     ...Array(3).fill(chroma(styles.secondaryColor).alpha(areaAlpha).hex()),
-                    ...Array(3).fill(chroma(chroma.brewer.Pastel2[2]).alpha(0.3*areaAlpha).hex()),
+                    ...Array(3).fill(chroma(chroma.brewer.Pastel1[2]).saturate(0.4).alpha(0.3*areaAlpha).hex()),
                   ],
                 }
               ]
@@ -1042,6 +1056,10 @@ function App() {
               scales: {
                 x: {
                   max: 100,
+                  title: {
+                    display: true,
+                    text: "ดัชนี"
+                  }
                 },
                 y: {
                   ticks: {
@@ -1093,7 +1111,7 @@ function App() {
                 ความเท่าเทียม
               </div>
               <p>
-                ให้ความสำคัญกับหลักสิทธิเสรีภาพและความเสมอภาคภายใต้ความหลากหลายในสังคม เช่น สิทธิในการแสดงออก การยกระดับคุณภาพชีวิตของคนในสังคมให้เท่าเทียมกันมากขึ้น เป็นต้น
+                ให้ความสำคัญกับหลักสิทธิเสรีภาพและความเสมอภาค<span className="nobreak">ภายใต้</span>ความหลากหลายในสังคม เช่น สิทธิในการแสดงออก <span className="nobreak">การยกระดับ</span>คุณภาพชีวิตของคนในสังคมให้เท่าเทียมกัน<span className="nobreak">มากขึ้น</span> เป็นต้น
               </p>
             </div>
             <div className="chart-container">
@@ -1117,7 +1135,11 @@ function App() {
                       max: 600,
                       ticks: {
                         color: ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0)', styles.textColor][getFragment(charts.current['extremity']?.canvas)],
-                      }
+                      },
+                      title: {
+                        display: true,
+                        text: getFragment(charts.current['extremity']?.canvas) === 2 ? "จำนวน (ราย)" : "",
+                      },
                     },
                   },
                   plugins: {
@@ -1138,11 +1160,11 @@ function App() {
                 ประเพณีนิยม<br />
                 ศีลธรรมอันดีงาม<br />
                 ความเป็นหนึ่งเดียว<br />
-                ความมั่นคงในชีวิต<br />
-                การเคารพผู้อาวุโส
+                การเคารพผู้อาวุโส<br />
+                ความมั่นคงในชีวิต
               </div>
               <p>
-                ให้ความสำคัญกับความเป็นอันหนึ่งอันเดียวกันในสังคม ความมั่นคงในชีวิต และประเพณีนิยม เช่น ศีลธรรมอันดีงาม การสืบทอดจารีตประเพณี การเคารพผู้อาวุโส
+                ให้ความสำคัญกับความเป็นอันหนึ่งอันเดียวกันในสังคม <span className="nobreak">ความมั่นคงในชีวิต</span> และประเพณีนิยม เช่น ศีลธรรมอันดีงาม <span className="nobreak">การสืบทอดจารีตประเพณี</span> <span className="nobreak">การเคารพผู้อาวุโส</span>
               </p>
             </div>
           </div>
@@ -1169,7 +1191,7 @@ function App() {
               height={180}
               ref={el => charts.current['social-divide-1'] = el}
               data={{
-                labels: ["ความเห็นอกเห็นใจ (ช่วยว่าความให้หากเป็นทนาย)", "ความชอบ/ไม่ชอบ", "ยอมแลกเปลี่ยนความคิดเห็น", "ความไว้วางใจ", "ความเห็นอกเห็นใจ (ช่วยเหลือหากประสบอุบัติเหตุ)"],
+                labels: ["ความเห็นอกเห็นใจ (ช่วยว่าความให้หากเป็นทนาย)", "ความชอบ/ไม่ชอบ", "ความเต็มใจแลกเปลี่ยนความคิดเห็น", "ความไว้วางใจ", "ความเห็นอกเห็นใจ (ช่วยเหลือหากประสบอุบัติเหตุ)"],
                 datasets: [
                   {
                     label: "ค่าเฉลี่ยของกลุ่มตัวอย่าง",
@@ -1190,9 +1212,12 @@ function App() {
                     max: 100,
                     title: {
                       display: true,
-                      text: "← ความรู้สึกไม่ดีสูง"
+                      text: "คะแนน"
                     }
                   },
+                  y: {
+                    reverse: true,
+                  }
                 },
               }}
             />
@@ -1354,7 +1379,7 @@ function App() {
             <Perception
               ref={el => charts.current['perception-all'] = el}
               highlightArray={[2]}
-              style={{marginTop: '-1.5em'}}
+              style={{marginTop: '-2.5em'}}
             />
           </section>
         </section>
@@ -1373,6 +1398,7 @@ function App() {
                 <li>ความต่างวัย</li>
                 <li>ความมั่นคงในชีวิต</li>
                 <li>การพูดคุยแลกเปลี่ยนความคิดเห็น</li>
+                <li>ความหลากหลายของสื่อที่ติดตาม</li>
               </ol>
             </div>
           </div>
@@ -1388,11 +1414,21 @@ function App() {
             <h2><orange>#5</orange> การบริโภคสื่อ</h2>
             <div id="media" className="fragment fade-out">
               <h3>สื่อ เรียงลำดับตามความเป็นไปได้ที่คนแต่ละกลุ่มจะติดตาม</h3>
-              <Chart
+              <div id="media-scale">
+                {
+                  mediaData.map((data, i) => (
+                    <div className="media-box" style={{backgroundColor: politicalColors((data + 8) / 16).hex()}}>
+                      <div className="media-text">{mediaLabel[i]}</div>
+                    </div>
+                  ))
+                }
+              </div>
+              {/* <Chart
                 type="bar"
+                height={200}
                 ref={el => charts.current["media"] = el}
                 data={{
-                  labels: ["VoiceTV", "ThaiPublica", "Top News"],
+                  labels: mediaLabel,
                   datasets: [
                     {
                       label: "x",
@@ -1403,8 +1439,13 @@ function App() {
                 }}
                 options={{
                   indexAxis: 'y',
+                  plugins: {
+                    legend: {
+                      display: false,
+                    }
+                  }
                 }}
-              />
+              /> */}
 
             </div>
           </section>
@@ -1417,7 +1458,7 @@ function App() {
                   ref={el => charts.current[`coef-1-${i}`] = el}
                   data={coefData}
                   i={i}
-                  highlightArray={[[0, 1], [2, 3, 4], [5], [6, 7], [8, 9]][curV]}
+                  highlightArray={[[0, 1, 2], [3, 4, 5, 6], [7], [8, 9], [10, 11]][curV]}
                 />
               )
             }

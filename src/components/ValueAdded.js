@@ -8,7 +8,7 @@ const areaAlpha = 0.75
 const countryList = ["ไทย", "อินโดนีเซีย", "มาเลเซีย", "ฟิลิปปินส์", "เวียดนาม"]
 const colorList = [
   styles.secondaryColor,
-  ...chroma.brewer.Pastel2.slice(0, 4).map(c => chroma(c).alpha(0.8).hex())
+  ...chroma.brewer.Pastel1.slice(0, 4).map(c => chroma(c).saturate(0.4).alpha(0.8).hex())
 ]
 
 export function ValueAddedLabel({}) {

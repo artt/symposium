@@ -90,7 +90,7 @@ const ComparePop = React.forwardRef(({title, data, ...rest }, ref) => {
                 type: 'box',
                 yMin: 5.5,
                 yMax: 8.5,
-                backgroundColor: chroma('black').alpha(0.2).hex(),
+                backgroundColor: chroma('white').alpha(0.2).hex(),
                 borderColor: 'rgba(255, 255, 255, 0)',
                 drawTime: 'beforeDraw'
               }

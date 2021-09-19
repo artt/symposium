@@ -18,17 +18,25 @@ const ComparePop = React.forwardRef(({groups, pop, sample, title, ...rest }, ref
         datasets: [
           {
             label: "ประชากรไทย",
-            data: pop,
+            data: pop.map(x => x * 100),
             backgroundColor: chroma(styles.fourthColor).alpha(areaAlpha).hex(),
           },
           {
             label: "กลุ่มตัวอย่าง",
-            data: sample,
+            data: sample.map(x => x * 100),
             backgroundColor: chroma(styles.secondaryColor).alpha(areaAlpha).hex(),
           }
         ]
       }}
       options={{
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: "สัดส่วน (%)",
+            }
+          }
+        },
         plugins: {
           title: {
             display: true,

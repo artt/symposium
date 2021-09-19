@@ -12,7 +12,10 @@ const Coefficients = React.forwardRef(({ highlightArray=[], data, i, ...rest }, 
     return Array(10).fill(chroma(color).alpha(0.3).hex()).map((x, i) => highlightArray.includes(i) ? color : x)
   }
 
-  const barColors = data[i].data.map(x => x > 0 ? 'green' : 'firebrick').map(x => chroma(x).brighten(1).hex())
+  const barColors = 
+    (i === 1)
+    ? data[i].data.map(x => x > 0 ? 'green' : 'firebrick').map(x => chroma(x).brighten(1).hex())
+    : data[i].data.map(x => x < 0 ? 'green' : 'firebrick').map(x => chroma(x).brighten(1).hex())
 
   return(
     <Chart
@@ -21,7 +24,7 @@ const Coefficients = React.forwardRef(({ highlightArray=[], data, i, ...rest }, 
       height={400}
       ref={ref}
       data={{
-        labels: (i === 0 ? [" ", " "] : ["Ext 1", "Ext 2"]).concat(["30–39", "40–59", "≥ 60", "Security Index", "Openness family", "Openness Friends", "Media entropy", "Media echo"]),
+        labels: (i === 0 ? [" ", " ", " "] : ["Stance: Mild", "Stance: Moderate", "Stance: Extreme"]).concat(["Age: ≤ 30", "Age: 30–39", "Age: 40–59", "Age: ≥ 60", "Security index", "Openness: family", "Openness: friends", "Media entropy", "Media echo"]),
         datasets: [
           {
             data: data[i].data,
@@ -49,6 +52,8 @@ const Coefficients = React.forwardRef(({ highlightArray=[], data, i, ...rest }, 
             //     return null
             //   }
             // }
+            min: [-3, -15, -1.5][i],
+            max: [3, 15, 1.5][i],
           }
         },
         plugins: {
