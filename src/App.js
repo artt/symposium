@@ -103,7 +103,7 @@ const mediaLogo = [picVoiceTV, picPrachathai, picTheStandard, picMatichon, picTh
 
 merge(defaults, {
   color: styles.textColor,
-  backgroundColor: styles.secondaryColor,
+  backgroundColor: chroma(styles.secondaryColor).alpha(areaAlpha).hex(),
   borderColor: styles.secondaryColor,
   font: {
     family: "Dindan",
@@ -461,16 +461,21 @@ function App() {
                   //   text: "สัดส่วนการส่งออกของไทยไปจีนและสหรัฐฯ",
                   // },
                   annotation: {
-                    annotations: ([[5, 9], [0, 1, 5, 9]][getFragment(charts.current['exports-products']?.canvas)] || [5, 9]).map(x => (
-                      {
-                        type: 'box',
-                        yMin: x - 0.5,
-                        yMax: x + 0.5,
-                        backgroundColor: chroma('white').alpha(0.2).hex(),
-                        borderColor: 'rgba(255, 255, 255, 0)',
-                        drawTime: 'beforeDraw'
-                      }
-                    ))
+                    annotations: ([[-1, 5, 9], [0, 5, 9]][getFragment(charts.current['exports-products']?.canvas)] || [-1, 5, 9]).map(x => {
+                      let offset = 0
+                      if (x === 0)
+                        offset = 1
+                      return(
+                        {
+                          type: 'box',
+                          yMin: x - 0.5,
+                          yMax: x + 0.5 + offset,
+                          backgroundColor: chroma('white').alpha(0.2).hex(),
+                          borderColor: 'rgba(255, 255, 255, 0)',
+                          drawTime: 'beforeDraw'
+                        }
+                      )}
+                    )
                   }
                 }
               }}
@@ -885,7 +890,7 @@ function App() {
             />
             <div class="fragment" />
             <div className="note">
-              <strong>ที่มา</strong>: รายงานผลการสำรวจพฤติกรรมผู้ใช้อินเทอร์เน็ตในประเทศไทย ปี 2563 สำนักงานพัฒนาธุรกรรมทางอิเล็กทรอนิกส์
+              <strong>ที่มา</strong>: รายงานผลการสำรวจพฤติกรรมผู้ใช้อินเทอร์เน็ตในประเทศไทย ปี 2020 สำนักงานพัฒนาธุรกรรมทางอิเล็กทรอนิกส์
             </div>
           </section>
 
@@ -915,7 +920,7 @@ function App() {
           <div className="fragment" />
           <div className="fragment" />
           <div className="note">
-            <strong>ที่มา</strong>: Climate Central, สำมะโนอุตสาหกรรม ปี 2560 คำนวณโดยธนาคารแห่งประเทศไทย
+            <strong>ที่มา</strong>: Climate Central, สำมะโนอุตสาหกรรม ปี 2017 คำนวณโดยธนาคารแห่งประเทศไทย
           </div>
         </section>
 
@@ -1142,7 +1147,6 @@ function App() {
 						มีความสัมพันธ์ระหว่างความเหลื่อมล้ำทางเศรษฐกิจ<br />
             กับความสมานฉันท์ในสังคม (social cohesion)
           </h2>
-
           <section>
             <div id="cohesion">
               <div className="circle inequality">ความเหลื่อมล้ำ</div>
@@ -1207,6 +1211,7 @@ function App() {
           <h2>สังคมไทยมีความเชื่อใจต่อกันลดลงอย่างต่อเนื่อง…</h2>
           <Chart
             type="bar"
+            height={170}
             ref={el => charts.current['trust'] = el}
             data={{
               labels: ["2008", "2013", "2018"],
@@ -1321,7 +1326,7 @@ function App() {
           <div className="spacer" />
           <div className="fragment">
             <h3>แบบสอบถามออนไลน์</h3>
-            <p>สิงหาคม–กันยายน 2564 หลากหลายกลุ่มเศรษฐกิจและสังคม</p>
+            <p>สิงหาคม–กันยายน 2021 หลากหลายกลุ่มเศรษฐกิจและสังคม</p>
             <div className="flex center" style={{height: '5em', width: '50%'}}>
               <div className="fragment">
                 <img src={picDemographics} className="center shadow-large" style={{display: 'block'}} />
@@ -1586,7 +1591,7 @@ function App() {
                   {
                     label: "ค่าเฉลี่ยของกลุ่มตัวอย่าง",
                     data: [36.6, 57.2, 61.6, 65.2, 86.1],
-                    backgroundColor: chroma(styles.fourthColor).alpha(areaAlpha).hex(),
+                    // backgroundColor: chroma(styles.secondaryColor).alpha(areaAlpha).hex(),
                   }
                 ]
               }}
@@ -1719,7 +1724,7 @@ function App() {
                             borderColor: politicalColors.colors(6)[0],
                             backgroundColor: politicalColors.colors(6)[0],
                             borderWidth: 3,
-                            display: getFragment(charts.current['perception-example']?.canvas) >= 2 && getFragment(charts.current['perception-example']?.canvas) < 8
+                            radius: getFragment(charts.current['perception-example']?.canvas) >= 2 && getFragment(charts.current['perception-example']?.canvas) < 8 ? 20: 0,
                           },
                           yellowImage: {
                             type: 'point',
@@ -1729,7 +1734,7 @@ function App() {
                             borderColor: politicalColors.colors(6)[5],
                             borderWidth: 3,
                             borderDash: [5, 5],
-                            display: getFragment(charts.current['perception-example']?.canvas) >= 3 && getFragment(charts.current['perception-example']?.canvas) < 8
+                            radius: getFragment(charts.current['perception-example']?.canvas) >= 3 && getFragment(charts.current['perception-example']?.canvas) < 8 ? 20: 0,
                           },
                           yellowActual: {
                             type: 'point',
@@ -1738,7 +1743,7 @@ function App() {
                             borderColor: politicalColors.colors(6)[5],
                             backgroundColor: politicalColors.colors(6)[5],
                             borderWidth: 3,
-                            display: getFragment(charts.current['perception-example']?.canvas) >= 4 && getFragment(charts.current['perception-example']?.canvas) < 8
+                            radius: getFragment(charts.current['perception-example']?.canvas) >= 4 && getFragment(charts.current['perception-example']?.canvas) < 8 ? 20 : 0,
                           },
                           orangeImage: {
                             type: 'point',
@@ -1748,7 +1753,7 @@ function App() {
                             borderColor: politicalColors.colors(6)[0],
                             borderWidth: 3,
                             borderDash: [5, 5],
-                            display: getFragment(charts.current['perception-example']?.canvas) >= 5 && getFragment(charts.current['perception-example']?.canvas) < 8
+                            radius: getFragment(charts.current['perception-example']?.canvas) >= 5 && getFragment(charts.current['perception-example']?.canvas) < 8 ? 20 : 0,
                           },
                         }
                       },

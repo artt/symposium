@@ -11,7 +11,7 @@ export default function SocialOutline({ n }) {
   return(
     <div className="vertical-center">
       <div>
-        <h2>คิดต่าง อย่างมีภูมิ</h2>
+        <h2 className="orange">คิดต่าง อย่างมีภูมิ</h2>
         <ol>
           {items.map((item, i) => 
             <li key={`item${i}`} className={i === n-1 ? "" : "fade"}>{item}</li>
