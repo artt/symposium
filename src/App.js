@@ -482,7 +482,7 @@ function App() {
             />
             <div className="fragment" />
             <div className="note">
-              <strong>หมายเหตุ</strong>: คำนวณจากข้อมูลล่าสุด ปี 2020
+              <strong>หมายเหตุ</strong>: คำนวณจากข้อมูลล่าสุด ปี 2020<br />
               <strong>ที่มา</strong>: ITC Trademap คำนวณโดยคณะผู้วิจัย
             </div>
           </section>
@@ -1201,7 +1201,9 @@ function App() {
                 }
               }}
             />
-            <div className="note"><strong>ที่มา</strong>: ข้อมูลจาก World Values Survey และ World Bank คำนวณโดยคณะผู้วิจัย</div>
+            <div className="note">
+              <strong>ที่มา</strong>: ข้อมูลจาก World Values Survey และ World Bank คำนวณโดยคณะผู้วิจัย
+            </div>
           </section>
 				</section>
 
@@ -1243,7 +1245,9 @@ function App() {
               }
             }}
           />
-          <div className="note"><strong>ที่มา</strong>: ข้อมูลจาก World Values Survey รอบที่ 5–7</div>
+          <div className="note">
+            <strong>ที่มา</strong>: ข้อมูลจาก World Values Survey รอบที่ 5–7
+          </div>
         </section>
 
         <section>
@@ -1306,7 +1310,9 @@ function App() {
               }
             }}
           />
-          <div className="note"><strong>ที่มา</strong>: ข้อมูลจาก World Values Survey รอบที่ 5–7</div>
+          <div className="note">
+            <strong>ที่มา</strong>: ข้อมูลจาก World Values Survey รอบที่ 5–7
+          </div>
           <div class="fragment" />
         </section>
 
