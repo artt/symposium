@@ -54,6 +54,10 @@ const Coefficients = React.forwardRef(({ highlightArray=[], data, i, ...rest }, 
             // }
             min: [-3, -15, -1.5][i],
             max: [3, 15, 1.5][i],
+            // title: {
+            //   display: true,
+            //   text: "คะแนน",
+            // },
           }
         },
         plugins: {
