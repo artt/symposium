@@ -50,7 +50,7 @@ const ComparePop = React.forwardRef(({title, data, ...rest }, ref) => {
         ]
       }}
       options={{
-        aspectRatio: 1,
+        aspectRatio: 0.9,
         layout: {
           padding: 0
         },
@@ -64,6 +64,10 @@ const ComparePop = React.forwardRef(({title, data, ...rest }, ref) => {
             }
           },
           x: {
+            title: {
+              display: true,
+              text: "จำนวน (ราย)",
+            },
             stacked: true,
             min: -1e6,
             max: 1e6,

@@ -271,7 +271,7 @@ function App() {
                   <orange>เป็นอย่างไร?</orange>
                 </div>
                 
-                <img src={picThailand} />
+                <img src={picThailand} className="shadow-small" />
                 <div>
                   แล้วประเทศไทย<br />
                   <orange>จะทำอย่างไรต่อไป?</orange>
@@ -310,27 +310,27 @@ function App() {
 
               <div id="megatrends">
                 <div className="trend">
-                  <img src={picGeopolitics} />
+                  <img src={picGeopolitics} className="shadow-large" />
                   <div>ภูมิรัฐศาสตร์</div>
                   <div className="below">Geopolitics</div>
                 </div>
                 <div className="trend fragment">
-                  <img src={picTech} />
+                  <img src={picTech} className="shadow-large" />
                   <div>ความก้าวหน้าทางเทคโนโลยี</div>
                   <div className="below">Technological advancement</div>
                 </div>
                 <div className="trend fragment">
-                  <img src={picGlobalWarming} />
+                  <img src={picGlobalWarming} className="shadow-large" />
                   <div>ภาวะโลกร้อน</div>
                   <div className="below">Global warming</div>
                 </div>
                 <div className="trend fragment">
-                  <img src={picAging} />
+                  <img src={picAging} className="shadow-large" />
                   <div>สังคมสูงอายุ</div>
                   <div className="below">Aged society</div>
                 </div>
                 <div className="trend fragment">
-                  <img src={picCovid} />
+                  <img src={picCovid} className="shadow-large" />
                   <div>แผลเป็นหลังโควิด</div>
                   <div className="below">COVID-19 scar</div>
                 </div>
@@ -461,7 +461,7 @@ function App() {
                   //   text: "สัดส่วนการส่งออกของไทยไปจีนและสหรัฐฯ",
                   // },
                   annotation: {
-                    annotations: ([[8, 9], [0, 1, 8, 9]][getFragment(charts.current['exports-products']?.canvas)] || [8, 9]).map(x => (
+                    annotations: ([[5, 9], [0, 1, 5, 9]][getFragment(charts.current['exports-products']?.canvas)] || [5, 9]).map(x => (
                       {
                         type: 'box',
                         yMin: x - 0.5,
@@ -477,6 +477,7 @@ function App() {
             />
             <div className="fragment" />
             <div className="note">
+              <strong>หมายเหตุ</strong>: คำนวณจากข้อมูลล่าสุด ปี 2020
               <strong>ที่มา</strong>: ITC Trademap คำนวณโดยคณะผู้วิจัย
             </div>
           </section>
@@ -828,6 +829,7 @@ function App() {
             </div>
             <ValueAddedLabel />
             <div className="note">
+              <strong>หมายเหตุ</strong>: แยกตามสินค้าส่งออกหลักของไทย 5 ประเภท<br />
               <strong>ที่มา</strong>: ธนาคารแห่งประเทศไทย คำนวณโดยคณะผู้วิจัย
             </div>
           </section>
@@ -859,6 +861,12 @@ function App() {
               options={{
                 indexAxis: 'y',
                 scales: {
+                  x: {
+                    title: {
+                      display: true,
+                      text: "สัดส่วนผู้ตอบแบบสำรวจ (%)"
+                    }
+                  },
                   y: {
                     min: [5, 0][getFragment(charts.current['foreign-platforms']?.canvas)],
                     max: 9,
@@ -923,6 +931,7 @@ function App() {
             สัดส่วนแรงงานสูงวัย (มากกว่า 50 ปี) <orange>เพิ่มขึ้นเกือบ 3 เท่า</orange>ในช่วงไม่ถึง 20 ปีที่ผ่านมา
           </div>
           <div id="pop" className="grid-3">
+            <div className="fragment" data-fragment-index="1">
             <Pop
               ref={el => charts.current['pop-2002'] = el}
               title="2002 (3.42%)"
@@ -933,26 +942,31 @@ function App() {
                 femaleForeign: [364, 664, 649, 460, 344, 203, 121, 57, 31],
               }}
             />
-            <Pop
-              ref={el => charts.current['pop-2009'] = el}
-              title="2009 (5.84%)"
-              data={{
-                male: [689001, 803854, 671193, 506708, 374290, 244438, 142516, 69234, 24534],
-                female: [741137, 813156, 646882, 498837, 362407, 221357, 109873, 42109, 12807],
-                maleForeign: [5169, 6161, 6802, 7733, 7866, 6313, 4532, 3314, 1501],
-                femaleForeign: [3612, 2923, 2037, 1728, 1072, 630, 354, 144, 59],
-              }}
-            />
-            <Pop
-              ref={el => charts.current['pop-2019'] = el}
-              title="2019 (9.91%)"
-              data={{
-                male: [715941, 736427, 653627, 664370, 539958, 412479, 294215, 144834, 51606],
-                female: [780933, 781834, 674107, 659776, 514249, 390667, 262010, 114599, 35804],
-                maleForeign: [146626, 131895, 115796, 84238, 48089, 28214, 14476, 5103, 2417],
-                femaleForeign: [110226, 96483, 80600, 55819, 27738, 14753, 5430, 715, 178],
-              }}
-            />
+            </div>
+            <div className="fragment" data-fragment-index="2">
+              <Pop
+                ref={el => charts.current['pop-2009'] = el}
+                title="2009 (5.84%)"
+                data={{
+                  male: [689001, 803854, 671193, 506708, 374290, 244438, 142516, 69234, 24534],
+                  female: [741137, 813156, 646882, 498837, 362407, 221357, 109873, 42109, 12807],
+                  maleForeign: [5169, 6161, 6802, 7733, 7866, 6313, 4532, 3314, 1501],
+                  femaleForeign: [3612, 2923, 2037, 1728, 1072, 630, 354, 144, 59],
+                }}
+              />
+            </div>
+            <div className="fragment" data-fragment-index="2">
+              <Pop
+                ref={el => charts.current['pop-2019'] = el}
+                title="2019 (9.91%)"
+                data={{
+                  male: [715941, 736427, 653627, 664370, 539958, 412479, 294215, 144834, 51606],
+                  female: [780933, 781834, 674107, 659776, 514249, 390667, 262010, 114599, 35804],
+                  maleForeign: [146626, 131895, 115796, 84238, 48089, 28214, 14476, 5103, 2417],
+                  femaleForeign: [110226, 96483, 80600, 55819, 27738, 14753, 5430, 715, 178],
+                }}
+              />
+            </div>
           </div>
           <div className="note">
             <strong>ที่มา</strong>: สำนักงานประกันสังคม คำนวณโดยธนาคารแห่งประเทศไทย
@@ -973,7 +987,7 @@ function App() {
           </div>
           <split>
             <div>
-            <Chart
+              <Chart
                 type="line"
                 width="100%"
                 height={200}
@@ -1029,11 +1043,32 @@ function App() {
                     //   display: true,
                     //   text: "สัดส่วนการส่งออกของไทยไปจีนและสหรัฐฯ",
                     // },
+                    annotation: {
+                      annotations: {
+                        covid: {
+                          type: 'box',
+                          xMin: "2020Q2",
+                          // xMax: "Dec-15",
+                          drawTime: "beforeDatasetsDraw",
+                          borderWidth: 0,
+                          backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                        },
+                      }
+                    },
+                    texts: {
+                      texts: {
+                        bombing: {
+                          text: 'หมดมาตรการฯ ระยะแรก',
+                          x: 510,
+                          y: 35,
+                        },
+                      },
+                    },
                   }
                 }}
               />
             </div>
-            <div>
+            <div className="fragment">
               <Chart
                 type="bar"
                 width="100%"
@@ -1289,19 +1324,19 @@ function App() {
             <p>สิงหาคม–กันยายน 2564 หลากหลายกลุ่มเศรษฐกิจและสังคม</p>
             <div className="flex center" style={{height: '5em', width: '50%'}}>
               <div className="fragment">
-                <img src={picDemographics} className="center" style={{display: 'block'}} />
+                <img src={picDemographics} className="center shadow-large" style={{display: 'block'}} />
                 <div className="small">Demographics</div>
               </div>
               <div className="fragment">
-                <img src={picSocialQuality} className="center" style={{display: 'block'}} />
+                <img src={picSocialQuality} className="center shadow-large" style={{display: 'block'}} />
                 <div className="small">Social Quality</div>
               </div>
               <div className="fragment">
-                <img src={picOpinions} className="center" style={{display: 'block'}} />
+                <img src={picOpinions} className="center shadow-large" style={{display: 'block'}} />
                 <div className="small">Values & Opinions</div>
               </div>
               <div className="fragment">
-                <img src={picSocialMedia} className="center" style={{display: 'block'}} />
+                <img src={picSocialMedia} className="center shadow-large" style={{display: 'block'}} />
                 <div className="small">Media & Exchange</div>
               </div>
             </div>
@@ -1455,7 +1490,7 @@ function App() {
           </h2>
           <div id="political-scale" className={`center frag${getFragment(document.getElementById("political-scale"))}`}>
             <div className={`def def-orange`}>
-              <img src={picPassionFruit} height="200px" />
+              <img src={picPassionFruit} height="200px" className="shadow-large" />
               <div className="top">
                 สิทธิ<br />
                 เสรีภาพ<br />
@@ -1508,7 +1543,7 @@ function App() {
               />
             </div>
             <div className={`def def-yellow`}>
-              <img src={picBanana} height="200px" />
+              <img src={picBanana} height="200px" className="shadow-large" />
               <div className="top">
                 ประเพณีนิยม<br />
                 ศีลธรรมอันดีงาม<br />

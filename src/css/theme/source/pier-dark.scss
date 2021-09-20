@@ -164,5 +164,14 @@ $heading4Size: 1.2em;
   .nobreak {
     display: inline-block;
   }
+
+  img {
+    &.shadow-small {
+      filter: drop-shadow(0 0 10px rgba(0,0,0,0.1))
+    }
+    &.shadow-large {
+      filter: drop-shadow(0 0 20px rgba(0,0,0,0.1))
+    }
+  }
   
 }
