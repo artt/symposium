@@ -589,7 +589,7 @@ function App() {
                       },
                       boat: {
                         text: 'เหตุการณ์เรือล่ม',
-                        x: 775,
+                        x: 725,
                         y: 35,
                       },
                       covid: {
@@ -1665,7 +1665,7 @@ function App() {
             <div>
               Westfall <em>et al.</em> (2015) พบว่าคน<orange>คิดว่าสองฝั่งมีความแตกต่างกันมากกว่าความเป็นจริง</orange>
             </div>
-            <div className="spacer" />
+            <div style={{height: '2em'}} />
             <div className="fragment">
               คำถาม<br />
               <strong>"คุณให้ความสำคัญกับการเชื่อฟังผู้อาวุโส หรือผู้มีตำแหน่งสูงกว่า มากน้อยแค่ไหน"</strong>

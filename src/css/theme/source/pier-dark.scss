@@ -46,6 +46,10 @@ $heading4Size: 1.2em;
 @import "../template/theme";
 // ---------------------------------------------
 
+.reveal .slides section .fragment {
+  visibility: inherit;
+}
+
 .reveal.slide > .slides {
 
   > section {
