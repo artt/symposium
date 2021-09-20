@@ -1807,54 +1807,56 @@ function App() {
           <section><h2><orange>#4</orange> การพูดคุยแลกเปลี่ยนความคิดเห็น</h2></section>
           <section>
             <h2><orange>#5</orange> การบริโภคสื่อ</h2>
-            <div id="media" className="fragment fade-out">
-              <h3>สื่อ เรียงลำดับตามความเป็นไปได้ที่คนแต่ละกลุ่มจะติดตาม</h3>
-              <div id="media-scale">
-                {
-                  mediaData.map((data, i) => (
-                    <div className="media-box">
-                      <div style={{height: `${Math.abs(data)*30}px`, backgroundColor: politicalColors((data + 8) / 16).hex()}} />
-                      <img className="media-logo" src={mediaLogo[i]} />
-                    </div>
-                  ))
-                }
-              </div>
-              <split>
-                <div>
-                  <h3 className="orange">Echo chamber</h3>
-                  <p>สัดส่วนของสื่อที่ติดตามที่คนกลุ่มเดียวกันติดตาม</p>
-                </div>
-                <div>
-                  <h3 className="orange">Media entropy</h3>
-                  <p>ความหลากหลายของสื่อที่ติดตาม</p>
-                </div>
-              </split>
-              {/* <Chart
-                type="bar"
-                height={200}
-                ref={el => charts.current["media"] = el}
-                data={{
-                  labels: mediaLabel,
-                  datasets: [
-                    {
-                      label: "x",
-                      data: mediaData,
-                      backgroundColor: mediaData.map(x => politicalColors((x + 8) / 16).hex()),
-                    },
-                  ]
-                }}
-                options={{
-                  indexAxis: 'y',
-                  plugins: {
-                    legend: {
-                      display: false,
-                    }
-                  }
-                }}
-              /> */}
-
-            </div>
+            <div className="fragment" />
           </section>
+
+          <div id="media">
+            <h3>สื่อ เรียงลำดับตามความเป็นไปได้ที่คนแต่ละกลุ่มจะติดตาม</h3>
+            <div id="media-scale">
+              {
+                mediaData.map((data, i) => (
+                  <div className="media-box">
+                    <div style={{height: `${Math.abs(data)*30}px`, backgroundColor: politicalColors((data + 8) / 16).hex()}} />
+                    <img className="media-logo" src={mediaLogo[i]} />
+                  </div>
+                ))
+              }
+            </div>
+            <split>
+              <div>
+                <h3 className="orange">Echo chamber</h3>
+                <p>สัดส่วนของสื่อที่ติดตามที่คนกลุ่มเดียวกันติดตาม</p>
+              </div>
+              <div>
+                <h3 className="orange">Media entropy</h3>
+                <p>ความหลากหลายของสื่อที่ติดตาม</p>
+              </div>
+            </split>
+            {/* <Chart
+              type="bar"
+              height={200}
+              ref={el => charts.current["media"] = el}
+              data={{
+                labels: mediaLabel,
+                datasets: [
+                  {
+                    label: "x",
+                    data: mediaData,
+                    backgroundColor: mediaData.map(x => politicalColors((x + 8) / 16).hex()),
+                  },
+                ]
+              }}
+              options={{
+                indexAxis: 'y',
+                plugins: {
+                  legend: {
+                    display: false,
+                  }
+                }
+              }}
+            /> */}
+
+          </div>
           
           <div style={{height: '3.5em'}} />
           <div className="grid-3">
