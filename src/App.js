@@ -849,7 +849,7 @@ function App() {
             </div>
             <Chart
               type="bar"
-              height={110}
+              height={120}
               ref={el => charts.current['foreign-platforms'] = el}
               data={{
                 labels: ["Shopee", "Lazada", "Facebook", "Instagram", "LINE", "Kaidee", "lnwShop", "WeLoveShopping", "Shopping", "ThailandPostmart"],
