@@ -309,7 +309,7 @@ function App() {
               </h2>
 
               <div id="megatrends">
-                <div className="trend">
+                <div className="trend fragment">
                   <img src={picGeopolitics} className="shadow-large" />
                   <div>ภูมิรัฐศาสตร์</div>
                   <div className="below">Geopolitics</div>
