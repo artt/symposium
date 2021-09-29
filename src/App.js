@@ -835,7 +835,7 @@ function App() {
             <ValueAddedLabel />
             <div className="note">
               <strong>หมายเหตุ</strong>: แยกตามสินค้าส่งออกหลักของไทย 5 ประเภท<br />
-              <strong>ที่มา</strong>: ธนาคารแห่งประเทศไทย คำนวณโดยคณะผู้วิจัย
+              <strong>ที่มา</strong>: TiVA database คำนวณโดยคณะผู้วิจัย
             </div>
           </section>
 
