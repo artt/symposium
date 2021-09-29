@@ -1152,7 +1152,7 @@ function App() {
               <div className="circle inequality">ความเหลื่อมล้ำ</div>
               <div className="circle cohesion">ความสมานฉันท์</div>
               <div className="fragment arrow-pointer arrow-pointer-right"><span>Easterly <em>et al.</em> (2006)</span></div>
-              <div className="fragment arrow-pointer arrow-pointer-left">Sommon (2019)</div>
+              <div className="fragment arrow-pointer arrow-pointer-left">Sommer (2019)</div>
             </div>
           </section>
 
