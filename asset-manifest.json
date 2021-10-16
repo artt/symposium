@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/symposium/static/css/main.ee9dba50.chunk.css",
-    "main.js": "/symposium/static/js/main.68f48eb4.chunk.js",
-    "main.js.map": "/symposium/static/js/main.68f48eb4.chunk.js.map",
+    "main.js": "/symposium/static/js/main.8a83290e.chunk.js",
+    "main.js.map": "/symposium/static/js/main.8a83290e.chunk.js.map",
     "runtime-main.js": "/symposium/static/js/runtime-main.b434af8c.js",
     "runtime-main.js.map": "/symposium/static/js/runtime-main.b434af8c.js.map",
     "static/css/2.fa4a5ac2.chunk.css": "/symposium/static/css/2.fa4a5ac2.chunk.css",
-    "static/js/2.a293fbed.chunk.js": "/symposium/static/js/2.a293fbed.chunk.js",
-    "static/js/2.a293fbed.chunk.js.map": "/symposium/static/js/2.a293fbed.chunk.js.map",
+    "static/js/2.908c6df9.chunk.js": "/symposium/static/js/2.908c6df9.chunk.js",
+    "static/js/2.908c6df9.chunk.js.map": "/symposium/static/js/2.908c6df9.chunk.js.map",
     "static/js/3.652a4407.chunk.js": "/symposium/static/js/3.652a4407.chunk.js",
     "static/js/3.652a4407.chunk.js.map": "/symposium/static/js/3.652a4407.chunk.js.map",
     "index.html": "/symposium/index.html",
     "static/css/2.fa4a5ac2.chunk.css.map": "/symposium/static/css/2.fa4a5ac2.chunk.css.map",
     "static/css/main.ee9dba50.chunk.css.map": "/symposium/static/css/main.ee9dba50.chunk.css.map",
-    "static/js/2.a293fbed.chunk.js.LICENSE.txt": "/symposium/static/js/2.a293fbed.chunk.js.LICENSE.txt",
+    "static/js/2.908c6df9.chunk.js.LICENSE.txt": "/symposium/static/js/2.908c6df9.chunk.js.LICENSE.txt",
     "static/media/aging.8c093859.png": "/symposium/static/media/aging.8c093859.png",
     "static/media/amarin-tv.98b3de5b.jpg": "/symposium/static/media/amarin-tv.98b3de5b.jpg",
     "static/media/banana.287d6a56.png": "/symposium/static/media/banana.287d6a56.png",
@@ -37,7 +37,6 @@
     "static/media/naewna.7627d77b.png": "/symposium/static/media/naewna.7627d77b.png",
     "static/media/nation.3d3f592d.png": "/symposium/static/media/nation.3d3f592d.png",
     "static/media/new-18.110e472b.png": "/symposium/static/media/new-18.110e472b.png",
-    "static/media/nursing-home.85c319dd.svg": "/symposium/static/media/nursing-home.85c319dd.svg",
     "static/media/opinions.dd82837f.png": "/symposium/static/media/opinions.dd82837f.png",
     "static/media/passion-fruit.7f3cd371.png": "/symposium/static/media/passion-fruit.7f3cd371.png",
     "static/media/people.b6444c2c.png": "/symposium/static/media/people.b6444c2c.png",
@@ -66,8 +65,8 @@
   "entrypoints": [
     "static/js/runtime-main.b434af8c.js",
     "static/css/2.fa4a5ac2.chunk.css",
-    "static/js/2.a293fbed.chunk.js",
+    "static/js/2.908c6df9.chunk.js",
     "static/css/main.ee9dba50.chunk.css",
-    "static/js/main.68f48eb4.chunk.js"
+    "static/js/main.8a83290e.chunk.js"
   ]
 }
