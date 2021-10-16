@@ -85,15 +85,15 @@ const politicalColors = chroma.scale(['orange', 'white', 'yellow'])
 const coefData = [
   {
     title: "ความสุดขั้ว", 
-    data: [0, 0, 0, 0, -0.2205991, -0.6915629, -0.4377571, -1.58721, -0.4587052, 0.0399224, -0.0624773, 2.305114]
+    data: [0, 0, 0, 0, -0.2205991, -0.6915629, -0.4377571, -1.58721, -0.4587052, 0.0399224, 2.305114, -0.0624773]
   },
   {
     title: "ความรู้สึกไม่ดีต่อฝั่งตรงข้าม",
-    data: [0, -3.168377, -6.185956, 0, -4.332496, -5.34668, -7.804648, 9.998635, 5.958668, 3.164143, 4.615053, -12.45545].map(x => -1*x)
+    data: [0, -3.168377, -6.185956, 0, -4.332496, -5.34668, -7.804648, 9.998635, 5.958668, 3.164143, -12.45545, 4.615053].map(x => -1*x)
   },
   {
     title: "ความคิดว่าต่างมากเกินจริง",
-    data: [0, 0.3459591, 0.5754136, 0, -0.1405119, -0.3061428, -0.1909025, -0.4560134, 0.0107633, -0.2896076, 0.3828785, 1.081103]
+    data: [0, 0.3459591, 0.5754136, 0, -0.1405119, -0.3061428, -0.1909025, -0.4560134, 0.0107633, -0.2896076, 1.081103, 0.3828785]
   },
 ]
 
@@ -1145,20 +1145,27 @@ function App() {
               ไม่ได้เป็นความเปราะบางเพียงอย่างเดียว<br />
               <orange>ต้องพิจารณาประเด็นทางสังคมควบคู่ไปด้วย</orange>
             </h1>
+            {/* <h1>
+              …ความเปราะบางทางเศรษฐกิจ นำไปสู่ความเหลื่อมล้ำ<br />
+              และความเปราะบางทางสังคม<br />
+              <orange>ซึ่งในที่สุดก็จะส่งผลต่อเศรษฐกิจเช่นกัน</orange>
+            </h1> */}
           </div>
 				</section>
 
         <section>
 					<h2>
-						มีความสัมพันธ์ระหว่างความเหลื่อมล้ำทางเศรษฐกิจ<br />
-            กับความสมานฉันท์ในสังคม (social cohesion)
+						{/* มีความสัมพันธ์ระหว่างความเหลื่อมล้ำทางเศรษฐกิจ<br />
+            กับความสมานฉันท์ในสังคม (social cohesion) */}
+            ความสมานฉันท์อาจเป็นกุญแจสำคัญ<br />
+            ในการพัฒนาอย่างยั่งยืนและทั่วถึง
           </h2>
           <section>
             <div id="cohesion">
-              <div className="circle inequality">ความเหลื่อมล้ำ</div>
+              <div className="circle inequality">การพัฒนาอย่างยั่งยืนและทั่วถึง</div>
               <div className="circle cohesion">ความสมานฉันท์</div>
-              <div className="fragment arrow-pointer arrow-pointer-right"><span>Easterly <em>et al.</em> (2006)</span></div>
-              <div className="fragment arrow-pointer arrow-pointer-left">Sommer (2019)</div>
+              <div className="fragment arrow-pointer arrow-pointer-right">Sommer (2019)</div>
+              <div className="fragment arrow-pointer arrow-pointer-left">Easterly et al. (2006)</div>
             </div>
           </section>
 
@@ -1502,10 +1509,10 @@ function App() {
         </section>
 
         <section>
-          <h2>
-            การวัดความคิดต่าง
-          </h2>
           <section>
+            <h2>
+              การวัดความคิดต่าง
+            </h2>
             <div id="political-scale" className={`center frag${getFragment(document.getElementById("political-scale"))}`}>
               <div className={`def def-orange`}>
                 <img src={picPassionFruit} height="200px" className="shadow-large" />
@@ -1581,6 +1588,9 @@ function App() {
             </div>
           </section>
           <section>
+            <h2>
+              กลุ่มคนอายุน้อยมีค่านิยมไปทางเสรีนิยม
+            </h2>
             <ExtremityBreakdown ref={el => charts.current['breakdown'] = el}/>
           </section>
         </section>
@@ -1628,7 +1638,7 @@ function App() {
                     }
                   },
                   y: {
-                    reverse: true,
+                    // reverse: true,
                   }
                 },
               }}
@@ -1804,14 +1814,27 @@ function App() {
         <section>
           <div className="vertical-center">
             <div>
-              <h2>ปัจจัยที่สัมพันธ์กับความแตกแยก</h2>
-              <ol>
-                <li>ความสุดขั้ว</li>
-                <li>ความต่างวัย</li>
-                <li>ความมั่นคงในชีวิต</li>
-                <li>การพูดคุยแลกเปลี่ยนความคิดเห็น</li>
-                <li>ความหลากหลายของสื่อที่ติดตาม</li>
-              </ol>
+              <h2>ปัจจัยที่สัมพันธ์กับความคิดต่าง/ความแตกแยก</h2>
+              <split>
+                <div>
+                  <h3>ตัวแปรต้น</h3>
+                  <ol>
+                    <li>ความสุดขั้ว</li>
+                    <li>ความต่างวัย</li>
+                    <li>ความมั่นคงในชีวิต</li>
+                    <li>การพูดคุยแลกเปลี่ยนความคิดเห็น</li>
+                    <li>ความหลากหลายของสื่อที่ติดตาม</li>
+                  </ol>
+                </div>
+                <div>
+                  <h3>ตัวแปรตาม</h3>
+                  <ol>
+                    <li>ความสุดขั้ว</li>
+                    <li>ความรู้สึกไม่ดีต่อฝั่งตรงข้าม</li>
+                    <li>ความคิดว่าต่างมากเกินจริง</li>
+                  </ol>
+                </div>
+              </split>
             </div>
           </div>
         </section>
