@@ -761,7 +761,7 @@ function App() {
                 }
               }}
             />
-            <div className="note"><strong>ที่มา</strong>: ธนาคารแห่งประเทศไทย ITC Trademap คำนวณโดยคณะผู้วิจัย</div>
+            <div className="note"><strong>ที่มา</strong>: ธนาคารแห่งประเทศไทย คำนวณโดยคณะผู้วิจัย</div>
           </section>
 
         </section>
@@ -1906,7 +1906,7 @@ function App() {
           </div>
         </section> */}
 
-        <section>
+        {/* <section>
           <div className="vertical-center">
             <div>
               <h2>ผลการศึกษาที่สำคัญ</h2>
@@ -1921,7 +1921,7 @@ function App() {
               </ol>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section>
           <h2>คน "คิดต่าง" อาจไม่ได้ต่างอย่างที่คิด</h2>
