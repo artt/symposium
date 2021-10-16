@@ -12,10 +12,12 @@ const Coefficients = React.forwardRef(({ highlightArray=[], data, i, ...rest }, 
     return Array(12).fill(chroma(color).alpha(0.3).hex()).map((x, i) => highlightArray.includes(i) ? color : x)
   }
 
-  const barColors = 
-    (i === 1)
-    ? data[i].data.map(x => x > 0 ? 'green' : 'firebrick').map(x => chroma(x).brighten(1).hex())
-    : data[i].data.map(x => x < 0 ? 'green' : 'firebrick').map(x => chroma(x).brighten(1).hex())
+  // const barColors = 
+  //   (i === 1)
+  //   ? data[i].data.map(x => x > 0 ? 'green' : 'firebrick').map(x => chroma(x).brighten(1).hex())
+  //   : data[i].data.map(x => x < 0 ? 'green' : 'firebrick').map(x => chroma(x).brighten(1).hex())
+
+  const barColors = data[i].data.map(x => x < 0 ? 'green' : 'firebrick').map(x => chroma(x).brighten(1).hex())
 
   return(
     <Chart

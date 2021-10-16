@@ -11,6 +11,7 @@ import ComparePop from './components/ComparePop'
 import Perception from './components/Perception'
 import Coefficients from './components/Coefficients'
 import SocialOutline from './components/SocialOutline'
+import ExtremityBreakdown from './components/ExtremityBreakdown'
 import ValueAdded, { ValueAddedLabel } from './components/ValueAdded'
 import { defaults } from 'test-react-chartjs-2'
 import merge from 'lodash.merge'
@@ -18,7 +19,6 @@ import chroma from 'chroma-js'
 
 import Logo from './components/Logo'
 
-import {ReactComponent as PicNursingHome} from './images/nursing-home.svg'
 import picInternet from './images/world.png'
 import picThailand from './images/thailand.png'
 import picFamily from './images/people.png'
@@ -89,7 +89,7 @@ const coefData = [
   },
   {
     title: "ความรู้สึกไม่ดีต่อฝั่งตรงข้าม",
-    data: [0, -3.168377, -6.185956, 0, -4.332496, -5.34668, -7.804648, 9.998635, 5.958668, 3.164143, 4.615053, -12.45545]
+    data: [0, -3.168377, -6.185956, 0, -4.332496, -5.34668, -7.804648, 9.998635, 5.958668, 3.164143, 4.615053, -12.45545].map(x => -1*x)
   },
   {
     title: "ความคิดว่าต่างมากเกินจริง",
@@ -238,8 +238,14 @@ function App() {
               </h1>
               <div style={{height: "4rem"}} />
               <h4>
-                สถาบันวิจัยเศรษฐกิจป๋วย อึ๊งภากรณ์<br />
-                BOT Symposium 2021
+                <p>
+                  สถาบันวิจัยเศรษฐกิจป๋วย อึ๊งภากรณ์<br />
+                  {/* BOT Symposium 2021 */}
+                </p>
+                <p>
+                  บรรยายให้คณะที่ปรึกษาด้านผลกระทบทางเศรษฐกิจและสังคมฯ<br />
+                  18 ตุลาคม 2564
+                </p>
               </h4>
               <div style={{height: "2rem"}} />
               <Logo />
@@ -1499,79 +1505,84 @@ function App() {
           <h2>
             การวัดความคิดต่าง
           </h2>
-          <div id="political-scale" className={`center frag${getFragment(document.getElementById("political-scale"))}`}>
-            <div className={`def def-orange`}>
-              <img src={picPassionFruit} height="200px" className="shadow-large" />
-              <div className="top">
-                สิทธิ<br />
-                เสรีภาพ<br />
-                ความหลากหลาย<br />
-                ความเสมอภาค<br />
-                ความเท่าเทียม
+          <section>
+            <div id="political-scale" className={`center frag${getFragment(document.getElementById("political-scale"))}`}>
+              <div className={`def def-orange`}>
+                <img src={picPassionFruit} height="200px" className="shadow-large" />
+                <div className="top">
+                  สิทธิ<br />
+                  เสรีภาพ<br />
+                  ความหลากหลาย<br />
+                  ความเสมอภาค<br />
+                  ความเท่าเทียม
+                </div>
+                <p>
+                  ให้ความสำคัญกับหลักสิทธิเสรีภาพและความเสมอภาค<span className="nobreak">ภายใต้</span>ความหลากหลายในสังคม เช่น สิทธิในการแสดงออก <span className="nobreak">การยกระดับ</span>คุณภาพชีวิตของคนในสังคมให้เท่าเทียมกัน<span className="nobreak">มากขึ้น</span> เป็นต้น
+                </p>
               </div>
-              <p>
-                ให้ความสำคัญกับหลักสิทธิเสรีภาพและความเสมอภาค<span className="nobreak">ภายใต้</span>ความหลากหลายในสังคม เช่น สิทธิในการแสดงออก <span className="nobreak">การยกระดับ</span>คุณภาพชีวิตของคนในสังคมให้เท่าเทียมกัน<span className="nobreak">มากขึ้น</span> เป็นต้น
-              </p>
-            </div>
-            <div className="chart-container">
-              <Chart
-                type="bar"
-                width="100%"
-                ref={el => charts.current['extremity'] = el}
-                data={{
-                  labels: ["1", "2", "3", "4", "5", "6"],
-                  datasets: [
-                    {
-                      data: [Array(6).fill(100), Array(6).fill(100), [545, 511, 370, 301, 184, 105]][getFragment(charts.current['extremity']?.canvas)],
-                      backgroundColor: politicalColors.colors(6),
-                    }
-                  ]
-                }}
-                options={{
-                  aspectRatio: 1.5,
-                  scales: {
-                    y: {
-                      max: 600,
-                      ticks: {
-                        color: ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0)', styles.textColor][getFragment(charts.current['extremity']?.canvas)],
+              <div className="chart-container">
+                <Chart
+                  type="bar"
+                  width="100%"
+                  ref={el => charts.current['extremity'] = el}
+                  data={{
+                    labels: ["1", "2", "3", "4", "5", "6"],
+                    datasets: [
+                      {
+                        data: [Array(6).fill(100), Array(6).fill(100), [545, 511, 370, 301, 184, 105]][getFragment(charts.current['extremity']?.canvas)],
+                        backgroundColor: politicalColors.colors(6),
+                      }
+                    ]
+                  }}
+                  options={{
+                    aspectRatio: 1.5,
+                    scales: {
+                      y: {
+                        max: 600,
+                        ticks: {
+                          color: ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0)', styles.textColor][getFragment(charts.current['extremity']?.canvas)],
+                        },
+                        title: {
+                          display: true,
+                          text: getFragment(charts.current['extremity']?.canvas) === 2 ? "จำนวน (ราย)" : "",
+                        },
                       },
+                    },
+                    plugins: {
                       title: {
                         display: true,
-                        text: getFragment(charts.current['extremity']?.canvas) === 2 ? "จำนวน (ราย)" : "",
+                        text: getFragment(charts.current['extremity']?.canvas) === 2 ? "จำนวนผู้ตอบแบบสอบถามในแต่ละกลุ่ม" : "",
                       },
-                    },
-                  },
-                  plugins: {
-                    title: {
-                      display: true,
-                      text: getFragment(charts.current['extremity']?.canvas) === 2 ? "จำนวนผู้ตอบแบบสอบถามในแต่ละกลุ่ม" : "",
-                    },
-                    legend: {
-                      display: false,
+                      legend: {
+                        display: false,
+                      }
                     }
-                  }
-                }}
-              />
-            </div>
-            <div className={`def def-yellow`}>
-              <img src={picBanana} height="200px" className="shadow-large" />
-              <div className="top">
-                ประเพณีนิยม<br />
-                ศีลธรรมอันดีงาม<br />
-                ความเป็นหนึ่งเดียว<br />
-                การเคารพผู้อาวุโส<br />
-                ความมั่นคงในชีวิต
+                  }}
+                />
               </div>
-              <p>
-                ให้ความสำคัญกับความเป็นอันหนึ่งอันเดียวกันในสังคม <span className="nobreak">ความมั่นคงในชีวิต</span> และประเพณีนิยม เช่น ศีลธรรมอันดีงาม <span className="nobreak">การสืบทอดจารีตประเพณี</span> <span className="nobreak">การเคารพผู้อาวุโส</span>
-              </p>
+              <div className={`def def-yellow`}>
+                <img src={picBanana} height="200px" className="shadow-large" />
+                <div className="top">
+                  ประเพณีนิยม<br />
+                  ศีลธรรมอันดีงาม<br />
+                  ความเป็นหนึ่งเดียว<br />
+                  การเคารพผู้อาวุโส<br />
+                  ความมั่นคงในชีวิต
+                </div>
+                <p>
+                  ให้ความสำคัญกับความเป็นอันหนึ่งอันเดียวกันในสังคม <span className="nobreak">ความมั่นคงในชีวิต</span> และประเพณีนิยม เช่น ศีลธรรมอันดีงาม <span className="nobreak">การสืบทอดจารีตประเพณี</span> <span className="nobreak">การเคารพผู้อาวุโส</span>
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="fragment" />
-          <div className="fragment" />
-          <div className="note">
-            Flaticon.com
-          </div>
+            <div className="fragment" />
+            <div className="fragment" />
+            <div className="note">
+              Flaticon.com
+            </div>
+          </section>
+          <section>
+            <ExtremityBreakdown ref={el => charts.current['breakdown'] = el}/>
+          </section>
         </section>
 
         <section>
@@ -1779,7 +1790,7 @@ function App() {
           <section>
             <Perception
               ref={el => charts.current['perception-all'] = el}
-              highlightArray={[2]}
+              highlightArray={[]}
               style={{marginTop: '-2.5em'}}
             />
           </section>
