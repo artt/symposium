@@ -709,7 +709,7 @@ function App() {
               <strong>ที่มา</strong>: กระทรวงการท่องเที่ยวและกีฬา คำนวณโดยคณะผู้วิจัย
             </div>
           </section>
-          {/* <section>
+          <section>
             <div>
               การลงทุนทางตรงของสหรัฐฯ ยังอยู่ในระดับสูง<br />
               ขณะที่ของจีนเพิ่มขึ้นต่อเนื่อง
@@ -762,7 +762,7 @@ function App() {
               }}
             />
             <div className="note"><strong>ที่มา</strong>: ธนาคารแห่งประเทศไทย ITC Trademap คำนวณโดยคณะผู้วิจัย</div>
-          </section> */}
+          </section>
 
         </section>
 
@@ -1679,10 +1679,10 @@ function App() {
           </h2>
           <div className="spacer" />
           <section>
-            <div>
+            {/* <div>
               Westfall <em>et al.</em> (2015) พบว่าคน<orange>คิดว่าสองฝั่งมีความแตกต่างกันมากกว่าความเป็นจริง</orange>
-            </div>
-            <div style={{height: '2em'}} />
+            </div> */}
+            {/* <div style={{height: '2em'}} /> */}
             <div className="fragment">
               คำถาม<br />
               <strong>"คุณให้ความสำคัญกับการเชื่อฟังผู้อาวุโส หรือผู้มีตำแหน่งสูงกว่า มากน้อยแค่ไหน"</strong>
