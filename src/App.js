@@ -2034,6 +2034,12 @@ function App() {
         </section>
 
         <section>
+          <div className="vertical-center">
+            <h1>4 หลักสำคัญ</h1>
+          </div>
+        </section>
+
+        <section>
           <div style={{height: '9em'}} />
           <section><h1 style={{fontSize: '3em'}}>เปิดใจ</h1></section>
           <section><h1 style={{fontSize: '3em'}}>รับฟัง</h1></section>
