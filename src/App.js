@@ -2028,7 +2028,7 @@ function App() {
           <h2>คน "คิดต่าง" อาจไม่ได้ต่างอย่างที่คิด</h2>
           <Perception
             ref={el => charts.current['perception-close'] = el}
-            highlightArray={[6, 7, 8]}
+            highlightArray={[5, 6, 7, 8]}
             style={{marginTop: '-0.5em'}}
           />
         </section>
