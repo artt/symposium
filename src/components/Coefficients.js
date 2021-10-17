@@ -26,7 +26,7 @@ const Coefficients = React.forwardRef(({ highlightArray=[], data, i, ...rest }, 
       height={400}
       ref={ref}
       data={{
-        labels: (i === 0 ? [" ", " ", " "] : ["Stance: Mild", "Stance: Moderate", "Stance: Extreme"]).concat(["Age: ≤ 30", "Age: 30–39", "Age: 40–59", "Age: ≥ 60", "Security index", "Openness: family", "Openness: friends", "Media echo", "Media entropy"]),
+        labels: (i === 2 ? [" ", " ", " "] : ["Stance: Mild", "Stance: Moderate", "Stance: Extreme"]).concat(["Age: ≤ 30", "Age: 30–39", "Age: 40–59", "Age: ≥ 60", "Security index", "Openness: family", "Openness: friends", "Media echo", "Media entropy"]),
         datasets: [
           {
             data: data[i].data,

@@ -1382,31 +1382,25 @@ function App() {
           <div>
             <ul>
               <li>ผู้ตอบแบบสอบถาม 2,016 ราย (Phase I)</li>
-              <li>จากข้อจำกัดด้านเวลาและสถานการณ์โควิด กลุ่มตัวอย่างที่ได้ มีกลุ่มอายุวัยกลางคน กลุ่มคนกรุงเทพฯ และรายได้ สูงกว่าโครงสร้างประชากรไทย</li>
+              <li>กลุ่มตัวอย่างที่ได้ มีกลุ่มอายุวัยกลางคน กลุ่มคนกรุงเทพฯ และรายได้ สูงกว่าโครงสร้างประชากรไทย</li>
             </ul>
           </div>
           
-
-          <section>
+          <div className="grid-3 fragment">
             <ComparePop
               ref={el => charts.current['survey-age'] = el}
               groups={["< 30", "30–39", "40–59", "≥ 60"]}
               pop={[0.166234731, 0.161541394, 0.406425137, 0.265798739]}
               sample={[0.1408308, 0.259371834, 0.495440729, 0.104356636]}
               title="อายุ"
-              className="fragment"
             />
-          </section>
-          <section>
             <ComparePop
               ref={el => charts.current['survey-area'] = el}
-              groups={["นอกเขตเทศบาล", "ในเขตเทศบาล", "กรุงเทพฯ"]}
+              groups={["นอกเทศบาล", "เทศบาล", "กรุงเทพฯ"]}
               pop={[0.563505023, 0.313015343, 0.123479635]}
               sample={[0.159067882, 0.242654509, 0.598277609]}
               title="พื้นที่"
             />
-          </section>
-          <section>
             <ComparePop
               ref={el => charts.current['survey-income'] = el}
               groups={["< 10,000", "10,000–25,000", "25,001–50,000", "50,001–80,000", "80,001–120,000", "120,001–200,000", "200,001–500,000", "> 500,000"]}
@@ -1414,7 +1408,7 @@ function App() {
               sample={[0.032928065, 0.095744681, 0.166666667, 0.151975684, 0.151469098, 0.138804458, 0.168693009, 0.093718338]}
               title="รายได้"
             />
-          </section>
+          </div>
           {/* <section>
             <ComparePop
               ref={el => charts.current['survey-occupation'] = el}
@@ -1458,12 +1452,12 @@ function App() {
               datasets: [
                 {
                   label: "ค่าเฉลี่ยของกลุ่มตัวอย่าง",
-                  data: [78.01819, 72.15211, 51.61855, 48.9426, 43.25326, 33.90756, 30.442, 72.68779, 64.38076, 60.83162],
+                  data: [Array(10).fill(100), [78.01819, 72.15211, 51.61855, 48.9426, 43.25326, 33.90756, 30.442, 72.68779, 64.38076, 60.83162]][getFragment(charts.current['cohesion']?.canvas)],
                   backgroundColor: [
-                    ...Array(2).fill(chroma(chroma.brewer.Pastel1[0]).saturate(0.4).alpha(0.3*areaAlpha).hex()),
-                    ...Array(2).fill(chroma(chroma.brewer.Pastel1[1]).saturate(0.4).alpha(0.3*areaAlpha).hex()),
+                    ...Array(2).fill(chroma(chroma.brewer.Pastel1[0]).alpha(areaAlpha).hex()),
+                    ...Array(2).fill(chroma(chroma.brewer.Pastel1[1]).alpha(areaAlpha).hex()),
                     ...Array(3).fill(chroma(styles.secondaryColor).alpha(areaAlpha).hex()),
-                    ...Array(3).fill(chroma(chroma.brewer.Pastel1[2]).saturate(0.4).alpha(0.3*areaAlpha).hex()),
+                    ...Array(3).fill(chroma(chroma.brewer.Pastel1[2]).alpha(areaAlpha).hex()),
                   ],
                 }
               ]
@@ -1481,9 +1475,9 @@ function App() {
                 y: {
                   ticks: {
                     color: [
-                      ...Array(4).fill(chroma(styles.textColor).alpha(0.3).hex()),
+                      ...Array(4).fill(chroma(styles.textColor).alpha(getFragment(charts.current['cohesion']?.canvas) === 1 ? 0.3 : 1).hex()),
                       ...Array(3).fill(styles.textColor),
-                      ...Array(3).fill(chroma(styles.textColor).alpha(0.3).hex()),
+                      ...Array(3).fill(chroma(styles.textColor).alpha(getFragment(charts.current['cohesion']?.canvas) === 1 ? 0.3 : 1).hex()),
                     ]
                   }
                 }
@@ -1498,7 +1492,7 @@ function App() {
                       type: 'box',
                       yMin: 3.5,
                       yMax: 6.5,
-                      backgroundColor: chroma('black').alpha(0.2).hex(),
+                      backgroundColor: chroma('black').alpha(getFragment(charts.current['cohesion']?.canvas) === 1 ? 0.2 : 0).hex(),
                       borderColor: 'rgba(255, 255, 255, 0)',
                       drawTime: 'beforeDraw'
                     }
@@ -1507,6 +1501,7 @@ function App() {
               }
             }}
           />
+          <div className="fragment" />
         </section>
 
         <section>
@@ -1822,21 +1817,20 @@ function App() {
               <h2>ปัจจัยที่สัมพันธ์กับความคิดต่าง/ความแตกแยก</h2>
               <split>
                 <div>
-                  <h3>ตัวแปรต้น</h3>
+                  <h3 className="orange">ตัวแปรตาม</h3>
+                  <ol>
+                    <li>ความรู้สึกไม่ดีต่อฝั่งตรงข้าม</li>
+                    <li>ความคิดว่าต่างมากเกินจริง</li>
+                  </ol>
+                </div>
+                <div>
+                  <h3 className="orange">ตัวแปรต้น</h3>
                   <ol>
                     <li>ความสุดขั้ว</li>
                     <li>ความต่างวัย</li>
                     <li>ความมั่นคงในชีวิต</li>
                     <li>การพูดคุยแลกเปลี่ยนความคิดเห็น</li>
                     <li>ความหลากหลายของสื่อที่ติดตาม</li>
-                  </ol>
-                </div>
-                <div>
-                  <h3>ตัวแปรตาม</h3>
-                  <ol>
-                    <li>ความรู้สึกไม่ดีต่อฝั่งตรงข้าม</li>
-                    <li>ความคิดว่าต่างมากเกินจริง</li>
-                    <li>ความสุดขั้ว</li>
                   </ol>
                 </div>
               </split>
@@ -1869,12 +1863,12 @@ function App() {
             </div>
             <split>
               <div>
-                <h3 className="orange">Echo chamber</h3>
-                <p>สัดส่วนของสื่อที่ติดตามที่คนกลุ่มเดียวกันติดตาม</p>
-              </div>
-              <div>
                 <h3 className="orange">Media entropy</h3>
                 <p>ความหลากหลายของสื่อที่ติดตาม</p>
+              </div>
+              <div>
+                <h3 className="orange">Echo chamber</h3>
+                <p>สัดส่วนของสื่อที่ติดตามที่คนกลุ่มเดียวกันติดตาม</p>
               </div>
             </split>
             {/* <Chart
@@ -1912,6 +1906,7 @@ function App() {
                   data={coefData}
                   i={i}
                   highlightArray={[[0, 1, 2], [3, 4, 5, 6], [7], [8, 9], [10, 11]][curV]}
+                  style={curV === 0 && i === 2 ? {display: "none"} : {}}
                 />
               )
             }
