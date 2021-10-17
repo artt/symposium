@@ -16,7 +16,7 @@
 
 #political-scale {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   transition-duration: 3s;
   height: 700px;
@@ -27,6 +27,7 @@
     flex: 0 0 300px;
     align-self: center;
     transition-duration: 3s;
+    transform-origin: top center;
     p {
       font-size: 0.6em;
       opacity: 0.7;
@@ -131,6 +132,7 @@
     &.arrow-pointer-left {
       bottom: 30%;
       transform: translateX(-($arrow-width - $arrow-height/4) / 2);
+      background: scale-color($text-color, $alpha: -50%);
     }
     // &:after {
     //   content: '';
@@ -155,7 +157,7 @@
     }
     &.arrow-pointer-left:before {
       left: -$arrow-height/2;
-      border-right: $arrow-height/2 solid $text-color;
+      border-right: $arrow-height/2 solid scale-color($text-color, $alpha: -50%);
     }
   }
 

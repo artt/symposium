@@ -54,8 +54,8 @@ const Coefficients = React.forwardRef(({ highlightArray=[], data, i, ...rest }, 
             //     return null
             //   }
             // }
-            min: [-3, -15, -1.5][i],
-            max: [3, 15, 1.5][i],
+            min: [-15, -1.5, -3][i],
+            max: [15, 1.5, 3][i],
             // title: {
             //   display: true,
             //   text: "คะแนน",
@@ -74,8 +74,8 @@ const Coefficients = React.forwardRef(({ highlightArray=[], data, i, ...rest }, 
             annotations: {
               highlight: {
                 type: 'box',
-                yMin: ((highlightArray[0] === 0) && (i === 0)) ? 2.5 : highlightArray[0] - 0.5,
-                yMax: ((highlightArray[0] === 0) && (i === 0)) ? 2.5 : highlightArray[highlightArray.length-1] + 0.5,
+                yMin: ((highlightArray[0] === 0) && (i === 2)) ? 2.5 : highlightArray[0] - 0.5,
+                yMax: ((highlightArray[0] === 0) && (i === 2)) ? 2.5 : highlightArray[highlightArray.length-1] + 0.5,
                 backgroundColor: chroma('black').alpha(0.2).hex(),
                 borderColor: 'rgba(255, 255, 255, 0)',
                 drawTime: 'beforeDraw'

@@ -84,16 +84,16 @@ const politicalColors = chroma.scale(['orange', 'white', 'yellow'])
 
 const coefData = [
   {
-    title: "ความสุดขั้ว", 
-    data: [0, 0, 0, 0, -0.2205991, -0.6915629, -0.4377571, -1.58721, -0.4587052, 0.0399224, 2.305114, -0.0624773]
-  },
-  {
     title: "ความรู้สึกไม่ดีต่อฝั่งตรงข้าม",
     data: [0, -3.168377, -6.185956, 0, -4.332496, -5.34668, -7.804648, 9.998635, 5.958668, 3.164143, -12.45545, 4.615053].map(x => -1*x)
   },
   {
     title: "ความคิดว่าต่างมากเกินจริง",
     data: [0, 0.3459591, 0.5754136, 0, -0.1405119, -0.3061428, -0.1909025, -0.4560134, 0.0107633, -0.2896076, 1.081103, 0.3828785]
+  },
+  {
+    title: "ความสุดขั้ว", 
+    data: [0, 0, 0, 0, -0.2205991, -0.6915629, -0.4377571, -1.58721, -0.4587052, 0.0399224, 2.305114, -0.0624773]
   },
 ]
 
@@ -1161,11 +1161,15 @@ function App() {
             ในการพัฒนาอย่างยั่งยืนและทั่วถึง
           </h2>
           <section>
+            <ul>
+              <li>คุณภาพของสถาบัน/องค์กรสาธารณะเพิ่มขึ้น</li>
+              <li>ความเปลี่ยนแปลงเกิดได้ง่ายขึ้น</li>
+            </ul>
             <div id="cohesion">
-              <div className="circle inequality">การพัฒนาอย่างยั่งยืนและทั่วถึง</div>
-              <div className="circle cohesion">ความสมานฉันท์</div>
-              <div className="fragment arrow-pointer arrow-pointer-right">Sommer (2019)</div>
-              <div className="fragment arrow-pointer arrow-pointer-left">Easterly et al. (2006)</div>
+              <div className="circle inequality">ความสมานฉันท์</div>
+              <div className="circle cohesion">การพัฒนาอย่างยั่งยืนและทั่วถึง</div>
+              <div className="arrow-pointer arrow-pointer-right" />
+              <div className="fragment arrow-pointer arrow-pointer-left" />
             </div>
           </section>
 
@@ -1346,20 +1350,20 @@ function App() {
           <div className="fragment">
             <h3>แบบสอบถามออนไลน์</h3>
             <p>สิงหาคม–กันยายน 2021 หลากหลายกลุ่มเศรษฐกิจและสังคม</p>
-            <div className="flex center" style={{height: '5em', width: '50%'}}>
-              <div className="fragment">
+            <div className="flex center fragment" style={{height: '5em', width: '50%'}}>
+              <div>
                 <img src={picDemographics} className="center shadow-large" style={{display: 'block'}} />
                 <div className="small">Demographics</div>
               </div>
-              <div className="fragment">
+              <div>
                 <img src={picSocialQuality} className="center shadow-large" style={{display: 'block'}} />
                 <div className="small">Social Quality</div>
               </div>
-              <div className="fragment">
+              <div>
                 <img src={picOpinions} className="center shadow-large" style={{display: 'block'}} />
                 <div className="small">Values & Opinions</div>
               </div>
-              <div className="fragment">
+              <div>
                 <img src={picSocialMedia} className="center shadow-large" style={{display: 'block'}} />
                 <div className="small">Media & Exchange</div>
               </div>
@@ -1390,6 +1394,7 @@ function App() {
               pop={[0.166234731, 0.161541394, 0.406425137, 0.265798739]}
               sample={[0.1408308, 0.259371834, 0.495440729, 0.104356636]}
               title="อายุ"
+              className="fragment"
             />
           </section>
           <section>
@@ -1829,9 +1834,9 @@ function App() {
                 <div>
                   <h3>ตัวแปรตาม</h3>
                   <ol>
-                    <li>ความสุดขั้ว</li>
                     <li>ความรู้สึกไม่ดีต่อฝั่งตรงข้าม</li>
                     <li>ความคิดว่าต่างมากเกินจริง</li>
+                    <li>ความสุดขั้ว</li>
                   </ol>
                 </div>
               </split>
