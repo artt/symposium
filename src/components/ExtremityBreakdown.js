@@ -31,15 +31,16 @@ const ExtremityBreakdown = React.forwardRef(({ data, label, title, ...rest }, re
           backgroundColor: politicalColors.colors(6)[i],
           fill: true,
           tension: 0.4,
-          borderColor: 'rgba(255, 255, 255, 0)',
+          borderColor: i === 2 ? 'black' : 'rgba(255, 255, 255, 0)',
+          borderDash: [5, 5],
         }))
       }}
       options={{
-        interaction: {
-          intersect: false,
-          mode: 'index',
-          axis: 'y',
-        },
+        // interaction: {
+        //   intersect: false,
+        //   mode: 'nearest',
+        //   // axis: 'y',
+        // },
         radius: 0,
         indexAxis: 'y',
         scales: {

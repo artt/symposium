@@ -1452,7 +1452,7 @@ function App() {
               datasets: [
                 {
                   label: "ค่าเฉลี่ยของกลุ่มตัวอย่าง",
-                  data: [Array(10).fill(100), [78.01819, 72.15211, 51.61855, 48.9426, 43.25326, 33.90756, 30.442, 72.68779, 64.38076, 60.83162]][getFragment(charts.current['cohesion']?.canvas)],
+                  data: [Array(10).fill(0), [78.01819, 72.15211, 51.61855, 48.9426, 43.25326, 33.90756, 30.442, 72.68779, 64.38076, 60.83162]][getFragment(charts.current['cohesion']?.canvas)],
                   backgroundColor: [
                     ...Array(2).fill(chroma(chroma.brewer.Pastel1[0]).alpha(areaAlpha).hex()),
                     ...Array(2).fill(chroma(chroma.brewer.Pastel1[1]).alpha(areaAlpha).hex()),
@@ -1492,10 +1492,82 @@ function App() {
                       type: 'box',
                       yMin: 3.5,
                       yMax: 6.5,
-                      backgroundColor: chroma('black').alpha(getFragment(charts.current['cohesion']?.canvas) === 1 ? 0.2 : 0).hex(),
+                      backgroundColor: chroma(getFragment(charts.current['cohesion']?.canvas) === 1 ? 'black' : styles.secondaryColor).alpha(0.2).hex(),
                       borderColor: 'rgba(255, 255, 255, 0)',
                       drawTime: 'beforeDraw'
-                    }
+                    },
+                    highlight1: {
+                      type: 'box',
+                      yMin: -0.5,
+                      yMax: 1.5,
+                      backgroundColor: chroma(chroma.brewer.Pastel1[0]).alpha(getFragment(charts.current['cohesion']?.canvas) === 1 ? 0 : 0.2).hex(),
+                      borderColor: 'rgba(255, 255, 255, 0)',
+                      drawTime: 'beforeDraw'
+                    },
+                    highlight2: {
+                      type: 'box',
+                      yMin: 1.5,
+                      yMax: 3.5,
+                      backgroundColor: chroma(chroma.brewer.Pastel1[1]).alpha(getFragment(charts.current['cohesion']?.canvas) === 1 ? 0 : 0.2).hex(),
+                      borderColor: 'rgba(255, 255, 255, 0)',
+                      drawTime: 'beforeDraw'
+                    },
+                    highlight4: {
+                      type: 'box',
+                      yMin: 6.5,
+                      yMax: 9.5,
+                      backgroundColor: chroma(chroma.brewer.Pastel1[2]).alpha(getFragment(charts.current['cohesion']?.canvas) === 1 ? 0 : 0.2).hex(),
+                      borderColor: 'rgba(255, 255, 255, 0)',
+                      drawTime: 'beforeDraw'
+                    },
+                    text1: {
+                      type: 'line',
+                      yMin: 0.5,
+                      yMax: 0.5,
+                      borderColor: `rgba(255, 255, 255, 0)`,
+                      label: {
+                        content: "Social Security",
+                        enabled: true,
+                        position: 'end',
+                        backgroundColor: `rgba(255, 255, 255, 0)`,
+                      },
+                    },
+                    text2: {
+                      type: 'line',
+                      yMin: 2.5,
+                      yMax: 2.5,
+                      borderColor: `rgba(255, 255, 255, 0)`,
+                      label: {
+                        content: "Social Inclusion",
+                        enabled: true,
+                        position: 'end',
+                        backgroundColor: `rgba(255, 255, 255, 0)`,
+                      },
+                    },
+                    text3: {
+                      type: 'line',
+                      yMin: 5,
+                      yMax: 5,
+                      borderColor: `rgba(255, 255, 255, 0)`,
+                      label: {
+                        content: "Social Cohesion",
+                        enabled: true,
+                        position: 'end',
+                        backgroundColor: `rgba(255, 255, 255, 0)`,
+                      },
+                    },
+                    text4: {
+                      type: 'line',
+                      yMin: 8,
+                      yMax: 8,
+                      borderColor: `rgba(255, 255, 255, 0)`,
+                      label: {
+                        content: "Social Empowerment",
+                        enabled: true,
+                        position: 'end',
+                        backgroundColor: `rgba(255, 255, 255, 0)`,
+                      },
+                    },
                   }
                 }
               }
@@ -1827,7 +1899,7 @@ function App() {
                   <h3 className="orange">ตัวแปรต้น</h3>
                   <ol>
                     <li>ความสุดขั้ว</li>
-                    <li>ความต่างวัย</li>
+                    <li>ช่วงอายุ</li>
                     <li>ความมั่นคงในชีวิต</li>
                     <li>การพูดคุยแลกเปลี่ยนความคิดเห็น</li>
                     <li>ความหลากหลายของสื่อที่ติดตาม</li>
@@ -1841,7 +1913,7 @@ function App() {
         <section>
 
           <section><h2><orange>#1</orange> ความสุดขั้ว</h2></section>
-          <section><h2><orange>#2</orange> ความต่างวัย</h2></section>
+          <section><h2><orange>#2</orange> ช่วงอายุ</h2></section>
           <section><h2><orange>#3</orange> ความมั่นคงในชีวิต</h2></section>
           <section><h2><orange>#4</orange> การพูดคุยแลกเปลี่ยนความคิดเห็น</h2></section>
           <section>
@@ -1947,18 +2019,18 @@ function App() {
         </section> */}
 
         <section>
+          <div className="vertical-center">
+            <h1>แล้วเราจะทำอย่างไรต่อไป?</h1>
+          </div>
+        </section>
+
+        <section>
           <h2>คน "คิดต่าง" อาจไม่ได้ต่างอย่างที่คิด</h2>
           <Perception
             ref={el => charts.current['perception-close'] = el}
             highlightArray={[6, 7, 8]}
             style={{marginTop: '-0.5em'}}
           />
-        </section>
-
-        <section>
-          <div className="vertical-center">
-            <h1>แล้วเราจะทำอย่างไรต่อไป?</h1>
-          </div>
         </section>
 
         <section>
