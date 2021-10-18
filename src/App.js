@@ -1978,7 +1978,7 @@ function App() {
                   data={coefData}
                   i={i}
                   highlightArray={[[0, 1, 2], [3, 4, 5, 6], [7], [8, 9], [10, 11]][curV]}
-                  style={curV === 0 && i === 2 ? {display: "none"} : {}}
+                  style={curV === 0 && i === 2 ? {opacity: "0", transitionDuration: "1s"} : {opacity: "1", transitionDuration: "1s"}}
                 />
               )
             }
